@@ -2,4 +2,13 @@
     <string name="app_name">EBFitApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_account">Create Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="contiune">Contiune</string>
+    <string name="take_the_first_step_towards_a_healthy_life_join_us_to_reach_your_goals">Take the first step towards a healthy life. Join us to reach your goals!</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="prefer_not_to_say">Prefer not to say</string>
 </resources>

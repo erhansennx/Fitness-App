@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:gravity="center|start"
+    android:orientation="vertical"
     tools:context=".fragment.SignUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:progressTint="@color/red"
+        android:thumb="@null"
+        android:max="2"
+        android:progress="1"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/create_account"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/take_the_first_step_towards_a_healthy_life_join_us_to_reach_your_goals"
+        android:fontFamily="@font/revolutiongothic_light"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/silver"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:fontFamily="@font/revolutiongothic_regular"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:fontFamily="@font/revolutiongothic_regular"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:fontFamily="@font/revolutiongothic_regular"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <AutoCompleteTextView
+            android:id="@+id/genderDropDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:fontFamily="@font/revolutiongothic_regular"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/contiune"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+
+</LinearLayout>
