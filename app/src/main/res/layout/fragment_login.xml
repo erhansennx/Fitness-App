@@ -1,15 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.LoginFragment">
+    android:background="@color/gray">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/loginnnimage" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Login"
-        android:gravity="center"/>
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="150dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="50sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Train and live the new experience of exercising at home"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textSize="23sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="35dp"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="40dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:fontFamily="@font/revolutiongothic_regular"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="40dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:fontFamily="@font/revolutiongothic_regular"/>
+
+
+            <TextView
+                android:id="@+id/forgotPasswordText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Forgot Password?"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                ></TextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="20dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:layout_marginHorizontal="100dp"
+            android:backgroundTint="#020202"
+            android:gravity="center"
+            android:text="or\n Create Account"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+
+
+            ></TextView>
+
+
+    </LinearLayout>
 
 </FrameLayout>
