@@ -65,6 +65,7 @@
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/revolutiongothic_regular"
@@ -90,6 +91,7 @@
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/revolutiongothic_regular"
@@ -115,6 +117,7 @@
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/revolutiongothic_regular"
@@ -145,11 +148,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/revolutiongothic_regular"
                 android:inputType="textPersonName"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/contiuneButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

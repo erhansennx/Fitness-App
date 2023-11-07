@@ -6,10 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment() {
+
+    private var username: String? = null
+    private var email: String? = null
+    private var password: String? = null
+    private var gender: String? = null
 
     private lateinit var fragmentSignUpBinding: FragmentSignUpBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -20,11 +28,37 @@ class SignUpFragment : Fragment() {
         return fragmentSignUpBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(fragmentSignUpBinding) {
+
+            genderDropDown.setOnItemClickListener { adapterView, view, i, l ->
+                gender = adapterView.getItemAtPosition(i).toString()
+            }
+
+            contiuneButton.setOnClickListener {
+                username = usernameText.text.toString()
+                email = emailText.text.toString()
+                password = passwordText.text.toString()
+
+                if (username.isNullOrEmpty() || email.isNullOrEmpty() || password.isNullOrEmpty() || gender.isNullOrEmpty()) {
+                    Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(requireContext(), "$username $email $password $gender", Toast.LENGTH_LONG).show()
+                    val action = SignUpFragmentDirections.actionSignUpFragmentToProfileDetailFragment()
+                    Navigation.findNavController(requireView()).navigate(action)
+                }
+            }
+
+        }
+
+    }
+
     private fun settings() {
         val genderItems = listOf(getString(R.string.male), getString(R.string.female), getString(R.string.prefer_not_to_say))
         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, genderItems)
         fragmentSignUpBinding.genderDropDown.setAdapter(adapter)
-        //fragmentSignUpBinding.seekBar.isEnabled = false
     }
 
 }

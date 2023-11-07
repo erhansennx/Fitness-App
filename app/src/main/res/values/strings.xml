@@ -23,6 +23,8 @@
     <string name="increaseEndurance">Increase Endurance</string>
     <string name="buildMuscleMass">Build Muscle Mass</string>
     <string name="improveFlexibility">Improve Flexibility and Balance</string>
+    <string name="please_fill_in_the_empty_fields">Please fill in the empty fields..</string>
+
     <string name="welcome">Welcome</string>
     <string name="pursue_your_dreams_with_sports_and_determination">Pursue your dreams with sports and determination.</string>
     <string name="get_started">GET STARTED</string>
@@ -32,4 +34,5 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="buttonlogin">Login</string>
     <string name="or_ncreate_account">or\nCreate Account</string>
+    <string name="complete_profile">Complete Profile</string>
 </resources>
