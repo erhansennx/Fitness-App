@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="75dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:text="Login"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="@color/red"
             android:textSize="50sp" />
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Train and live the new experience of exercising at home"
+            android:text="@string/train_and_live_the_new_experience_of_exercising_at_home"
             android:fontFamily="@font/revolutiongothic_light"
             android:textSize="23sp"
             android:layout_marginTop="10dp"
@@ -91,7 +91,7 @@
                 android:id="@+id/forgotPasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Forgot Password?"
+                android:text="@string/forgot_password"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16dp"/>
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="70dp"
             android:layout_marginTop="20dp"
-            android:text="Login"
+            android:text="@string/buttonlogin"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:backgroundTint="@color/red"
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            android:text="or\nCreate Account"
+            android:text="@string/or_ncreate_account"
             android:textSize="18dp"
             android:textColor="@color/white"/>
 
