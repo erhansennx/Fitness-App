@@ -12,17 +12,19 @@ import com.app.ebfitapp.databinding.FragmentSignUpBinding
 class SignUpFragment : Fragment() {
 
     private lateinit var fragmentSignUpBinding: FragmentSignUpBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSignUpBinding = FragmentSignUpBinding.inflate(layoutInflater)
 
+        settings()
+
+        return fragmentSignUpBinding.root
+    }
+
+    private fun settings() {
         val genderItems = listOf(getString(R.string.male), getString(R.string.female), getString(R.string.prefer_not_to_say))
         val adapter = ArrayAdapter(requireContext(), R.layout.gender_items, genderItems)
         fragmentSignUpBinding.genderDropDown.setAdapter(adapter)
-
-        return fragmentSignUpBinding.root
+        //fragmentSignUpBinding.seekBar.isEnabled = false
     }
 
 }

@@ -11,4 +11,10 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="prefer_not_to_say">Prefer not to say</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="goal">Goals</string>
+    <string name="target_weight">Target Weight</string>
+    <string name="let_s_get_started">Let\'s get started</string>
+    <string name="back_to_sign_up">Back to Sign Up</string>
 </resources>
