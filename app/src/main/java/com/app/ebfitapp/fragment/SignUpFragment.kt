@@ -11,6 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentSignUpBinding
+import com.app.ebfitapp.service.FirebaseAuthService
 
 class SignUpFragment : Fragment() {
 
@@ -19,11 +20,13 @@ class SignUpFragment : Fragment() {
     private var password: String? = null
     private var gender: String? = null
 
+    private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var fragmentSignUpBinding: FragmentSignUpBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSignUpBinding = FragmentSignUpBinding.inflate(layoutInflater)
 
         settings()
+        firebaseAuthService = FirebaseAuthService(requireContext())
 
         return fragmentSignUpBinding.root
     }
@@ -45,9 +48,12 @@ class SignUpFragment : Fragment() {
                 if (username.isNullOrEmpty() || email.isNullOrEmpty() || password.isNullOrEmpty() || gender.isNullOrEmpty()) {
                     Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(requireContext(), "$username $email $password $gender", Toast.LENGTH_LONG).show()
-                    val action = SignUpFragmentDirections.actionSignUpFragmentToProfileDetailFragment()
-                    Navigation.findNavController(requireView()).navigate(action)
+                    firebaseAuthService.createAccount(email = email!!, password = password!!) { task ->
+                        if (task) {
+                            val action = SignUpFragmentDirections.actionSignUpFragmentToProfileDetailFragment()
+                            Navigation.findNavController(requireView()).navigate(action)
+                        }
+                    }
                 }
             }
 
