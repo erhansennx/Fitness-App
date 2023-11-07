@@ -22,7 +22,7 @@ class SignUpFragment : Fragment() {
 
     private fun settings() {
         val genderItems = listOf(getString(R.string.male), getString(R.string.female), getString(R.string.prefer_not_to_say))
-        val adapter = ArrayAdapter(requireContext(), R.layout.gender_items, genderItems)
+        val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, genderItems)
         fragmentSignUpBinding.genderDropDown.setAdapter(adapter)
         //fragmentSignUpBinding.seekBar.isEnabled = false
     }

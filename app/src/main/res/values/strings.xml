@@ -17,4 +17,10 @@
     <string name="target_weight">Target Weight</string>
     <string name="let_s_get_started">Let\'s get started</string>
     <string name="back_to_sign_up">Back to Sign Up</string>
+    <string name="age">Age</string>
+    <string name="weightLoss">Weight Loss</string>
+    <string name="weightGain">Weight Gain</string>
+    <string name="increaseEndurance">Increase Endurance</string>
+    <string name="buildMuscleMass">Build Muscle Mass</string>
+    <string name="improveFlexibility">Improve Flexibility and Balance</string>
 </resources>
