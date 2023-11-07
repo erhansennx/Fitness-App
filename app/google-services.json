@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481565551155",
+    "project_id": "ebfitapp-f7907",
+    "storage_bucket": "ebfitapp-f7907.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481565551155:android:b65ec167bda579aaac1146",
+        "android_client_info": {
+          "package_name": "com.app.ebfitapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaAUvBKzOCQjgDFgDsQOzZhGysn1pikUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
