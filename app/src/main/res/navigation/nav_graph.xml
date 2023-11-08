@@ -18,7 +18,12 @@
         android:id="@+id/profileDetailFragment"
         android:name="com.app.ebfitapp.fragment.ProfileDetailFragment"
         android:label="fragment_profile_detail"
-        tools:layout="@layout/fragment_profile_detail" />
+        tools:layout="@layout/fragment_profile_detail" >
+
+        <argument
+            android:name="userEmail"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.app.ebfitapp.fragment.SignUpFragment"
