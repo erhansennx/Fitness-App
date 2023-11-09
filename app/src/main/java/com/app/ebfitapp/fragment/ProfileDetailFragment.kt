@@ -73,7 +73,7 @@ class ProfileDetailFragment : Fragment() {
 
             startButton.setOnClickListener {
                 if (ageText.text.isNullOrEmpty() || heightText.text.isNullOrEmpty() || weightText.text.isNullOrEmpty() ||
-                    targetWeightText.text.isNullOrEmpty() || goal.isNullOrEmpty() || imageURI != null) {
+                    targetWeightText.text.isNullOrEmpty() || goal.isNullOrEmpty() || imageURI == null) {
                     Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_LONG).show()
                 } else {
                     customProgress.show()

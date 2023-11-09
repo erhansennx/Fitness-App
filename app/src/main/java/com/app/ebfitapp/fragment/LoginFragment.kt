@@ -29,30 +29,23 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(fragmentLoginBinding)
-        {
-            onLoginButton.setOnClickListener()
-            {
+        with(fragmentLoginBinding) {
+            onLoginButton.setOnClickListener() {
                     email = loginEmailText.text.toString()
                     password = loginPasswordText.text.toString()
 
-                if(email.isNullOrEmpty() || password.isNullOrEmpty())
-                {
+                if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
                     Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_LONG).show()
-                }else
-                {
+                } else {
                     customProgress.show()
                     firebaseAuthService.loginAccount(email = email!! ,password = password!!) { task ->
                         if(task)
                         {   //Authentication succesful
                             customProgress.dismiss()
-
+                            requireActivity().finish()
                             val intent =Intent(requireContext(),MainActivity::class.java)
                             startActivity(intent)
 
-                            val fragmentTransaction = requireFragmentManager().beginTransaction()
-                            fragmentTransaction.remove(this@LoginFragment)
-                            fragmentTransaction.commit()
                         }
                         else{
                             //Authentication unsuccesful
@@ -60,7 +53,6 @@ class LoginFragment : Fragment() {
                         }
                     }
                 }
-
             }
         }
     }
