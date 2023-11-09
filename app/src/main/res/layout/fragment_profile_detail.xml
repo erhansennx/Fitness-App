@@ -53,7 +53,7 @@
                     android:src="@drawable/baseline_add_photo_alternate_24" />
 
                 <ImageView
-                    android:id="@+id/add_image_clicked"
+                    android:id="@+id/profileImage"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:scaleType="centerCrop" />
@@ -195,6 +195,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/startButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"

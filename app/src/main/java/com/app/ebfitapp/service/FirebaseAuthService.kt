@@ -23,6 +23,10 @@ class FirebaseAuthService(private val context: Context) {
         auth.signOut()
     }
 
+    fun getCurrentUserEmail(): String {
+        return auth.currentUser?.email.toString()
+    }
+
     private fun showErrorToastMessage(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_LONG).show()
     }
