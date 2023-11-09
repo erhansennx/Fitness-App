@@ -54,12 +54,14 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="5dp"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginEmailText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/revolutiongothic_regular"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:fontFamily="@font/revolutiongothic_regular"/>
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -79,12 +81,14 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="5dp"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginPasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/revolutiongothic_regular"
                 android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:fontFamily="@font/revolutiongothic_regular"/>
+                android:textColor="@color/white" />
 
 
             <TextView
@@ -101,6 +105,7 @@
 
 
         <Button
+            android:id="@+id/onLoginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="70dp"
