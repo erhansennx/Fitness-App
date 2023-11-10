@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class WelcomeFragment : Fragment() {
 
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var fragmentWelcomeBinding: FragmentWelcomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,15 +39,6 @@ class WelcomeFragment : Fragment() {
         }
 
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if(auth.currentUser != null) {
-            requireActivity().finish()
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
 }
