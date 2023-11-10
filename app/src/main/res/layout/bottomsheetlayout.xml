@@ -2,21 +2,42 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialog_background"
-
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+   >
     >
+  <ImageView
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:src="@drawable/round_remove_24"
+      android:scaleType="centerCrop"
+      android:layout_gravity="center|top"
+      ></ImageView>
   <TextView
+      android:layout_marginTop="20dp"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="RESET PASSWORD"
+      android:text="@string/reset_password"
       android:textAlignment="center"
       android:textSize="25dp"
       android:textColor="@color/red"
       android:fontFamily="@font/revolutiongothic_extra_bold"
 ></TextView>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/please_enter_the_email_of_the_account_for_which_you_want_to_reset_the_password"
+      android:textColor="@color/white"
+      android:textSize="14dp"
+      android:layout_marginHorizontal="10dp"
+      android:layout_marginTop="5dp"
+      ></TextView>
 
     <EditText
         android:id="@+id/resetEmailAddress"
@@ -24,7 +45,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="E-mail"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:layout_marginLeft="10dp"
@@ -36,9 +57,10 @@
     <Button
         android:id="@+id/resetButton"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RESET"
+        android:text="@string/reset"
         android:textSize="24dp"
         android:fontFamily="@font/revolutiongothic_extra_bold"/>
 

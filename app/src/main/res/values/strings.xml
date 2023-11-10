@@ -24,7 +24,7 @@
     <string name="buildMuscleMass">Build Muscle Mass</string>
     <string name="improveFlexibility">Improve Flexibility and Balance</string>
     <string name="please_fill_in_the_empty_fields">Please fill in the empty fields..</string>
-
+    <!--  Welcome Page Layout  -->
     <string name="welcome">Welcome</string>
     <string name="pursue_your_dreams_with_sports_and_determination">Pursue your dreams with sports and determination.</string>
     <string name="get_started">GET STARTED</string>
@@ -35,4 +35,9 @@
     <string name="buttonlogin">Login</string>
     <string name="or_ncreate_account">or\nCreate Account</string>
     <string name="complete_profile">Complete Profile</string>
+
+    <!-- Bottom Sheet Layout -->
+    <string name="please_enter_the_email_of_the_account_for_which_you_want_to_reset_the_password">Please enter the email of the account for which you want to reset the password.</string>
+    <string name="reset_password">RESET PASSWORD</string>
+    <string name="reset">RESET</string>
 </resources>

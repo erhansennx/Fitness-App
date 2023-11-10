@@ -90,14 +90,23 @@ class LoginFragment : Fragment() {
 
         resetButton?.setOnClickListener()
         {
-            val sPassword = resetEmailAdress?.text.toString()
-            auth.sendPasswordResetEmail(sPassword)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(),"Please Check Your Email Adress",Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
 
-                    Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
-                }
+            if(!resetEmailAdress?.text.isNullOrEmpty())
+            {
+                val sPassword = resetEmailAdress?.text.toString()
+
+                auth.sendPasswordResetEmail(sPassword)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(),"Please Check Your Email Adress",Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+
+                        Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+                    }
+            }
+            else
+            {
+                Toast.makeText(requireContext(),"Fill the blank please",Toast.LENGTH_SHORT).show()
+            }
 
         }
 
