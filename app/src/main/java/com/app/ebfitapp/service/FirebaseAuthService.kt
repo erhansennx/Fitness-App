@@ -1,7 +1,9 @@
 package com.app.ebfitapp.service
 
+import android.app.Dialog
 import android.content.Context
 import android.widget.Toast
+import com.app.ebfitapp.utils.CustomProgress
 import com.google.firebase.auth.FirebaseAuth
 
 class FirebaseAuthService(private val context: Context) {
@@ -20,6 +22,22 @@ class FirebaseAuthService(private val context: Context) {
                     task(false)
                     //Show Tost Message
                 }
+            }
+    }
+
+    fun getForgotPassowrd(sPassword : String , dialog: Dialog, customProgress: CustomProgress)
+    {
+        auth.sendPasswordResetEmail(sPassword)
+            .addOnSuccessListener {
+                customProgress.dismiss()
+                Toast.makeText(context, "Please Check Your Email Address", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            .addOnFailureListener {
+                customProgress.dismiss()
+                Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+
+
             }
     }
 

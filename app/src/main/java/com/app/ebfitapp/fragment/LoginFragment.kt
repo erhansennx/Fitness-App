@@ -26,7 +26,6 @@ class LoginFragment : Fragment() {
     private lateinit var customProgress: CustomProgress
     private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var fragmentLoginBinding : FragmentLoginBinding
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentLoginBinding = FragmentLoginBinding.inflate(layoutInflater)
         customProgress = CustomProgress(requireContext())
@@ -86,14 +85,9 @@ class LoginFragment : Fragment() {
 
             if(!resetEmailAddress?.text.isNullOrEmpty())
             {
+                customProgress.show()
                 val sPassword = resetEmailAddress?.text.toString()
-                auth.sendPasswordResetEmail(sPassword)
-                    .addOnSuccessListener {
-                        Toast.makeText(requireContext(),"Please Check Your Email Adress",Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }.addOnFailureListener {
-                        Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
-                    }
+                firebaseAuthService.getForgotPassowrd(sPassword,dialog,customProgress)
             }
             else {
                 Toast.makeText(requireContext(),"Fill the blank please",Toast.LENGTH_SHORT).show()
@@ -108,6 +102,5 @@ class LoginFragment : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
 
     }
-
 
 }
