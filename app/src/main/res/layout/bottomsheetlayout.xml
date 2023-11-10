@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background"
+
+    >
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="RESET PASSWORD"
+      android:textAlignment="center"
+      android:textSize="25dp"
+      android:textColor="@color/red"
+      android:fontFamily="@font/revolutiongothic_extra_bold"
+></TextView>
+
+    <EditText
+        android:id="@+id/resetEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:textSize="24dp"
+        android:fontFamily="@font/revolutiongothic_extra_bold"/>
+
+
+</LinearLayout>
+
+
