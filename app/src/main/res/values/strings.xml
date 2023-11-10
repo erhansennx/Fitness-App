@@ -40,4 +40,7 @@
     <string name="please_enter_the_email_of_the_account_for_which_you_want_to_reset_the_password">Please enter the email of the account for which you want to reset the password.</string>
     <string name="reset_password">RESET PASSWORD</string>
     <string name="reset">RESET</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="article">Article</string>
 </resources>

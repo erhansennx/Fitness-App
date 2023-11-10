@@ -12,16 +12,13 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentLoginBinding
 import com.app.ebfitapp.service.FirebaseAuthService
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import org.checkerframework.common.subtyping.qual.Bottom
 
 class LoginFragment : Fragment() {
     private var email: String? = null
@@ -68,43 +65,37 @@ class LoginFragment : Fragment() {
                 }
             }
 
-           forgotPasswordText.setOnClickListener()
-           {
-               ShowDialog()
-
+           forgotPasswordText.setOnClickListener() {
+               showDialog()
            }
+
         }
     }
 
 
-    private fun ShowDialog()
-    {
+    private fun showDialog() {
 
         val dialog = Dialog(requireActivity())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.bottomsheetlayout)
 
-        val resetEmailAdress = dialog?.findViewById<EditText>(R.id.resetEmailAddress)
-        val resetButton = dialog?.findViewById<Button>(R.id.resetButton)
+        val resetEmailAddress = dialog.findViewById<EditText>(R.id.resetEmailAddress)
+        val resetButton = dialog.findViewById<Button>(R.id.resetButton)
 
+        resetButton?.setOnClickListener {
 
-        resetButton?.setOnClickListener()
-        {
-
-            if(!resetEmailAdress?.text.isNullOrEmpty())
+            if(!resetEmailAddress?.text.isNullOrEmpty())
             {
-                val sPassword = resetEmailAdress?.text.toString()
-
+                val sPassword = resetEmailAddress?.text.toString()
                 auth.sendPasswordResetEmail(sPassword)
                     .addOnSuccessListener {
                         Toast.makeText(requireContext(),"Please Check Your Email Adress",Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
                     }.addOnFailureListener {
-
                         Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
                     }
             }
-            else
-            {
+            else {
                 Toast.makeText(requireContext(),"Fill the blank please",Toast.LENGTH_SHORT).show()
             }
 
