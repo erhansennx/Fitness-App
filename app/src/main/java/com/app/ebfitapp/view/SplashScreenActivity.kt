@@ -8,12 +8,14 @@ import android.os.Handler
 import android.os.Looper
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ActivitySplashScreenBinding
+import com.app.ebfitapp.utils.AppPreferences
 import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var appPreferences: AppPreferences
     private lateinit var activitySplashScreenBinding: ActivitySplashScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,15 +23,22 @@ class SplashScreenActivity : AppCompatActivity() {
         activitySplashScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(activitySplashScreenBinding.root)
 
+        appPreferences = AppPreferences(this@SplashScreenActivity)
+
         Handler(Looper.getMainLooper()).postDelayed({
-            val intentClass = if (auth.currentUser != null) MainActivity::class.java else AuthenticationActivity::class.java
-            startActivity(Intent(this@SplashScreenActivity, intentClass))
+
+            val currentUser = auth.currentUser
+            val rememberMe = appPreferences.getBoolean("rememberMe")
+
+            val targetActivity = if (currentUser != null && rememberMe) MainActivity::class.java else AuthenticationActivity::class.java
+
+            val intent = Intent(this@SplashScreenActivity, targetActivity)
+            startActivity(intent)
             finish()
+
         }, 3500)
 
-
     }
-
 
 
 }

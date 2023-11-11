@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/loginnnimage" />
+        android:background="@drawable/login_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,29 +30,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/train_and_live_the_new_experience_of_exercising_at_home"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textSize="23sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="35dp"
-            android:textColor="#FFFFFF"/>
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:text="@string/train_and_live_the_new_experience_of_exercising_at_home"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textSize="32sp"
-            android:textColor="@color/white"
-            android:layout_marginTop="50dp"
             android:layout_marginHorizontal="40dp"
-            android:fontFamily="@font/revolutiongothic_extra_bold"/>
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/email"
+            android:textColor="@color/white"
+            android:textSize="32sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="5dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+            android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginEmailText"
@@ -68,19 +67,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:textSize="32sp"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="40dp"
-            android:fontFamily="@font/revolutiongothic_extra_bold"/>
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/password"
+            android:textColor="@color/white"
+            android:textSize="32sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="5dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+            android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginPasswordText"
@@ -90,38 +89,36 @@
                 android:inputType="textPassword"
                 android:textColor="@color/white" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <CheckBox
-            android:id="@+id/rememberMeCheckBox"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Remember Me"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:alpha="0.8"/>
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="35dp">
+
+            <CheckBox
+                android:id="@+id/rememberMeCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                android:text="@string/remember_me"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/forgotPasswordText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="end|center"
+                android:layout_marginEnd="5dp"
                 android:text="@string/forgot_password"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
                 android:textColor="@color/white"
-                android:textSize="16dp"
-                android:alpha="0.8"/>
+                android:textSize="16sp" />
 
-        </RelativeLayout>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
 
 
         <Button
@@ -130,21 +127,21 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="70dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:text="@string/buttonlogin"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:backgroundTint="@color/red"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/or_ncreate_account"
-            android:textSize="18dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
 
     </LinearLayout>

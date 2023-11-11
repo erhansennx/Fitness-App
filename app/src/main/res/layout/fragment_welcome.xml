@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:alpha="0.3"
         android:scaleType="fitXY"
-        android:src="@drawable/welcomepagee" />
+        android:src="@drawable/welcome_page" />
 
     <LinearLayout
         android:layout_width="match_parent"
