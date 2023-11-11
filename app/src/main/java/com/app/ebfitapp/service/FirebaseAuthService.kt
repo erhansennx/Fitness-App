@@ -23,6 +23,11 @@ class FirebaseAuthService(private val context: Context) {
                     //Show Tost Message
                 }
             }
+            .addOnFailureListener()
+            {
+                task(false)
+                showErrorToastMessage(it.message.toString())
+            }
     }
 
     fun getForgotPassowrd(sPassword : String , dialog: Dialog, customProgress: CustomProgress)
