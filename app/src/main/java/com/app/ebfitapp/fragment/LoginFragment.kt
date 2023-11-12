@@ -22,34 +22,31 @@ import com.app.ebfitapp.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
+
     private var email: String? = null
     private var password: String? = null
     private lateinit var appPreferences: AppPreferences
     private lateinit var customProgress: CustomProgress
     private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var fragmentLoginBinding: FragmentLoginBinding
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentLoginBinding = FragmentLoginBinding.inflate(layoutInflater)
+
         customProgress = CustomProgress(requireContext())
         appPreferences = AppPreferences(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
-        return fragmentLoginBinding.root
 
+        return fragmentLoginBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         with(fragmentLoginBinding) {
             onLoginButton.setOnClickListener() {
                 email = loginEmailText.text.toString()
                 password = loginPasswordText.text.toString()
-
 
                 if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
                     Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_LONG).show()

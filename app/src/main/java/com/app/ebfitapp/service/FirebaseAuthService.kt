@@ -12,37 +12,23 @@ class FirebaseAuthService(private val context: Context) {
 
     fun loginAccount( email: String, password : String,task: (Boolean) -> Unit) {
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-                if(it.isSuccessful)
-                {
-                    task(true)
-                    //val user = auth.currentUser
-
-                }
-                else {
-                    task(false)
-                    //Show Tost Message
-                }
-            }
-            .addOnFailureListener()
-            {
-                task(false)
-                showErrorToastMessage(it.message.toString())
-            }
+            if (it.isSuccessful) task(true)
+            else task(false)
+        }.addOnFailureListener() {
+            task(false)
+            showErrorToastMessage(it.message.toString())
+        }
     }
 
-    fun getForgotPassowrd(sPassword : String , dialog: Dialog, customProgress: CustomProgress)
-    {
+    fun getForgotPassowrd(sPassword : String , dialog: Dialog, customProgress: CustomProgress) {
         auth.sendPasswordResetEmail(sPassword)
             .addOnSuccessListener {
                 customProgress.dismiss()
-                Toast.makeText(context, "Please Check Your Email Address", Toast.LENGTH_SHORT).show()
+                showErrorToastMessage("Please Check Your Email Address")
                 dialog.dismiss()
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 customProgress.dismiss()
-                Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
-
-
+                showErrorToastMessage(it.message.toString())
             }
     }
 

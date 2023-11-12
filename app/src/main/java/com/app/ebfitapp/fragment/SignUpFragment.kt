@@ -25,6 +25,7 @@ class SignUpFragment : Fragment() {
     private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var firebaseFirestoreService: FirebaseFirestoreService
     private lateinit var fragmentSignUpBinding: FragmentSignUpBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentSignUpBinding = FragmentSignUpBinding.inflate(layoutInflater)
 
