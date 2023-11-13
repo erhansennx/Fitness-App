@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#E93B46</color>
     <color name="gray">#121315</color>
+    <color name="light_gray">#232529</color>
     <color name="silver">#CACACA</color>
+    <color name="streak">#ED9C0C</color>
 </resources>

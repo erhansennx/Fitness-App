@@ -1,5 +1,6 @@
 package com.app.ebfitapp.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,7 +31,15 @@ class HomeFragment : Fragment() {
         mainViewModel.getProfileDetail()
         observeProfileDetail()
 
+        disableSeekBar()
+
         return fragmentHomeBinding.root
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun disableSeekBar() {
+        fragmentHomeBinding.circularSeekBar.setOnTouchListener { view, motionEvent -> true }
     }
 
     private fun observeProfileDetail() {
@@ -38,7 +47,8 @@ class HomeFragment : Fragment() {
             customProgress.dismiss()
             if (userProfileDetails != null) {
                 fragmentHomeBinding.homeRootLinear.visibility = View.VISIBLE
-                fragmentHomeBinding.nicknameText.text = "Hey, ${userProfileDetails.username}!"
+                fragmentHomeBinding.profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
+                fragmentHomeBinding.nicknameText.text = "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
             }
         })
     }

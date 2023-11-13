@@ -44,4 +44,8 @@
     <string name="profile">Profile</string>
     <string name="article">Article</string>
     <string name="remember_me">Remember Me</string>
+    <string name="motivation_2">Taking a small step every day leads to big achievements over time.</string>
+    <string name="wave_hand">👋</string>
+    <string name="streak">Streak</string>
+    <string name="count">count</string>
 </resources>
