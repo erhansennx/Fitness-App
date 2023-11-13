@@ -2,11 +2,16 @@ package com.app.ebfitapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ActivityMainBinding
+import com.app.ebfitapp.utils.CustomProgress
+import com.app.ebfitapp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 

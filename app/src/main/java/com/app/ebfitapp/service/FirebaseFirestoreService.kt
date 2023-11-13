@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseFirestoreService(private val context: Context) {
 
-    private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     fun createProfileDetail(dataMap: HashMap<String,Any?>, callback: (Boolean) -> Unit) {
         firestore.collection("profileDetail").document(dataMap["email"].toString()).set(dataMap).addOnCompleteListener { task ->
