@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentHomeBinding
 import com.app.ebfitapp.utils.CustomProgress
+import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.viewmodel.MainViewModel
 
 class HomeFragment : Fragment() {
