@@ -7,9 +7,9 @@
         android:title="@string/home"/>
 
     <item
-        android:id="@+id/articleFragment"
-        android:icon="@drawable/baseline_article_24"
-        android:title="@string/article"/>
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="@string/calendar"/>
 
     <item
         android:id="@+id/profileFragment"

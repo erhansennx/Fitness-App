@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.ebfitapp.R
 
-class ArticleFragment : Fragment() {
+class CalendarFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -15,7 +15,7 @@ class ArticleFragment : Fragment() {
     ): View? {
 
 
-        return inflater.inflate(R.layout.fragment_article, container, false)
+        return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
 }
