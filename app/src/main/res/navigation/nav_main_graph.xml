@@ -20,5 +20,10 @@
         android:name="com.app.ebfitapp.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.app.ebfitapp.fragment.WorkoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" />
 
 </navigation>

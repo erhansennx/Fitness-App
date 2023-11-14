@@ -7,6 +7,11 @@
         android:title="@string/home"/>
 
     <item
+        android:id="@+id/workoutFragment"
+        android:icon="@drawable/baseline_fitness_center_24"
+        android:title="@string/workout"/>
+
+    <item
         android:id="@+id/calendarFragment"
         android:icon="@drawable/baseline_calendar_month_24"
         android:title="@string/calendar"/>
@@ -15,5 +20,7 @@
         android:id="@+id/profileFragment"
         android:icon="@drawable/baseline_person_24"
         android:title="@string/profile"/>
+
+
 
 </menu>
