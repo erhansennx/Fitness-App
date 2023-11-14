@@ -1,14 +1,418 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ProfileFragment">
+    tools:context=".fragment.ProfileFragment"
+    android:orientation="vertical"
+    android:background="@color/gray">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/profile" />
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="30dp"
+        android:textColor="#FF0010"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/revolutiongothic_light"
+        ></TextView>
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="250dp">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="SAVAŞÇI BİLİ , 31"
+        android:textSize="28dp"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/revolutiongothic_light"
+
+        ></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/silver"
+        android:text="test@example.com"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/revolutiongothic_light"
+        ></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/kilogram_background"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Weight"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="@font/revolutiongothic_light"
+            ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="70KG"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/kilogram_background"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current Weight"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="62KG"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/kilogram_background"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Differences"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8KG"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/kilogram_background"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/profile_images_background"
+            android:layout_margin="8dp"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_person_24"
+                android:layout_gravity="center"
+                app:tint="@color/gray"
+                ></ImageView>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/revolutiongothic_light"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_chevron_right_24"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/kilogram_background"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/profile_images_background"
+                android:layout_margin="8dp"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_notifications_none_24"
+                    android:layout_gravity="center"
+                    app:tint="@color/gray"
+                    ></ImageView>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_chevron_right_24"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/kilogram_background"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/profile_images_background"
+                android:layout_margin="8dp"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/language_solid"
+                    app:tint="@color/gray"
+                    ></ImageView>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_chevron_right_24"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/kilogram_background"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/profile_images_background"
+                android:layout_margin="8dp"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/common_full_open_on_phone"
+                    android:layout_gravity="center"
+                    app:tint="@color/gray"
+                    ></ImageView>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout "
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/revolutiongothic_light"
+                ></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_chevron_right_24"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+</LinearLayout>
+
+    </ScrollView>
