@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/homeRootLinear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="25dp"
         android:orientation="vertical">
@@ -170,7 +170,7 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_6dp_background"
@@ -181,7 +181,33 @@
             app:iconTint="@android:color/white"
             app:defaultQueryHint="Search"/>
 
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:singleSelection="true"
+                app:chipSpacing="8dp"/>
+
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
     </LinearLayout>
+
+
+
+
 
 
 </LinearLayout>

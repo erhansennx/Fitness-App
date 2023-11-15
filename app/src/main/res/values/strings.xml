@@ -50,4 +50,5 @@
     <string name="count">count</string>
     <string name="calendar">Calendar</string>
     <string name="workout">Workout</string>
+    <string name="all">All</string>
 </resources>
