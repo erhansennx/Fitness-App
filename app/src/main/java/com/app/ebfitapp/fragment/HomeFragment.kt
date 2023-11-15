@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.app.ebfitapp.R
+import com.app.ebfitapp.adapter.ArticleAdapter
 import com.app.ebfitapp.databinding.FragmentHomeBinding
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.downloadImageFromURL
@@ -20,6 +21,7 @@ import com.google.android.material.chip.ChipDrawable
 
 class HomeFragment : Fragment() {
 
+    private lateinit var articleAdapter: ArticleAdapter
     private lateinit var mainViewModel: MainViewModel
     private lateinit var customProgress: CustomProgress
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
@@ -29,6 +31,8 @@ class HomeFragment : Fragment() {
 
         customProgress = CustomProgress(requireActivity())
         customProgress.show()
+
+        articleAdapter = ArticleAdapter()
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.getProfileDetail()
@@ -41,6 +45,12 @@ class HomeFragment : Fragment() {
         return fragmentHomeBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fragmentHomeBinding.articleRecycler.adapter = articleAdapter
+
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun disableSeekBar() {
@@ -48,7 +58,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun chips() {
-        val chipTextArray = arrayOf("All","Yoga", "Cardio", "Strectch", "Food", "Calori")
+        val chipTextArray = arrayOf("Yoga", "Cardio", "Strectch", "Food", "Calori")
 
         for (chipText in chipTextArray) {
             val chip = Chip(requireContext())
@@ -63,6 +73,7 @@ class HomeFragment : Fragment() {
         fragmentHomeBinding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             val selectedChipId = group.findViewById<Chip>(group.checkedChipId)
             if (selectedChipId != null) Toast.makeText(requireContext(), "${selectedChipId.text}", Toast.LENGTH_LONG).show()
+            else fragmentHomeBinding.chipAll.isChecked = true
         }
         
     }

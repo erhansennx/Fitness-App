@@ -12,6 +12,7 @@
         android:id="@+id/homeRootLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="25dp"
         android:orientation="vertical">
@@ -193,11 +194,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:singleSelection="true"
-                app:chipSpacing="8dp"/>
+                app:chipSpacing="8dp">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all"
+                    android:checkable="true"
+                    android:checked="true"
+                    app:chipBackgroundColor="@color/chip_background"
+                    android:textColor="@color/white"
+                    app:chipStrokeColor="@color/light_gray"/>
+            </com.google.android.material.chip.ChipGroup>
 
         </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/articleRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
