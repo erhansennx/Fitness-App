@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentLoginBinding
 import com.app.ebfitapp.service.FirebaseAuthService
@@ -68,6 +69,11 @@ class LoginFragment : Fragment() {
 
             forgotPasswordText.setOnClickListener() {
                 showDialog()
+            }
+            createAccountText.setOnClickListener()
+            {
+                    val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
+                    Navigation.findNavController(requireView()).navigate(action)
             }
 
         }
