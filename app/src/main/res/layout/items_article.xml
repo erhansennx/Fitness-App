@@ -35,7 +35,7 @@
                 android:id="@+id/articleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:background="@color/transparant"
+                android:background="@color/transparent"
                 android:fontFamily="@font/revolutiongothic_regular"
                 android:maxLines="2"
                 android:ellipsize="end"

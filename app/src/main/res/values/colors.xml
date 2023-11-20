@@ -7,5 +7,7 @@
     <color name="light_gray">#232529</color>
     <color name="silver">#CACACA</color>
     <color name="streak">#ED9C0C</color>
-    <color name="transparant">#59000000</color>
+    <color name="transparent">#59000000</color>
+    <color name="transparent_1">#72000000</color>
+    <color name="transparent_2">#9A000000</color>
 </resources>

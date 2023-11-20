@@ -55,4 +55,6 @@
     <string name="popular_workouts">Popular Workouts</string>
     <string name="best_trainers">Best Trainers</string>
     <string name="muscle_groups">Muscle Groups</string>
+    <string name="trainer_username">Trainer Username</string>
+    <string name="specialization">Specialization</string>
 </resources>
