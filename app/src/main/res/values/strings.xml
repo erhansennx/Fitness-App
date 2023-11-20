@@ -52,4 +52,7 @@
     <string name="workout">Workout</string>
     <string name="all">All</string>
     <string name="article_title">Article Title</string>
+    <string name="popular_workouts">Popular Workouts</string>
+    <string name="best_trainers">Best Trainers</string>
+    <string name="muscle_groups">Muscle Groups</string>
 </resources>

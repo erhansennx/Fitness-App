@@ -12,7 +12,6 @@
         android:id="@+id/homeRootLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="25dp"
         android:orientation="vertical">
@@ -171,7 +170,7 @@
 
         </LinearLayout>
 
-        <SearchView
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_6dp_background"
@@ -214,6 +213,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            tools:listitem="@layout/items_article"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </LinearLayout>
