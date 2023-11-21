@@ -49,34 +49,6 @@
         app:layout_constraintTop_toBottomOf="@id/text_date_month"
         tools:listitem="@layout/date_layout" />
 
-    <TextView
-        android:id="@+id/selectedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected Date : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/selectedDD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected DD : "
-        app:layout_constraintBottom_toTopOf="@id/selectedDay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectedDate" />
-
-    <TextView
-        android:id="@+id/selectedDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected Day : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectedDD" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

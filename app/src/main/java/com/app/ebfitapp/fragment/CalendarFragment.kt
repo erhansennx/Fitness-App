@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.app.ebfitapp.adapter.CalendarAdapter
 import com.app.ebfitapp.databinding.FragmentCalendarBinding
 import com.app.ebfitapp.model.CalendarDateModel
+import com.app.ebfitapp.utils.CustomProgress
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,6 +39,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
 
+
         return fragmentCalenderBinding.root
 
     }
@@ -57,18 +59,18 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     }
 
     override fun onItemClick(text: String, date: String, day: String) {
-        with(fragmentCalenderBinding)
-        {
-            selectedDate.text = "Selected date: $text"
-            selectedDD.text = "Selected date: $date"
-            selectedDay.text = "Selected date: $day"
-        }
+
     }
 
     private fun setUpClickListener(){
         ivCalendarNext.setOnClickListener()
         {
-            cal.add(Calendar.MONTH,-1)
+            cal.add(Calendar.MONTH,1)
+                setUpCalendar()
+        }
+        ivCalendarPrevious.setOnClickListener()
+        {
+            cal.add(Calendar.MONTH, -1)
             if(cal == currentDate)
                 setUpCalendar()
             else

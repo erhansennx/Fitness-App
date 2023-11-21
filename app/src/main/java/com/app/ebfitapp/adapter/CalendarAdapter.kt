@@ -1,5 +1,6 @@
 package com.app.ebfitapp.adapter
 
+import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,8 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         val itemList = list[position]
+        val customRedColor = "#FF0010"
+        val parsedColor = Color.parseColor(customRedColor)
         holder.calendarDay.text = itemList.calendarDay
         holder.calendarDate.text = itemList.calendarDate
 
@@ -58,8 +61,8 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
             holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
             holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_fill)
         }else {
-            holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
-            holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+            holder.calendarDay.setTextColor(parsedColor)
+            holder.calendarDate.setTextColor(parsedColor)
             holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_outline)
         }
 
