@@ -14,14 +14,14 @@
         app:cardCornerRadius="6dp">
 
         <ImageView
+            android:id="@+id/muscleImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/example_muscle_image"
             android:foreground="@color/transparent_2"/>
         <TextView
+            android:id="@+id/muscleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Muscle"
             android:layout_marginHorizontal="15dp"
             android:layout_gravity="center"
             android:fontFamily="@font/revolutiongothic_extra_bold"
