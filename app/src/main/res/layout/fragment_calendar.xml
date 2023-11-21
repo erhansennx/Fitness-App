@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/text_date_month"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+        android:fontFamily="@font/revolutiongothic_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/iv_calendar_next"
@@ -35,6 +35,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_calendar_next"
         tools:text="December 2020"
+
+        android:textSize="18dp"
         android:textColor="#FF0010"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:text="11"
         android:textColor="#FF0010"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        />
 
     <TextView
         android:id="@+id/tv_calendar_day"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Mon"
         android:textColor="#FF0010"
-        android:textSize="14sp" />
+        android:textSize="18sp"
+        android:fontFamily="@font/revolutiongothic_light"/>
 
 </LinearLayout>
