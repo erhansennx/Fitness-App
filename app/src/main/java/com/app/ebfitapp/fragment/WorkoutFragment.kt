@@ -13,12 +13,15 @@ import com.app.ebfitapp.adapter.BestTrainersAdapter
 import com.app.ebfitapp.adapter.MuscleGroupsAdapter
 import com.app.ebfitapp.adapter.PopularWorkoutsAdapter
 import com.app.ebfitapp.databinding.FragmentWorkoutBinding
+import com.app.ebfitapp.model.BestTrainersModel
 import com.app.ebfitapp.model.MuscleGroupModel
 import com.app.ebfitapp.viewmodel.WorkoutViewModel
 
 class WorkoutFragment : Fragment() {
 
     private lateinit var muscleGroups: ArrayList<MuscleGroupModel>
+    private lateinit var bestTrainers: ArrayList<BestTrainersModel>
+
     private lateinit var bestTrainersAdapter: BestTrainersAdapter
     private lateinit var muscleGroupsAdapter: MuscleGroupsAdapter
     private lateinit var popularWorkoutsAdapter: PopularWorkoutsAdapter
@@ -30,17 +33,20 @@ class WorkoutFragment : Fragment() {
         fragmentWorkoutBinding = FragmentWorkoutBinding.inflate(layoutInflater)
 
         muscleGroups = ArrayList()
+        bestTrainers = ArrayList()
 
-        bestTrainersAdapter = BestTrainersAdapter()
+        bestTrainersAdapter = BestTrainersAdapter(bestTrainers)
         muscleGroupsAdapter = MuscleGroupsAdapter(muscleGroups)
         popularWorkoutsAdapter = PopularWorkoutsAdapter()
-
-        workoutViewModel.getMuscleGroups()
-        observeMuscleGroups()
 
         fragmentWorkoutBinding.bestTrainersRecycler.adapter = bestTrainersAdapter
         fragmentWorkoutBinding.muscleGroupsRecycler.adapter = muscleGroupsAdapter
         fragmentWorkoutBinding.popularWorkoutsRecycler.adapter = popularWorkoutsAdapter
+
+        workoutViewModel.getMuscleGroups()
+        workoutViewModel.getBestTrainers()
+        observeMuscleGroups()
+        observeBestTrainers()
 
 
         return fragmentWorkoutBinding.root
@@ -53,6 +59,17 @@ class WorkoutFragment : Fragment() {
                 muscleGroups.clear()
                 muscleGroups.addAll(liveMuscleGroups)
                 muscleGroupsRecycler.adapter?.notifyDataSetChanged()
+            }
+        })
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun observeBestTrainers() = with(fragmentWorkoutBinding) {
+        workoutViewModel.bestTrainersLiveData.observe(viewLifecycleOwner, Observer { liveBestTrainers ->
+            if (liveBestTrainers != null) {
+                bestTrainers.clear()
+                bestTrainers.addAll(liveBestTrainers)
+                bestTrainersRecycler.adapter?.notifyDataSetChanged()
             }
         })
     }

@@ -18,28 +18,29 @@
             android:id="@+id/trainerImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/example_trainer_image"/>
+            android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/trainerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chris Bumstead"
         android:hint="@string/trainer_username"
         android:fontFamily="@font/revolutiongothic_regular"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="5dp"
         android:textColor="@color/white"/>
 
     <TextView
+        android:id="@+id/trainerSpecialization"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/specialization"
-        android:text="Body Builder"
         android:fontFamily="@font/revolutiongothic_light"
         android:layout_gravity="center"
+        android:gravity="center"
         android:textColor="@color/silver"/>
 
 </LinearLayout>
