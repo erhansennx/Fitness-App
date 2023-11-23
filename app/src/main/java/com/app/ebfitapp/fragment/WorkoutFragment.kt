@@ -15,12 +15,14 @@ import com.app.ebfitapp.adapter.PopularWorkoutsAdapter
 import com.app.ebfitapp.databinding.FragmentWorkoutBinding
 import com.app.ebfitapp.model.BestTrainersModel
 import com.app.ebfitapp.model.MuscleGroupModel
+import com.app.ebfitapp.model.PopularWorkoutsModel
 import com.app.ebfitapp.viewmodel.WorkoutViewModel
 
 class WorkoutFragment : Fragment() {
 
     private lateinit var muscleGroups: ArrayList<MuscleGroupModel>
     private lateinit var bestTrainers: ArrayList<BestTrainersModel>
+    private lateinit var popularWorkouts: ArrayList<PopularWorkoutsModel>
 
     private lateinit var bestTrainersAdapter: BestTrainersAdapter
     private lateinit var muscleGroupsAdapter: MuscleGroupsAdapter
@@ -34,20 +36,17 @@ class WorkoutFragment : Fragment() {
 
         muscleGroups = ArrayList()
         bestTrainers = ArrayList()
+        popularWorkouts = ArrayList()
 
         bestTrainersAdapter = BestTrainersAdapter(bestTrainers)
         muscleGroupsAdapter = MuscleGroupsAdapter(muscleGroups)
-        popularWorkoutsAdapter = PopularWorkoutsAdapter()
+        popularWorkoutsAdapter = PopularWorkoutsAdapter(popularWorkouts)
 
         fragmentWorkoutBinding.bestTrainersRecycler.adapter = bestTrainersAdapter
         fragmentWorkoutBinding.muscleGroupsRecycler.adapter = muscleGroupsAdapter
         fragmentWorkoutBinding.popularWorkoutsRecycler.adapter = popularWorkoutsAdapter
 
-        workoutViewModel.getMuscleGroups()
-        workoutViewModel.getBestTrainers()
-        observeMuscleGroups()
-        observeBestTrainers()
-
+        getWorkoutAllData()
 
         return fragmentWorkoutBinding.root
     }
@@ -72,6 +71,26 @@ class WorkoutFragment : Fragment() {
                 bestTrainersRecycler.adapter?.notifyDataSetChanged()
             }
         })
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun observePopularWorkouts() = with(fragmentWorkoutBinding) {
+        workoutViewModel.popularWorkoutsLiveData.observe(viewLifecycleOwner, Observer { livePopularWorkouts ->
+            if (livePopularWorkouts != null) {
+                popularWorkouts.clear()
+                popularWorkouts.addAll(livePopularWorkouts)
+                popularWorkoutsRecycler.adapter?.notifyDataSetChanged()
+            }
+        })
+    }
+
+    private fun getWorkoutAllData() {
+        workoutViewModel.getPopularWorkouts()
+        observePopularWorkouts()
+        workoutViewModel.getBestTrainers()
+        observeBestTrainers()
+        workoutViewModel.getMuscleGroups()
+        observeMuscleGroups()
     }
 
 

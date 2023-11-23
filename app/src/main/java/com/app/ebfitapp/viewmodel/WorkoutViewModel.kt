@@ -4,18 +4,20 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.app.ebfitapp.model.BestTrainersModel
 import com.app.ebfitapp.model.MuscleGroupModel
+import com.app.ebfitapp.model.PopularWorkoutsModel
 import com.app.ebfitapp.service.FirebaseFirestoreService
 
 class WorkoutViewModel(private val application: Application) : AndroidViewModel(application) {
 
     val muscleGroupLiveData = MutableLiveData<ArrayList<MuscleGroupModel>?>()
     val bestTrainersLiveData = MutableLiveData<ArrayList<BestTrainersModel>?>()
+    val popularWorkoutsLiveData = MutableLiveData<ArrayList<PopularWorkoutsModel>?>()
 
     private var muscleTempList: ArrayList<MuscleGroupModel> = ArrayList()
     private var trainersTempList: ArrayList<BestTrainersModel> = ArrayList()
+    private var workoutsTempList: ArrayList<PopularWorkoutsModel> = ArrayList()
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
 
     fun getMuscleGroups() {
@@ -50,6 +52,25 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
 
         }.addOnFailureListener {
             bestTrainersLiveData.value = null
+            showErrorToastMessage(it.message.toString())
+        }
+    }
+
+    fun getPopularWorkouts() {
+        firestoreService.firestore.collection("popularWorkouts").get().addOnCompleteListener { querySnapshot ->
+            if (querySnapshot.isSuccessful) {
+                for (snapshot in querySnapshot.result.documents) {
+                    val popularWorkouts = PopularWorkoutsModel(
+                        snapshot.data!!["name"].toString(),
+                        snapshot.data!!["imageURL"].toString()
+                    )
+                    workoutsTempList.add(popularWorkouts)
+                }
+                popularWorkoutsLiveData.value = workoutsTempList
+                workoutsTempList.clear()
+            } else popularWorkoutsLiveData.value = null
+        }.addOnFailureListener {
+            popularWorkoutsLiveData.value = null
             showErrorToastMessage(it.message.toString())
         }
     }
