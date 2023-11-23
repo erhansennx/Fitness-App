@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center|top"
-    android:layout_marginEnd="15dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="muscle"
+            type="com.app.ebfitapp.model.MuscleGroupModel" />
+    </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="175dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="6dp">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginEnd="15dp">
 
-        <ImageView
-            android:id="@+id/muscleImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@color/transparent_2"/>
-        <TextView
-            android:id="@+id/muscleName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="24sp"
-            android:textColor="@color/red"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="175dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="6dp">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/muscleImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="@color/transparent_2"
+                android:getImage="@{muscle.muscleImageURL}"/>
 
+            <TextView
+                android:id="@+id/muscleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textColor="@color/red"
+                android:textSize="24sp"
+                android:text="@{muscle.muscleName}"/>
 
-</FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</layout>

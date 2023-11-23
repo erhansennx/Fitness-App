@@ -1,3 +1,3 @@
 package com.app.ebfitapp.model
 
-data class MuscleGroupModel(val muscle: String, val muscleImageURL: String)
+data class MuscleGroupModel(val muscleName: String, val muscleImageURL: String)

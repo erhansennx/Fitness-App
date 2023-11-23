@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.databinding.ItemMuscleGroupsBinding
 import com.app.ebfitapp.model.MuscleGroupModel
-import com.app.ebfitapp.utils.downloadImageFromURL
 
 class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>) : RecyclerView.Adapter<MuscleGroupsAdapter.ItemHolder>() {
 
@@ -20,9 +19,8 @@ class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>)
         return muscleGroups.size
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.itemMuscleGroupsBinding.muscleName.text = muscleGroups[position].muscle
-        holder.itemMuscleGroupsBinding.muscleImage.downloadImageFromURL(muscleGroups[position].muscleImageURL)
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemMuscleGroupsBinding) {
+        muscle = muscleGroups[position]
     }
 
 }
