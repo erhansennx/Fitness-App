@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.alpha
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.app.ebfitapp.R
@@ -26,16 +25,21 @@ import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.view.AuthenticationActivity
 import com.app.ebfitapp.viewmodel.MainViewModel
-import org.w3c.dom.Text
 import kotlin.math.abs
 class ProfileFragment : Fragment() {
+
     private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var fragmentProfileBinding : FragmentProfileBinding
     private lateinit var appPreferences : AppPreferences
     private lateinit var mainViewModel: MainViewModel
     private lateinit var customProgress: CustomProgress
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
+
+        appPreferences = AppPreferences(requireContext())
+        firebaseAuthService = FirebaseAuthService(requireContext())
+
         return fragmentProfileBinding.root
     }
 
@@ -47,10 +51,9 @@ class ProfileFragment : Fragment() {
         customProgress.show()
 
         observeProfileDetail()
-        with(fragmentProfileBinding)
-        {
-            editProfileLayout.setOnClickListener()
-            {
+        with(fragmentProfileBinding) {
+
+            editProfileLayout.setOnClickListener {
                 val backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
@@ -61,8 +64,8 @@ class ProfileFragment : Fragment() {
                 it.background = backgroundDrawable
                 Toast.makeText(requireContext(),"Edit profile tıklandı",Toast.LENGTH_SHORT).show()
             }
-            notificationLayout.setOnClickListener()
-            {
+
+            notificationLayout.setOnClickListener {
                 val backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
@@ -73,8 +76,8 @@ class ProfileFragment : Fragment() {
                 it.background = backgroundDrawable
                 Toast.makeText(requireContext(),"notification tıklandı",Toast.LENGTH_SHORT).show()
             }
-            languageLayout.setOnClickListener()
-            {
+
+            languageLayout.setOnClickListener {
                 val backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
@@ -85,8 +88,9 @@ class ProfileFragment : Fragment() {
                 it.background = backgroundDrawable
                 Toast.makeText(requireContext(),"language  tıklandı",Toast.LENGTH_SHORT).show()
             }
-            logoutLayout.setOnClickListener()
-            {
+
+            logoutLayout.setOnClickListener {
+
                 val backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
@@ -96,10 +100,11 @@ class ProfileFragment : Fragment() {
                 )
                 it.background = backgroundDrawable
 
+                firebaseAuthService.signOut()
+                appPreferences.removeKey("rememberMe")
                 val intent = Intent(requireActivity(),AuthenticationActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
-               // firebaseAuthService.signOut()
 
             }
         }
@@ -107,8 +112,8 @@ class ProfileFragment : Fragment() {
 
 
 
-    fun applyAlphaToDrawableWithDelay(context: Context, drawableResId: Int, initialAlpha: Double, finalAlpha: Double,
-                                      delayMillis: Long): Drawable? {
+    private fun applyAlphaToDrawableWithDelay(context: Context, drawableResId: Int, initialAlpha: Double, finalAlpha: Double,
+                                              delayMillis: Long): Drawable? {
         val backgroundDrawable = ContextCompat.getDrawable(context, drawableResId)?.mutate()
         backgroundDrawable?.colorFilter = PorterDuffColorFilter(
             Color.parseColor("#232529"),
@@ -132,19 +137,18 @@ class ProfileFragment : Fragment() {
                 fragmentProfileBinding.userEmailText.text = "${userProfileDetails.email}"
                 fragmentProfileBinding.startWeightText.text = "${userProfileDetails.weight}"
                 fragmentProfileBinding.targetWeightText.text = "${userProfileDetails.targetWeight}"
-                fragmentProfileBinding.weightDifferencesText.text = "${CalculateWeightDifference(userProfileDetails.targetWeight!!,userProfileDetails.weight!!)}"
+                fragmentProfileBinding.weightDifferencesText.text = "${calculateWeightDifference(userProfileDetails.targetWeight!!,userProfileDetails.weight!!)}"
                 fragmentProfileBinding.goalText.text = "${userProfileDetails.goal}"
             }
         })
     }
 
-    private fun CalculateWeightDifference(targetWeight : Double,startWeight : Double) : String
-    {
+    private fun calculateWeightDifference(targetWeight : Double, startWeight : Double) : String {
         val differences = abs(targetWeight-startWeight)
         return formatDoubleUsingSplit(differences,2)
     }
 
-    fun formatDoubleUsingSplit(doubleValue: Double, decimalPlaces: Int): String {
+    private fun formatDoubleUsingSplit(doubleValue: Double, decimalPlaces: Int): String {
         val stringValue = doubleValue.toString()
         val parts = stringValue.split(".")
 
