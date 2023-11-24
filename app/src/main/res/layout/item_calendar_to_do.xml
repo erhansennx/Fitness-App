@@ -7,7 +7,7 @@
 
 
     <LinearLayout
-        android:id="@+id/editProfileLayout"
+        android:id="@+id/toDoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -51,13 +51,14 @@
                 android:gravity="top"></TextView>
 
             <TextView
+                android:id="@+id/toDoText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="2dp"
                 android:textAlignment="textStart"
                 android:fontFamily="@font/revolutiongothic_light"
-                android:text="WQĞDWQDÇWQÇDQWĞDÇQWDÇĞWQÇDĞQÇDWQÇDĞQWÇDĞQWÇDĞQDWÇĞQWDWPDÇWQPDQWÇPWÇDĞÇQWDÇ"
+                android:text="Triceps bastım, birde üst göğüs ile beraber omuz su da var "
                 android:textColor="@color/white"
                 android:textSize="18dp"></TextView>
         </LinearLayout>

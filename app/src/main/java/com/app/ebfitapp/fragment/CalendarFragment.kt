@@ -8,15 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.app.ebfitapp.adapter.CalendarAdapter
+import com.app.ebfitapp.adapter.CalendarToDoAdapter
 import com.app.ebfitapp.databinding.FragmentCalendarBinding
 import com.app.ebfitapp.model.CalendarDateModel
-import com.app.ebfitapp.utils.CustomProgress
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
@@ -24,6 +26,10 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private lateinit var tvDateMonth: TextView
     private lateinit var ivCalendarNext: ImageView
     private lateinit var ivCalendarPrevious: ImageView
+    private lateinit var toDoAdapter: CalendarToDoAdapter
+    val selectedDate : TextView? = null
+    val selectedDay : TextView? = null
+    var toDoList = ArrayList<String>()
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -55,10 +61,22 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpAdapter()
             setUpClickListener()
             setUpCalendar()
+
+            toDoAdapter = CalendarToDoAdapter(toDoList,selectedDay,selectedDate)
+            recyclerView2.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
+            recyclerView2.adapter = toDoAdapter
+
+            //toDoAdapter.notifyDataSetChanged()
+
+            todoText.setOnClickListener(){
+                //Dialog mevzusu
+            }
         }
     }
 
     override fun onItemClick(text: String, date: String, day: String) {
+        selectedDay?.text = "$day"
+        selectedDate?.text = "$date"
 
     }
 

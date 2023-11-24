@@ -56,15 +56,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:orientation="horizontal"
         >
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/todoText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TODO"
             android:textSize="24dp"
+            android:layout_gravity="center"
             android:textColor="#FF0010"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             ></TextView>
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="6dp"
+            android:background="@drawable/round_6dp_background"
+            android:backgroundTint="#48000000"
+            android:textColor="@color/white"
+            app:queryHint="Search for TODO"
+            android:layout_marginStart="15dp"
+            app:iconTint="@android:color/white"
+            android:layout_weight="1"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -79,7 +95,6 @@
             android:layout_marginTop="5dp"
             tools:listitem="@layout/item_calendar_to_do"
             />
-
     </LinearLayout>
 
 </LinearLayout>
