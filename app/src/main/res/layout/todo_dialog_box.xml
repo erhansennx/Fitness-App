@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_todo_box_background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To-Do Box"
+        android:textSize="24dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/dialogEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/white"
+        android:hint="I'll make 20 push up"
+        android:textColorHint="@color/silver"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/dialogDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="24.04.2023"
+            android:layout_weight="1"
+
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            ></TextView>
+        <TextView
+            android:id="@+id/dialogDay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Friday"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            ></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/dialogCancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="18dp"
+            android:textColor="#FF0010"
+            android:backgroundTint="@color/black"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            ></Button>
+        <Button
+            android:id="@+id/dialogSaveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textColor="@color/light_gray"
+            android:textSize="18dp"
+            android:backgroundTint="#FF0010"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            ></Button>
+    </LinearLayout>
+
+
+</LinearLayout>

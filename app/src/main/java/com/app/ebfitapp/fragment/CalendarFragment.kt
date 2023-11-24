@@ -1,17 +1,24 @@
 package com.app.ebfitapp.fragment
 
-import android.media.Image
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.app.ebfitapp.R
 import com.app.ebfitapp.adapter.CalendarAdapter
 import com.app.ebfitapp.adapter.CalendarToDoAdapter
 import com.app.ebfitapp.databinding.FragmentCalendarBinding
@@ -70,6 +77,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
             todoText.setOnClickListener(){
                 //Dialog mevzusu
+                showToDoDialog()
             }
         }
     }
@@ -77,7 +85,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     override fun onItemClick(text: String, date: String, day: String) {
         selectedDay?.text = "$day"
         selectedDate?.text = "$date"
-
     }
 
     private fun setUpClickListener(){
@@ -126,5 +133,52 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         adapter.setOnItemClickListener(this@CalendarFragment)
         adapter.setData(calendarList)
     }
+
+
+    private fun showToDoDialog() {
+        val rootView = requireActivity().window.decorView.rootView
+        val overlay = View(requireContext())
+
+        overlay.setBackgroundColor(Color.parseColor("#80000000")) // Burada 80 alfa değeridir
+        val layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        (rootView as ViewGroup).addView(overlay, layoutParams)
+
+        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.todo_dialog_box)
+
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.setCancelable(false)
+
+        val dialogDate = dialog.findViewById<TextView>(R.id.dialogDate)
+        val dialogDay = dialog.findViewById<TextView>(R.id.dialogDay)
+
+        dialogDay.text = selectedDay?.text
+        dialogDate.text = selectedDate?.text
+
+        val dialogEditText = dialog.findViewById<EditText>(R.id.dialogEditText)
+        val dialogCancelBtn = dialog.findViewById<Button>(R.id.dialogCancelBtn)
+        val dialogSaveBtn = dialog.findViewById<Button>(R.id.dialogSaveBtn)
+        dialog.show()
+
+        dialogCancelBtn.setOnClickListener {
+            rootView.removeView(overlay)
+            dialog.dismiss()
+        }
+
+        dialogSaveBtn.setOnClickListener {
+            Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
+            rootView.removeView(overlay)
+            dialog.dismiss()
+        }
+    }
+
+
 
 }
