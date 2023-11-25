@@ -46,14 +46,6 @@
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/robotomedium"
-                            android:gravity="end"
-                            android:text="@string/see_all"
-                            android:textColor="@color/silver"
-                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -93,14 +85,7 @@
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/robotomedium"
-                            android:gravity="end"
-                            android:text="@string/see_all"
-                            android:textColor="@color/silver"
-                            android:textSize="16sp" />
+
 
                     </LinearLayout>
 
@@ -142,14 +127,7 @@
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/robotomedium"
-                            android:gravity="end"
-                            android:text="@string/see_all"
-                            android:textColor="@color/silver"
-                            android:textSize="16sp" />
+
 
                     </LinearLayout>
 

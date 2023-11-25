@@ -13,6 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
+        android:paddingVertical="8dp"
         android:background="@drawable/todo_background"
         android:orientation="horizontal">
 
@@ -32,7 +33,7 @@
                 android:textSize="24dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
-                android:gravity="start"></TextView>
+                android:gravity="start"/>
         </LinearLayout>
 
         <LinearLayout
@@ -48,7 +49,7 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:fontFamily="@font/revolutiongothic_light"
-                android:gravity="top"></TextView>
+                android:gravity="top"/>
 
             <TextView
                 android:id="@+id/toDoText"
@@ -60,7 +61,7 @@
                 android:fontFamily="@font/revolutiongothic_light"
                 android:text="Triceps bastım, birde üst göğüs ile beraber omuz su da var "
                 android:textColor="@color/white"
-                android:textSize="18dp"></TextView>
+                android:textSize="18dp"/>
         </LinearLayout>
 
 
