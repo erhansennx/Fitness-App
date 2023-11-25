@@ -30,7 +30,8 @@
             android:text="December 2020"
             android:textSize="18dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textColor="#FF0010"/>
+            android:textColor="#FF0010"
+            />
 
         <ImageView
             android:id="@+id/iv_calendar_next"

@@ -29,9 +29,10 @@
                 android:layout_height="match_parent"
                 android:text="Fri"
                 android:textSize="24dp"
-                android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="#FF0010"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -44,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="23.11.2023"
-                android:textColor="@color/white"
                 android:textSize="18dp"
+                android:textColor="#FF0010"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:gravity="top"/>
 
@@ -58,11 +59,8 @@
                 android:textAlignment="textStart"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:text="Triceps bastım, birde üst göğüs ile beraber omuz su da var "
-                android:textColor="@color/white"
+                android:textColor="@color/silver"
                 android:textSize="18dp"/>
         </LinearLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>

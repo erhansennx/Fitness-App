@@ -9,14 +9,17 @@ import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
 import com.app.ebfitapp.databinding.ItemsArticleBinding
 
-class CalendarToDoAdapter(val todoList: ArrayList<String>,var selectedDay : String?,var selectedDate : String?) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
+class CalendarToDoAdapter(
+    val todoList: ArrayList<String>,
+    private val dayDateList: List<Pair<String?, String?>>,
+) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
 
-    class ToDoHolder(val bindingToDo: ItemCalendarToDoBinding) : RecyclerView.ViewHolder(bindingToDo.root){
-
+    class ToDoHolder(val bindingToDo: ItemCalendarToDoBinding) : RecyclerView.ViewHolder(bindingToDo.root) {
+        // ViewHolder içinde gerekirse ek işlemleri yapabilirsiniz.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoHolder {
-        val itemBinding = ItemCalendarToDoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val itemBinding = ItemCalendarToDoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ToDoHolder(itemBinding)
     }
 
@@ -24,7 +27,18 @@ class CalendarToDoAdapter(val todoList: ArrayList<String>,var selectedDay : Stri
         return todoList.size
     }
 
-    override fun onBindViewHolder(holder: ToDoHolder, position: Int) = with(holder.bindingToDo) {
-        toDoText.text = todoList[position]
+    override fun onBindViewHolder(holder: ToDoHolder, position: Int) {
+        val itemBinding = holder.bindingToDo
+
+        // ViewHolder içindeki TextView'lere değerleri yerleştir
+        itemBinding.toDoText.text = todoList[position]
+
+        // Eğer dayDateList ve position uygunsa Pair'den değerleri çek ve yerleştir
+        if (position < dayDateList.size) {
+            val (day, date) = dayDateList[position]
+            itemBinding.itemDay.text = day
+            itemBinding.itemDate.text = date
+
+        }
     }
 }

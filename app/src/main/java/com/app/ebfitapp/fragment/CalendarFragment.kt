@@ -39,6 +39,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     var selectedDay : String? = null
     var toDoList = ArrayList<String>()
     var isSelected : Boolean = false
+    val dayDateList = mutableListOf<Pair<String?, String?>>()
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -71,7 +72,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpClickListener()
             setUpCalendar()
 
-            toDoAdapter = CalendarToDoAdapter(toDoList,selectedDay,selectedDate)
+            toDoAdapter = CalendarToDoAdapter(toDoList,dayDateList)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
 
@@ -187,6 +188,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
         //Niye çalışmıyorsun OOROSPU ÇOCUĞU
+            dayDateList.add(Pair(selectedDay, selectedDate))
             toDoAdapter.todoList.add(dialogEditText.text.toString())
             toDoAdapter.notifyDataSetChanged()
             fragmentCalenderBinding.todoRecyclerView.invalidate()
