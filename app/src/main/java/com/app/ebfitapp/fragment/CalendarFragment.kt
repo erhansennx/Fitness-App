@@ -72,10 +72,10 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpCalendar()
 
             toDoAdapter = CalendarToDoAdapter(toDoList,selectedDay,selectedDate)
-            recyclerView2.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
-            recyclerView2.adapter = toDoAdapter
+            todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
+            todoRecyclerView.adapter = toDoAdapter
 
-            //toDoAdapter.notifyDataSetChanged()
+
 
             todoText.setOnClickListener(){
                 //Dialog mevzusu
@@ -186,8 +186,15 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
+        //Niye çalışmıyorsun OOROSPU ÇOCUĞU
+            toDoAdapter.todoList.add(dialogEditText.text.toString())
+            toDoAdapter.notifyDataSetChanged()
+            fragmentCalenderBinding.todoRecyclerView.invalidate()
+
             rootView.removeView(overlay)
             dialog.dismiss()
+
+
         }
     }
 
