@@ -23,7 +23,7 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
 
 
     interface onItemClickListener{
-        fun onItemClick(text: String, date: String, day: String)
+        fun onItemClick(text: String, day: String)
     }
 
     private var mListener: onItemClickListener? = null
@@ -54,7 +54,7 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
             val text = itemList.calendarYear.toString()
             val date = itemList.calendarDate
             val day = itemList.calendarDay
-            mListener?.onItemClick(text,date,day)
+            mListener?.onItemClick(text,day)
         }
         if (position == adapterPosition){
             holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))

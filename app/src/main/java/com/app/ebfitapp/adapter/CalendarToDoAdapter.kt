@@ -9,7 +9,7 @@ import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
 import com.app.ebfitapp.databinding.ItemsArticleBinding
 
-class CalendarToDoAdapter(private val todoList: ArrayList<String>,val selectedDay : TextView?,val selectedDate : TextView?) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
+class CalendarToDoAdapter(private val todoList: ArrayList<String>,val selectedDay : String?,val selectedDate : String?) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
 
     class ToDoHolder(val bindingToDo: ItemCalendarToDoBinding) : RecyclerView.ViewHolder(bindingToDo.root){
 

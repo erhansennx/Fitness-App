@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +35,10 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private lateinit var ivCalendarNext: ImageView
     private lateinit var ivCalendarPrevious: ImageView
     private lateinit var toDoAdapter: CalendarToDoAdapter
-    val selectedDate : TextView? = null
-    val selectedDay : TextView? = null
+    var selectedDate : String? = null
+    var selectedDay : String? = null
     var toDoList = ArrayList<String>()
+    var isSelected : Boolean = false
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -77,14 +79,19 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
             todoText.setOnClickListener(){
                 //Dialog mevzusu
-                showToDoDialog()
+                if(isSelected == true)
+                   showToDoDialog()
+                else Toast.makeText(this@CalendarFragment.context,"You should select a day first",Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    override fun onItemClick(text: String, date: String, day: String) {
-        selectedDay?.text = "$day"
-        selectedDate?.text = "$date"
+    override fun onItemClick(text: String, day: String) {
+        isSelected = true
+        selectedDay = day
+        selectedDate = text
+
+        Toast.makeText(requireContext(), "onItemClick tıklandı: $selectedDate:, $selectedDay:", Toast.LENGTH_SHORT).show()
     }
 
     private fun setUpClickListener(){
@@ -139,7 +146,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         val rootView = requireActivity().window.decorView.rootView
         val overlay = View(requireContext())
 
-        overlay.setBackgroundColor(Color.parseColor("#80000000")) // Burada 80 alfa değeridir
+        overlay.setBackgroundColor(Color.parseColor("#80000000"))
         val layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -159,8 +166,13 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         val dialogDate = dialog.findViewById<TextView>(R.id.dialogDate)
         val dialogDay = dialog.findViewById<TextView>(R.id.dialogDay)
 
-        dialogDay.text = selectedDay?.text
-        dialogDate.text = selectedDate?.text
+        selectedDay?.let {
+            dialogDay.text = it
+        }
+
+        selectedDate?.let {
+            dialogDate.text = it
+        }
 
         val dialogEditText = dialog.findViewById<EditText>(R.id.dialogEditText)
         val dialogCancelBtn = dialog.findViewById<Button>(R.id.dialogCancelBtn)
