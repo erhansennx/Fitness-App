@@ -24,6 +24,31 @@
         android:id="@+id/workoutFragment"
         android:name="com.app.ebfitapp.fragment.WorkoutFragment"
         android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_workoutFragment_to_workoutsDetailFragment"
+            app:destination="@id/workoutsDetailFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_trainersDetailFragment"
+            app:destination="@id/trainersDetailFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_musclesDetailFragment"
+            app:destination="@id/musclesDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutsDetailFragment"
+        android:name="com.app.ebfitapp.fragment.WorkoutsDetailFragment"
+        android:label="fragment_workouts_detail"
+        tools:layout="@layout/fragment_workouts_detail" />
+    <fragment
+        android:id="@+id/trainersDetailFragment"
+        android:name="com.app.ebfitapp.fragment.TrainersDetailFragment"
+        android:label="fragment_trainers_detail"
+        tools:layout="@layout/fragment_trainers_detail" />
+    <fragment
+        android:id="@+id/musclesDetailFragment"
+        android:name="com.app.ebfitapp.fragment.MusclesDetailFragment"
+        android:label="fragment_muscles_detail"
+        tools:layout="@layout/fragment_muscles_detail" />
 
 </navigation>
