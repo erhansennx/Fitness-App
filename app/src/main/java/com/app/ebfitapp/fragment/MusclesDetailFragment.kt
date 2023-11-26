@@ -5,18 +5,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.ebfitapp.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.app.ebfitapp.databinding.FragmentMusclesDetailBinding
+import com.app.ebfitapp.viewmodel.MuscleExercisesViewModel
 
 class MusclesDetailFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    private lateinit var binding: FragmentMusclesDetailBinding
+    private val muscleExercisesViewModel: MuscleExercisesViewModel by viewModels()
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentMusclesDetailBinding.inflate(layoutInflater)
+
+        arguments.let {
+
+            val muscleName = it!!.getString("muscle")
+            muscleExercisesViewModel.getExercises(muscleName!!)
+            observeBodyPartExercises()
+
+        }
 
 
-        return inflater.inflate(R.layout.fragment_muscles_detail, container, false)
+        return binding.root
     }
+
+
+    private fun observeBodyPartExercises() {
+        muscleExercisesViewModel.bodyPartExercises.observe(viewLifecycleOwner, Observer { result ->
+            if (result != null) {
+                Toast.makeText(requireContext(), "Data: ${result[0]}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
 
 
 }

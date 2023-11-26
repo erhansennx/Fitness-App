@@ -14,7 +14,7 @@ interface MusclesAPI {
         "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
     )
     @GET("exercises/bodyPart/{bodyPart}")
-    suspend fun getBodyPartExercises(@Path("bodyPart") bodyPart: String) : Single<BodyPartExercises>
+    fun getBodyPartExercises(@Path("bodyPart") bodyPart: String) : Single<BodyPartExercises>
 
 
 }

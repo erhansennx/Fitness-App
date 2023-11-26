@@ -53,6 +53,10 @@
         android:id="@+id/musclesDetailFragment"
         android:name="com.app.ebfitapp.fragment.MusclesDetailFragment"
         android:label="fragment_muscles_detail"
-        tools:layout="@layout/fragment_muscles_detail" />
+        tools:layout="@layout/fragment_muscles_detail" >
+        <argument
+            android:name="muscle"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

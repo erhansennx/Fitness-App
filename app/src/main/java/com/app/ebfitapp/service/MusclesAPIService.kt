@@ -17,7 +17,7 @@ class MusclesAPIService {
         .build()
         .create(MusclesAPI::class.java)
 
-    suspend fun getExercises(bodyPart: String) : Single<BodyPartExercises> {
+    fun getExercises(bodyPart: String) : Single<BodyPartExercises> {
         return api.getBodyPartExercises(bodyPart)
     }
 
