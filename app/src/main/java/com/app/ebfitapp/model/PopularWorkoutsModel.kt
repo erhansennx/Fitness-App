@@ -1,3 +1,5 @@
 package com.app.ebfitapp.model
 
-data class PopularWorkoutsModel(val workoutName: String, val imageURL: String)
+import java.io.Serializable
+
+data class PopularWorkoutsModel(val workoutName: String, val description: String, val imageURL: String) : Serializable

@@ -3,9 +3,11 @@ package com.app.ebfitapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ItemPopularWorkoutsBinding
+import com.app.ebfitapp.fragment.WorkoutFragmentDirections
 import com.app.ebfitapp.model.PopularWorkoutsModel
 
 class PopularWorkoutsAdapter(private val popularWorkouts: ArrayList<PopularWorkoutsModel>) : RecyclerView.Adapter<PopularWorkoutsAdapter.ItemHolder>() {
@@ -24,6 +26,10 @@ class PopularWorkoutsAdapter(private val popularWorkouts: ArrayList<PopularWorko
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemWorkoutsBinding) {
         workout = popularWorkouts[position]
+        workoutRoot.setOnClickListener {
+            val action = WorkoutFragmentDirections.actionWorkoutFragmentToWorkoutsDetailFragment(popularWorkouts[position])
+            it.findNavController().navigate(action)
+        }
     }
 
 

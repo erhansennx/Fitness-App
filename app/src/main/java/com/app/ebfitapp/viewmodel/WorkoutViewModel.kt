@@ -62,6 +62,7 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
                 for (snapshot in querySnapshot.result.documents) {
                     val popularWorkouts = PopularWorkoutsModel(
                         snapshot.data!!["name"].toString(),
+                        snapshot.data!!["description"].toString(),
                         snapshot.data!!["imageURL"].toString()
                     )
                     workoutsTempList.add(popularWorkouts)

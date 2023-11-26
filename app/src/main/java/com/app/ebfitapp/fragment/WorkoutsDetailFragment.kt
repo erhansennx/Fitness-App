@@ -6,19 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.app.ebfitapp.R
+import com.app.ebfitapp.databinding.FragmentWorkoutsDetailBinding
+import com.app.ebfitapp.model.PopularWorkoutsModel
+import com.app.ebfitapp.utils.downloadImageFromURL
 
 
 class WorkoutsDetailFragment : Fragment() {
 
+    private lateinit var binding: FragmentWorkoutsDetailBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentWorkoutsDetailBinding.inflate(layoutInflater)
+
+        arguments.let {
+
+            val model: PopularWorkoutsModel = it!!.getSerializable("workout") as PopularWorkoutsModel
+            binding.programImage.downloadImageFromURL(model.imageURL)
+            binding.programText.text = model.workoutName
+            binding.descriptionText.text = model.description
+            
+        }
 
 
-
-        return inflater.inflate(R.layout.fragment_workouts_detail, container, false)
+        return binding.root
     }
 
 

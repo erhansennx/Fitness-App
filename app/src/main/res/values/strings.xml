@@ -58,4 +58,6 @@
     <string name="trainer_username">Trainer Username</string>
     <string name="specialization">Specialization</string>
     <string name="see_all">See All</string>
+    <string name="program_name">Program Name</string>
+    <string name="description">Description</string>
 </resources>
