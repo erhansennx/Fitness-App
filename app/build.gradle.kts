@@ -43,10 +43,14 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-auth:22.2.0")
+
+    val nav_version = "2.7.5"
+    val rxjava_version = "2.2.6"
+    val retrofit_version = "2.9.0"
+
+    implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-    val nav_version = "2.7.5"
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
@@ -56,6 +60,13 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("me.tankery.lib:circularSeekBar:1.4.2")
+
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofit_version")
+
+    implementation("io.reactivex.rxjava2:rxjava:$rxjava_version")
+    implementation("io.reactivex.rxjava2:rxandroid:$rxjava_version")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
