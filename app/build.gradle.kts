@@ -45,7 +45,7 @@ android {
 dependencies {
 
     val nav_version = "2.7.5"
-    val rxjava_version = "2.2.6"
+    val rxjava_version = "2.1.1"
     val retrofit_version = "2.9.0"
 
     implementation("com.google.firebase:firebase-auth:22.3.0")
