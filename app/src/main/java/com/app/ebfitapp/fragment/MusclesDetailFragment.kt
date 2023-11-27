@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.app.ebfitapp.databinding.FragmentMusclesDetailBinding
+import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.viewmodel.MuscleExercisesViewModel
 
 class MusclesDetailFragment : Fragment() {

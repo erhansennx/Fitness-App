@@ -60,4 +60,8 @@
     <string name="see_all">See All</string>
     <string name="program_name">Program Name</string>
     <string name="description">Description</string>
+    <string name="muscle_name">Muscle Name</string>
+    <string name="target">Target</string>
+    <string name="equipment">Equipment</string>
+    <string name="exercise_name">Exercise Name</string>
 </resources>

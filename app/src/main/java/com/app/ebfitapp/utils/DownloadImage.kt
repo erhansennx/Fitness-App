@@ -8,6 +8,19 @@ import com.bumptech.glide.Glide
 fun ImageView.downloadImageFromURL(url: String) {
 
     Glide.with(context)
+        .asBitmap()
+        .load(url)
+        .centerCrop()
+        .placeholder(R.drawable.glide_place_animation)
+        .error(R.drawable.ic_launcher_background)
+        .into(this)
+
+}
+
+fun ImageView.downloadGifFromURL(url: String) {
+
+    Glide.with(context)
+        .asGif()
         .load(url)
         .centerCrop()
         .placeholder(R.drawable.glide_place_animation)
