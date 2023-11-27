@@ -1,3 +1,5 @@
 package com.app.ebfitapp.model
 
-data class MuscleGroupModel(val muscleName: String, val muscleImageURL: String)
+import java.io.Serializable
+
+data class MuscleGroupModel(val muscleName: String, val muscleImageURL: String) : Serializable

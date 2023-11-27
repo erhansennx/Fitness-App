@@ -28,7 +28,7 @@ class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>)
     override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemMuscleGroupsBinding) {
         muscle = muscleGroups[position]
         muscleRootFrame.setOnClickListener {
-            val action = WorkoutFragmentDirections.actionWorkoutFragmentToMusclesDetailFragment(muscleGroups[position].muscleName.lowercase())
+            val action = WorkoutFragmentDirections.actionWorkoutFragmentToMusclesDetailFragment(muscleGroups[position])
             it.findNavController().navigate(action)
         }
     }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.app.ebfitapp.databinding.FragmentMusclesDetailBinding
+import com.app.ebfitapp.model.MuscleGroupModel
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.viewmodel.MuscleExercisesViewModel
 
@@ -23,8 +24,11 @@ class MusclesDetailFragment : Fragment() {
 
         arguments.let {
 
-            val muscleName = it!!.getString("muscle")
-            muscleExercisesViewModel.getExercises(muscleName!!)
+            val muscleName = it!!.getSerializable("muscle") as MuscleGroupModel
+            binding.muscleImage.downloadImageFromURL(muscleName.muscleImageURL)
+            binding.muscleNameText.text = muscleName.muscleName
+
+            muscleExercisesViewModel.getExercises(muscleName.muscleName.lowercase())
             observeBodyPartExercises()
 
         }
