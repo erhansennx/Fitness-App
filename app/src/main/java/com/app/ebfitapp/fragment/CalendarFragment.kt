@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,11 @@ import com.app.ebfitapp.adapter.CalendarAdapter
 import com.app.ebfitapp.adapter.CalendarToDoAdapter
 import com.app.ebfitapp.databinding.FragmentCalendarBinding
 import com.app.ebfitapp.model.CalendarDateModel
+import com.app.ebfitapp.model.ToDoModel
+import com.app.ebfitapp.service.FirebaseAuthService
+import com.app.ebfitapp.utils.CustomProgress
+import com.app.ebfitapp.viewmodel.CalendarViewModel
+import com.app.ebfitapp.viewmodel.WorkoutViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,6 +41,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private lateinit var ivCalendarNext: ImageView
     private lateinit var ivCalendarPrevious: ImageView
     private lateinit var toDoAdapter: CalendarToDoAdapter
+    private val calendarViewModel: CalendarViewModel by viewModels()
+    private lateinit var firebaseAuthService: FirebaseAuthService
+    private lateinit var customProgress: CustomProgress
     var selectedDate : String? = null
     var selectedDay : String? = null
     var toDoList = ArrayList<String>()
@@ -53,7 +62,11 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         savedInstanceState: Bundle?
     ): View? {
 
+        customProgress = CustomProgress(requireContext())
+        firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
+
+        customProgress.show()
 
 
         return fragmentCalenderBinding.root
@@ -72,14 +85,21 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpClickListener()
             setUpCalendar()
 
+
             toDoAdapter = CalendarToDoAdapter(toDoList,dayDateList)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
 
+            calendarViewModel.getToDoItems { toDoList ->
+                //Kenar mahalle kırmızı şortlu kırmızı ojeli cingene orospuları siktigim yer
+                toDoAdapter.todoList = ArrayList(toDoList.map { it.todoText })
+                toDoAdapter.notifyDataSetChanged()
+                customProgress.dismiss()
+            }
+
 
 
             todoText.setOnClickListener(){
-                //Dialog mevzusu
                 if(isSelected == true)
                    showToDoDialog()
                 else Toast.makeText(this@CalendarFragment.context,"You should select a day first",Toast.LENGTH_SHORT).show()
@@ -187,14 +207,19 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
-        //Niye çalışmıyorsun OOROSPU ÇOCUĞU
-            dayDateList.add(Pair(selectedDay, selectedDate))
-            toDoAdapter.todoList.add(dialogEditText.text.toString())
-            toDoAdapter.notifyDataSetChanged()
-            fragmentCalenderBinding.todoRecyclerView.invalidate()
+            var newTodoText = dialogEditText.text.toString()
+            val newTodoItem = ToDoModel(selectedDay, selectedDate, newTodoText)
+            calendarViewModel.addToDoItem(newTodoItem.selectedDay,newTodoItem.selectedDate,newTodoItem.todoText) { updatedToDoList ->
 
-            rootView.removeView(overlay)
-            dialog.dismiss()
+                dayDateList.add(Pair(selectedDay, selectedDate))
+                toDoAdapter.todoList.add(newTodoItem.todoText)
+                toDoAdapter.notifyDataSetChanged()
+                fragmentCalenderBinding.todoRecyclerView.invalidate()
+
+                rootView.removeView(overlay)
+                dialog.dismiss()
+            }
+
 
 
         }

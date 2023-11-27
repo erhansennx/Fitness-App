@@ -10,7 +10,7 @@ import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
 import com.app.ebfitapp.databinding.ItemsArticleBinding
 
 class CalendarToDoAdapter(
-    val todoList: ArrayList<String>,
+    var todoList: ArrayList<String>,
     private val dayDateList: List<Pair<String?, String?>>,
 ) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
 
