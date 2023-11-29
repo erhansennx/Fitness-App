@@ -47,6 +47,7 @@ dependencies {
     val nav_version = "2.7.5"
     val rxjava_version = "2.1.1"
     val retrofit_version = "2.9.0"
+    val coroutine_version = "1.7.1"
 
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
@@ -67,6 +68,8 @@ dependencies {
 
     implementation("io.reactivex.rxjava2:rxjava:$rxjava_version")
     implementation("io.reactivex.rxjava2:rxandroid:$rxjava_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
