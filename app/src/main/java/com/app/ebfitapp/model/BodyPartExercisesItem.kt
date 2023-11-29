@@ -2,6 +2,7 @@ package com.app.ebfitapp.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class BodyPartExercisesItem(
     @SerializedName("bodyPart")
@@ -20,4 +21,4 @@ data class BodyPartExercisesItem(
     val secondaryMuscles: List<String>,
     @SerializedName("target")
     val target: String
-)
+): Serializable

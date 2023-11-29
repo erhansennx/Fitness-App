@@ -58,6 +58,20 @@
         <argument
             android:name="muscle"
             app:argType="com.app.ebfitapp.model.MuscleGroupModel" />
+        <action
+            android:id="@+id/action_musclesDetailFragment_to_exerciseOverviewFragment"
+            app:destination="@id/exerciseOverviewFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseOverviewFragment"
+        android:name="com.app.ebfitapp.fragment.ExerciseOverviewFragment"
+        android:label="fragment_exercise_overview"
+        tools:layout="@layout/fragment_exercise_overview" >
+
+        <argument
+            android:name="exercise"
+            app:argType="com.app.ebfitapp.model.BodyPartExercisesItem"/>
+
     </fragment>
 
 </navigation>

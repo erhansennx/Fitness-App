@@ -3,9 +3,11 @@ package com.app.ebfitapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.ItemMuscleDetailsBinding
+import com.app.ebfitapp.fragment.MusclesDetailFragmentDirections
 import com.app.ebfitapp.model.BodyPartExercises
 
 class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) : RecyclerView.Adapter<ExercisesAdapter.ItemHolder>() {
@@ -21,8 +23,12 @@ class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) : Recyc
         return bodyPartExercises.size
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.itemMuscleDetailsBinding.exercise = bodyPartExercises[position]
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemMuscleDetailsBinding) {
+        exercise = bodyPartExercises[position]
+        muscleDetailLinear.setOnClickListener {
+            val action = MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(bodyPartExercises[position])
+            it.findNavController().navigate(action)
+        }
     }
 
 
