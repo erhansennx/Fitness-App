@@ -20,6 +20,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
             "selectedDate" to selectedDate,
             "todoText" to todoText
         )
+
         userDocumentReference.collection("toDoRecyclerViewItems")
             .add(dataMap)
             .addOnCompleteListener { task ->
@@ -31,7 +32,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
             }
     }
 
-    fun getToDoItems(callback: (List<ToDoModel>) -> Unit) {
+    fun getToDoItems(callback: (List<ToDoModel>, List<Pair<String, String>>) -> Unit) {
         val currentEmail = firebaseAuthService.getCurrentUserEmail()
 
         val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
@@ -41,6 +42,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
             .addOnCompleteListener { querySnapshot ->
                 if (querySnapshot.isSuccessful) {
                     val toDoList = mutableListOf<ToDoModel>()
+                    val dayDateList = mutableListOf<Pair<String, String>>()
 
                     for (document in querySnapshot.result!!) {
                         val selectedDay = document.getString("selectedDay")
@@ -50,11 +52,13 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                         if (selectedDay != null && selectedDate != null && todoText != null) {
                             val toDoItem = ToDoModel(selectedDay, selectedDate, todoText)
                             toDoList.add(toDoItem)
+                            dayDateList.add(selectedDay to selectedDate)
                         }
                     }
-                    callback(toDoList)
+
+                    callback(toDoList, dayDateList)
                 } else {
-                    callback(emptyList())
+                    callback(emptyList(), emptyList())
                 }
             }
     }

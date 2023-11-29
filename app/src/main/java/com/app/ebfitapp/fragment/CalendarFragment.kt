@@ -50,6 +50,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     var isSelected : Boolean = false
     val dayDateList = mutableListOf<Pair<String?, String?>>()
 
+
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     private val currentDate = Calendar.getInstance(Locale.ENGLISH)
@@ -67,7 +68,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
 
         customProgress.show()
-
 
         return fragmentCalenderBinding.root
 
@@ -90,9 +90,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
 
-            calendarViewModel.getToDoItems { toDoList ->
-                //Kenar mahalle kırmızı şortlu kırmızı ojeli cingene orospuları siktigim yer
+            calendarViewModel.getToDoItems { toDoList, dayDateList ->
                 toDoAdapter.todoList = ArrayList(toDoList.map { it.todoText })
+                toDoAdapter.dayDateList = dayDateList.toMutableList()
                 toDoAdapter.notifyDataSetChanged()
                 customProgress.dismiss()
             }
@@ -207,19 +207,18 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
-            var newTodoText = dialogEditText.text.toString()
-            val newTodoItem = ToDoModel(selectedDay, selectedDate, newTodoText)
-            calendarViewModel.addToDoItem(newTodoItem.selectedDay,newTodoItem.selectedDate,newTodoItem.todoText) { updatedToDoList ->
-
-                dayDateList.add(Pair(selectedDay, selectedDate))
-                toDoAdapter.todoList.add(newTodoItem.todoText)
-                toDoAdapter.notifyDataSetChanged()
-                fragmentCalenderBinding.todoRecyclerView.invalidate()
-
-                rootView.removeView(overlay)
-                dialog.dismiss()
+            val dialogEditText = dialogEditText.text.toString()
+            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText)
+            calendarViewModel.addToDoItem(newTodoItem.selectedDay, newTodoItem.selectedDate, newTodoItem.todoText) { isSuccess ->
+                if (isSuccess) {
+                    toDoAdapter.dayDateList.add(Pair(selectedDay, selectedDate))
+                    toDoAdapter.todoList.add(newTodoItem.todoText)
+                    toDoAdapter.notifyDataSetChanged()
+                    rootView.removeView(overlay)
+                    dialog.dismiss()
+                } else {
+                }
             }
-
 
 
         }

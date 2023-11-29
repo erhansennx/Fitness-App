@@ -11,11 +11,11 @@ import com.app.ebfitapp.databinding.ItemsArticleBinding
 
 class CalendarToDoAdapter(
     var todoList: ArrayList<String>,
-    private val dayDateList: List<Pair<String?, String?>>,
+    var dayDateList:MutableList<Pair<String?, String?>>,
 ) : RecyclerView.Adapter<CalendarToDoAdapter.ToDoHolder>() {
 
     class ToDoHolder(val bindingToDo: ItemCalendarToDoBinding) : RecyclerView.ViewHolder(bindingToDo.root) {
-        // ViewHolder içinde gerekirse ek işlemleri yapabilirsiniz.
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoHolder {
