@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="exercise"
             type="com.app.ebfitapp.model.BodyPartExercisesItem" />
@@ -25,9 +25,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
                 android:background="@color/white"
-                android:getImage="@{exercise.gifUrl}"/>
+                android:getImage="@{exercise.gifUrl}"
+                android:scaleType="fitXY" />
 
         </androidx.cardview.widget.CardView>
 
@@ -46,56 +46,64 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:gravity="center|start"
                 android:fontFamily="@font/robotomedium"
+                android:gravity="center|start"
+                android:hint="@string/exercise_name"
                 android:maxLines="2"
                 android:text="@{exercise.name}"
-                android:hint="@string/exercise_name"
-                android:textColorHint="@color/white"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="21sp"
                 tools:ignore="NestedWeights" />
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/round_6dp_background"
-                    android:backgroundTint="@color/red"
-                    android:fontFamily="@font/robotomedium"
-                    android:paddingHorizontal="5dp"
-                    android:gravity="center"
-                    android:paddingVertical="3dp"
-                    android:text="@{exercise.target}"
-                    android:hint="@string/target"
-                    android:textColorHint="@color/white"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    tools:ignore="RtlSymmetry,SmallSp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/round_6dp_background"
-                    android:backgroundTint="@color/streak"
-                    android:fontFamily="@font/robotomedium"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:paddingVertical="3dp"
-                    android:text="@{exercise.equipment}"
-                    android:hint="@string/equipment"
-                    android:textColorHint="@color/white"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    tools:ignore="RtlSymmetry,SmallSp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_6dp_background"
+                        android:backgroundTint="@color/red"
+                        android:fontFamily="@font/robotomedium"
+                        android:gravity="center"
+                        android:hint="@string/target"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="3dp"
+                        android:text="@{exercise.target}"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="10sp"
+                        tools:ignore="RtlSymmetry,SmallSp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/round_6dp_background"
+                        android:backgroundTint="@color/streak"
+                        android:fontFamily="@font/robotomedium"
+                        android:gravity="center"
+                        android:hint="@string/equipment"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="3dp"
+                        android:text="@{exercise.equipment}"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="10sp"
+                        tools:ignore="RtlSymmetry,SmallSp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
         </LinearLayout>
 
         <ImageView
