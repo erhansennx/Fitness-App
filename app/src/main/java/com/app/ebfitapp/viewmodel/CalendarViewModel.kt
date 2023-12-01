@@ -55,6 +55,25 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
+    fun deleteToDoItem(todoId: String?, callback: (Boolean) -> Unit) {
+        if (todoId != null) {
+            userDocumentReference.collection("toDoRecyclerViewItems")
+                .whereEqualTo("todoId" ,todoId)
+                .get()
+                .addOnCompleteListener { querySnapshot ->
+                    if (querySnapshot.isSuccessful) {
+                        for (document in querySnapshot.result!!) {
+                            document.reference.delete()
+                        }
+                        callback(true)
+                    } else {
+                        callback(false)
+                    }
+                }
+        } else {
+            callback(false)
+        }
+    }
     private fun showErrorToastMessage(error: String) {
         Toast.makeText(application.applicationContext, error, Toast.LENGTH_LONG).show()
     }

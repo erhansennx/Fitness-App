@@ -17,6 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +36,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
+class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,CalendarToDoAdapter.OnToDoItemClickListener{
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var tvDateMonth: TextView
@@ -59,6 +60,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private lateinit var adapter: CalendarAdapter
     private val calendarList2 = ArrayList<CalendarDateModel>()
     private lateinit var fragmentCalenderBinding : FragmentCalendarBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,8 +69,12 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
         customProgress.show()
+
+
         return fragmentCalenderBinding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,6 +92,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             toDoAdapter = CalendarToDoAdapter(todoArray)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
+            toDoAdapter.setOnItemClickListener(this@CalendarFragment)
 
             toDoAdapter.notifyDataSetChanged()
 
@@ -103,6 +110,23 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             }
         }
     }
+
+    override fun onToDoItemClick(id : String?) {
+        Toast.makeText(requireContext(), "ToDo Item Clicked!", Toast.LENGTH_SHORT).show()
+        calendarViewModel.deleteToDoItem(id) { isSuccess ->
+            if (isSuccess) {
+                Toast.makeText(requireContext(), "$id ToDo Item Deleted!", Toast.LENGTH_SHORT).show()
+
+                val removeOnRecycler = toDoAdapter.todoArray.find { it.todoId == id }
+                toDoAdapter.todoArray.remove(removeOnRecycler)
+                toDoAdapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(requireContext(), "Failed to delete ToDo Item", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
     override fun onItemClick(text: String, day: String) {
         isSelected = true
         selectedDay = day
@@ -185,17 +209,14 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         selectedDate?.let {
             dialogDate.text = it
         }
-
         val dialogEditText = dialog.findViewById<EditText>(R.id.dialogEditText)
         val dialogCancelBtn = dialog.findViewById<Button>(R.id.dialogCancelBtn)
         val dialogSaveBtn = dialog.findViewById<Button>(R.id.dialogSaveBtn)
         dialog.show()
-
         dialogCancelBtn.setOnClickListener {
             rootView.removeView(overlay)
             dialog.dismiss()
         }
-
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
             val dialogEditText = dialogEditText.text.toString()
@@ -226,6 +247,4 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         generatedStrings.add(randomString)
         return randomString
     }
-
-
 }
