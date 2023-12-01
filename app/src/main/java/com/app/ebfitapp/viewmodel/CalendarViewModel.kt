@@ -1,6 +1,7 @@
 package com.app.ebfitapp.viewmodel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.service.FirebaseAuthService
@@ -10,15 +11,15 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
 
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
     private val firebaseAuthService = FirebaseAuthService(application.applicationContext)
-    fun addToDoItem(selectedDay: String?, selectedDate: String?, todoText: String, callback: (Boolean) -> Unit) {
-        val currentEmail = firebaseAuthService.getCurrentUserEmail()
-
-        val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
+    val currentEmail = firebaseAuthService.getCurrentUserEmail()
+    val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
+    fun addToDoItem(todoArray : ToDoModel, callback: (Boolean) -> Unit) {
 
         val dataMap = hashMapOf(
-            "selectedDay" to selectedDay,
-            "selectedDate" to selectedDate,
-            "todoText" to todoText
+            "selectedDay" to todoArray.selectedDay,
+            "selectedDate" to todoArray.selectedDate,
+            "todoText" to todoArray.todoText,
+            "todoId" to todoArray.todoId
         )
 
         userDocumentReference.collection("toDoRecyclerViewItems")
@@ -31,38 +32,32 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
-
-    fun getToDoItems(callback: (List<ToDoModel>, List<Pair<String, String>>) -> Unit) {
-        val currentEmail = firebaseAuthService.getCurrentUserEmail()
-
-        val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
-
+    fun getToDoItems(callback: (List<ToDoModel>) -> Unit) {
         userDocumentReference.collection("toDoRecyclerViewItems")
             .get()
-            .addOnCompleteListener { querySnapshot ->
-                if (querySnapshot.isSuccessful) {
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     val toDoList = mutableListOf<ToDoModel>()
-                    val dayDateList = mutableListOf<Pair<String, String>>()
 
-                    for (document in querySnapshot.result!!) {
-                        val selectedDay = document.getString("selectedDay")
-                        val selectedDate = document.getString("selectedDate")
-                        val todoText = document.getString("todoText")
-
-                        if (selectedDay != null && selectedDate != null && todoText != null) {
-                            val toDoItem = ToDoModel(selectedDay, selectedDate, todoText)
-                            toDoList.add(toDoItem)
-                            dayDateList.add(selectedDay to selectedDate)
-                        }
+                    for (document in task.result!!) {
+                        val selectedDay = document.getString("selectedDay") ?: ""
+                        val selectedDate = document.getString("selectedDate") ?: ""
+                        val todoText = document.getString("todoText") ?: ""
+                        val todoId = document.getString("todoId") ?: ""
+                        val toDoItem = ToDoModel(selectedDay, selectedDate, todoText, todoId)
+                        toDoList.add(toDoItem)
                     }
 
-                    callback(toDoList, dayDateList)
+                    callback(toDoList)
                 } else {
-                    callback(emptyList(), emptyList())
+                    showErrorToastMessage(task.toString())
+                    callback(emptyList())
                 }
             }
     }
-
+    private fun showErrorToastMessage(error: String) {
+        Toast.makeText(application.applicationContext, error, Toast.LENGTH_LONG).show()
+    }
 
 
 }

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import kotlin.random.Random
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,9 +47,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private lateinit var customProgress: CustomProgress
     var selectedDate : String? = null
     var selectedDay : String? = null
-    var toDoList = ArrayList<String>()
     var isSelected : Boolean = false
-    val dayDateList = mutableListOf<Pair<String?, String?>>()
+    val generatedStrings = mutableSetOf<String>()
+    var todoArray = arrayListOf<ToDoModel>()
 
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
@@ -62,15 +63,11 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
-
         customProgress.show()
-
         return fragmentCalenderBinding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,18 +83,18 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpCalendar()
 
 
-            toDoAdapter = CalendarToDoAdapter(toDoList,dayDateList)
+            toDoAdapter = CalendarToDoAdapter(todoArray)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
 
-            calendarViewModel.getToDoItems { toDoList, dayDateList ->
-                toDoAdapter.todoList = ArrayList(toDoList.map { it.todoText })
-                toDoAdapter.dayDateList = dayDateList.toMutableList()
+            toDoAdapter.notifyDataSetChanged()
+
+            calendarViewModel.getToDoItems { toDoList ->
+                val arrayListToDoList = ArrayList(toDoList)
+                toDoAdapter.todoArray = arrayListToDoList
                 toDoAdapter.notifyDataSetChanged()
                 customProgress.dismiss()
             }
-
-
 
             todoText.setOnClickListener(){
                 if(isSelected == true)
@@ -106,7 +103,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             }
         }
     }
-
     override fun onItemClick(text: String, day: String) {
         isSelected = true
         selectedDay = day
@@ -130,7 +126,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
                 setUpCalendar()
         }
     }
-
     private fun setUpAdapter()
     {
         val snapHelper : SnapHelper = LinearSnapHelper()
@@ -176,11 +171,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         val dialog = Dialog(requireActivity())
         dialog.setContentView(R.layout.todo_dialog_box)
-
-
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCancelable(false)
 
@@ -208,22 +199,33 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
             val dialogEditText = dialogEditText.text.toString()
-            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText)
-            calendarViewModel.addToDoItem(newTodoItem.selectedDay, newTodoItem.selectedDate, newTodoItem.todoText) { isSuccess ->
+            val uniqueId = generateRandomString(randomLength = true)
+            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId)
+            println(newTodoItem)
+            calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
-                    toDoAdapter.dayDateList.add(Pair(selectedDay, selectedDate))
-                    toDoAdapter.todoList.add(newTodoItem.todoText)
+                    toDoAdapter.todoArray.add(newTodoItem)
                     toDoAdapter.notifyDataSetChanged()
                     rootView.removeView(overlay)
                     dialog.dismiss()
                 } else {
                 }
             }
-
-
         }
     }
+    fun generateRandomString(randomLength: Boolean = false): String {
+        val length = if (randomLength) Random.nextInt(1, 11) else 8
+        var randomString: String
+        do {
+            val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+            randomString = (1..length)
+                .map { charPool[Random.nextInt(0, charPool.size)] }
+                .joinToString("")
+        } while (generatedStrings.contains(randomString))
 
+        generatedStrings.add(randomString)
+        return randomString
+    }
 
 
 }
