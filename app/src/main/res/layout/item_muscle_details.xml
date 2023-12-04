@@ -83,7 +83,7 @@
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
                         android:textSize="10sp"
-                        tools:ignore="RtlSymmetry,SmallSp" />
+                        tools:ignore="RtlSymmetry,SmallSp"/>
 
                     <TextView
                         android:layout_width="wrap_content"

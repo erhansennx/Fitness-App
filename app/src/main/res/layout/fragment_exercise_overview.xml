@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/exercise_overview_image"
-        android:foreground="@color/transparent_2"
+        android:foreground="@color/transparent_1"
         android:scaleType="fitXY"/>
+
+
 
 
 
