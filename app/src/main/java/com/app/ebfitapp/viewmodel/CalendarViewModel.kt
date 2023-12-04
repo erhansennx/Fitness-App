@@ -55,7 +55,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
-    fun deleteToDoItem(todoId: String?, callback: (Boolean) -> Unit) {
+    fun deleteToDoItem(todoId: String?) {
         if (todoId != null) {
             userDocumentReference.collection("toDoRecyclerViewItems")
                 .whereEqualTo("todoId" ,todoId)
@@ -65,13 +65,13 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                         for (document in querySnapshot.result!!) {
                             document.reference.delete()
                         }
-                        callback(true)
+
                     } else {
-                        callback(false)
+
                     }
                 }
         } else {
-            callback(false)
+
         }
     }
     private fun showErrorToastMessage(error: String) {

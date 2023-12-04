@@ -36,7 +36,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,CalendarToDoAdapter.OnToDoItemClickListener{
+class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var tvDateMonth: TextView
@@ -89,10 +89,12 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,Calenda
             setUpCalendar()
 
 
-            toDoAdapter = CalendarToDoAdapter(todoArray)
+            toDoAdapter = CalendarToDoAdapter(todoArray,calendarViewModel)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
-            toDoAdapter.setOnItemClickListener(this@CalendarFragment)
+
+            val itemTouchHelper = ItemTouchHelper(toDoAdapter.SwipeToDeleteCallback())
+            itemTouchHelper.attachToRecyclerView(todoRecyclerView)
 
             toDoAdapter.notifyDataSetChanged()
 
@@ -102,7 +104,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,Calenda
                 toDoAdapter.notifyDataSetChanged()
                 customProgress.dismiss()
             }
-
             todoText.setOnClickListener(){
                 if(isSelected == true)
                    showToDoDialog()
@@ -110,23 +111,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,Calenda
             }
         }
     }
-
-    override fun onToDoItemClick(id : String?) {
-        Toast.makeText(requireContext(), "ToDo Item Clicked!", Toast.LENGTH_SHORT).show()
-        calendarViewModel.deleteToDoItem(id) { isSuccess ->
-            if (isSuccess) {
-                Toast.makeText(requireContext(), "$id ToDo Item Deleted!", Toast.LENGTH_SHORT).show()
-
-                val removeOnRecycler = toDoAdapter.todoArray.find { it.todoId == id }
-                toDoAdapter.todoArray.remove(removeOnRecycler)
-                toDoAdapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(requireContext(), "Failed to delete ToDo Item", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-    }
-
     override fun onItemClick(text: String, day: String) {
         isSelected = true
         selectedDay = day
@@ -222,7 +206,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener,Calenda
             val dialogEditText = dialogEditText.text.toString()
             val uniqueId = generateRandomString(randomLength = true)
             val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId)
-            println(newTodoItem)
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
                     toDoAdapter.todoArray.add(newTodoItem)
