@@ -66,4 +66,9 @@
     <string name="exercise_name">Exercise Name</string>
     <string name="instructions">Instructions</string>
     <string name="let_s_do_it">Let\'s do it!</string>
+    <string name="sets_amp_reps"><![CDATA[Sets & Reps]]></string>
+    <string name="sets">Sets</string>
+    <string name="reps">Reps</string>
+    <string name="time">Time</string>
+    <string name="start">Start</string>
 </resources>

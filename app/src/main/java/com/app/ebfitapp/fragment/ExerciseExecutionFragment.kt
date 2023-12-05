@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseExecutionBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
+import com.app.ebfitapp.utils.downloadGifFromURL
 
 class ExerciseExecutionFragment : Fragment() {
 
@@ -20,6 +21,9 @@ class ExerciseExecutionFragment : Fragment() {
         arguments.let {
 
             exerciseItem = it!!.getSerializable("exercise") as BodyPartExercisesItem
+
+            binding.exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+            binding.exerciseName.text = exerciseItem.name
 
         }
 
