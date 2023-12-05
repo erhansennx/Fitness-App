@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseOverviewBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
@@ -13,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ExerciseOverviewFragment : Fragment() {
 
-
+    private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,9 +23,8 @@ class ExerciseOverviewFragment : Fragment() {
 
         arguments.let {
 
-            val exerciseItem = it!!.getSerializable("exercise") as BodyPartExercisesItem
+            exerciseItem = it!!.getSerializable("exercise") as BodyPartExercisesItem
             exerciseOverviewBinding.exercise = exerciseItem
-
             setInstructionsToTextView(exerciseItem.instructions)
 
         }
@@ -32,8 +32,18 @@ class ExerciseOverviewFragment : Fragment() {
         return exerciseOverviewBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    fun setInstructionsToTextView(instructions: List<String>) {
+        exerciseOverviewBinding.letsDoItButton.setOnClickListener {
+            val action = ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(exerciseItem)
+            findNavController().navigate(action)
+        }
+
+    }
+
+
+    private fun setInstructionsToTextView(instructions: List<String>) {
         val stringBuilder = StringBuilder()
         var instructionNumber = 1
 

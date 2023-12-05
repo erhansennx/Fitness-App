@@ -73,7 +73,21 @@
         <argument
             android:name="exercise"
             app:argType="com.app.ebfitapp.model.BodyPartExercisesItem"/>
+        <action
+            android:id="@+id/action_exerciseOverviewFragment_to_exerciseExecutionFragment"
+            app:destination="@id/exerciseExecutionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseExecutionFragment"
+        android:name="com.app.ebfitapp.fragment.ExerciseExecutionFragment"
+        android:label="fragment_exercise_execution"
+        tools:layout="@layout/fragment_exercise_execution">
+        <argument
+            android:name="exercise"
+            app:argType="com.app.ebfitapp.model.BodyPartExercisesItem"/>
     </fragment>
 
 </navigation>
