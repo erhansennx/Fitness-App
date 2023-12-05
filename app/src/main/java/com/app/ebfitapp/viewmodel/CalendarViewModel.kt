@@ -15,11 +15,13 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
     val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
     fun addToDoItem(todoArray : ToDoModel, callback: (Boolean) -> Unit) {
 
+        val currentTimeStamp = System.currentTimeMillis()
         val dataMap = hashMapOf(
             "selectedDay" to todoArray.selectedDay,
             "selectedDate" to todoArray.selectedDate,
             "todoText" to todoArray.todoText,
-            "todoId" to todoArray.todoId
+            "todoId" to todoArray.todoId,
+            "createdAt" to currentTimeStamp
         )
 
         userDocumentReference.collection("toDoRecyclerViewItems")
@@ -44,7 +46,8 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                         val selectedDate = document.getString("selectedDate") ?: ""
                         val todoText = document.getString("todoText") ?: ""
                         val todoId = document.getString("todoId") ?: ""
-                        val toDoItem = ToDoModel(selectedDay, selectedDate, todoText, todoId)
+                        val createdAt = document.getLong("createdAt")
+                        val toDoItem = ToDoModel(selectedDay, selectedDate, todoText, todoId,createdAt)
                         toDoList.add(toDoItem)
                     }
 

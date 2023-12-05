@@ -99,9 +99,13 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             toDoAdapter.notifyDataSetChanged()
 
             calendarViewModel.getToDoItems { toDoList ->
-                val arrayListToDoList = ArrayList(toDoList)
+                //Şu anda yeniden eskiye sıralıyoruz. Tam tersi eklenebilir
+                val sortedToDoList = toDoList.sortedBy { it.createdAt }
+
+                val arrayListToDoList = ArrayList(sortedToDoList)
                 toDoAdapter.todoArray = arrayListToDoList
                 toDoAdapter.notifyDataSetChanged()
+
                 customProgress.dismiss()
             }
             todoText.setOnClickListener(){
@@ -205,7 +209,8 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
             val dialogEditText = dialogEditText.text.toString()
             val uniqueId = generateRandomString(randomLength = true)
-            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId)
+            val currentTimeStamp = System.currentTimeMillis()
+            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId,currentTimeStamp)
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
                     toDoAdapter.todoArray.add(newTodoItem)
