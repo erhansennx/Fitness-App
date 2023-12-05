@@ -51,10 +51,11 @@ class ProfileFragment : Fragment() {
         customProgress.show()
 
         observeProfileDetail()
+        var backgroundDrawable = applyAlphaToDrawableWithDelay(requireContext(),R.drawable.kilogram_background,0.7,1.0,200)
         with(fragmentProfileBinding) {
 
             editProfileLayout.setOnClickListener {
-                val backgroundDrawable = applyAlphaToDrawableWithDelay(
+                    backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -66,7 +67,7 @@ class ProfileFragment : Fragment() {
             }
 
             notificationLayout.setOnClickListener {
-                val backgroundDrawable = applyAlphaToDrawableWithDelay(
+                    backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -76,9 +77,20 @@ class ProfileFragment : Fragment() {
                 it.background = backgroundDrawable
                 Toast.makeText(requireContext(),"notification tıklandı",Toast.LENGTH_SHORT).show()
             }
+            calculatorsLayout.setOnClickListener {
+                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+                    requireContext(),
+                    R.drawable.kilogram_background,
+                    0.7,
+                    1.0,
+                    200
+                )
+                it.background = backgroundDrawable
+                Toast.makeText(requireContext(),"calculator tıklandı",Toast.LENGTH_SHORT).show()
+            }
 
             languageLayout.setOnClickListener {
-                val backgroundDrawable = applyAlphaToDrawableWithDelay(
+                    backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -91,7 +103,7 @@ class ProfileFragment : Fragment() {
 
             logoutLayout.setOnClickListener {
 
-                val backgroundDrawable = applyAlphaToDrawableWithDelay(
+                    backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -125,8 +137,6 @@ class ProfileFragment : Fragment() {
         }, delayMillis)
         return backgroundDrawable
     }
-
-
     private fun observeProfileDetail() {
         mainViewModel.profileDetails.observe(requireActivity(), Observer { userProfileDetails ->
             customProgress.dismiss()
