@@ -60,7 +60,9 @@
             app:argType="com.app.ebfitapp.model.MuscleGroupModel" />
         <action
             android:id="@+id/action_musclesDetailFragment_to_exerciseOverviewFragment"
-            app:destination="@id/exerciseOverviewFragment"/>
+            app:destination="@id/exerciseOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/exerciseOverviewFragment"

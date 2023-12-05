@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.app.ebfitapp.R
 import com.app.ebfitapp.adapter.ExercisesAdapter
 import com.app.ebfitapp.databinding.FragmentMusclesDetailBinding
 import com.app.ebfitapp.model.BodyPartExercises
 import com.app.ebfitapp.model.MuscleGroupModel
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.viewmodel.MuscleExercisesViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MusclesDetailFragment : Fragment() {
 
@@ -25,6 +27,7 @@ class MusclesDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMusclesDetailBinding.inflate(layoutInflater)
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
 
         bodyPartExercises = BodyPartExercises()
         exercisesAdapter = ExercisesAdapter(bodyPartExercises)

@@ -1,21 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
     tools:context=".fragment.ExerciseOverviewFragment">
 
-    <ImageView
+    <data>
+
+        <variable
+            name="exercise"
+            type="com.app.ebfitapp.model.BodyPartExercisesItem" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/exercise_overview_image"
-        android:foreground="@color/transparent_1"
-        android:scaleType="fitXY"/>
+        android:background="@color/gray">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent_2"
+            android:scaleType="fitXY" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/letsDoItButton"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/exerciseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_extra_bold"
+                    android:hint="@string/exercise_name"
+                    android:text="@{exercise.name}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="32sp" />
 
-</FrameLayout>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/round_6dp_background"
+                            android:backgroundTint="@color/red"
+                            android:fontFamily="@font/robotomedium"
+                            android:gravity="center"
+                            android:hint="@string/target"
+                            android:paddingHorizontal="5dp"
+                            android:paddingVertical="3dp"
+                            android:text="@{exercise.target}"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry,SmallSp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/round_6dp_background"
+                            android:backgroundTint="@color/orange"
+                            android:fontFamily="@font/robotomedium"
+                            android:gravity="center"
+                            android:hint="@string/equipment"
+                            android:paddingHorizontal="5dp"
+                            android:paddingVertical="3dp"
+                            android:text="@{exercise.equipment}"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry,SmallSp" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/robotomedium"
+                    android:text="@string/instructions"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/instructionsText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomedium"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/letsDoItButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/robotomedium"
+                android:text="@string/let_s_do_it" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</layout>

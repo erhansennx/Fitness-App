@@ -90,7 +90,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
                         android:background="@drawable/round_6dp_background"
-                        android:backgroundTint="@color/streak"
+                        android:backgroundTint="@color/orange"
                         android:fontFamily="@font/robotomedium"
                         android:gravity="center"
                         android:hint="@string/equipment"
