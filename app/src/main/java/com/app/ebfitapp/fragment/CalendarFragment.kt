@@ -68,7 +68,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
-        customProgress.show()
+
 
 
         return fragmentCalenderBinding.root
@@ -98,16 +98,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
             toDoAdapter.notifyDataSetChanged()
 
-            calendarViewModel.getToDoItems { toDoList ->
-                //Şu anda yeniden eskiye sıralıyoruz. Tam tersi eklenebilir
-                val sortedToDoList = toDoList.sortedBy { it.createdAt }
-
-                val arrayListToDoList = ArrayList(sortedToDoList)
-                toDoAdapter.todoArray = arrayListToDoList
-                toDoAdapter.notifyDataSetChanged()
-
-                customProgress.dismiss()
-            }
             todoText.setOnClickListener(){
                 if(isSelected == true)
                    showToDoDialog()
@@ -119,6 +109,21 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         isSelected = true
         selectedDay = day
         selectedDate = text
+        customProgress.show()
+
+
+        calendarViewModel.getToDoItems { toDoList ->
+            if (isSelected && selectedDate != null) {
+                val filteredToDoList = toDoList.filter { it.selectedDate == selectedDate }
+
+                val sortedToDoList = filteredToDoList.sortedBy { it.createdAt }
+
+                val arrayListToDoList = ArrayList(sortedToDoList)
+                toDoAdapter.todoArray = arrayListToDoList
+                toDoAdapter.notifyDataSetChanged()
+            }
+            customProgress.dismiss()
+        }
 
         Toast.makeText(requireContext(), "onItemClick tıklandı: $selectedDate:, $selectedDay:", Toast.LENGTH_SHORT).show()
     }
