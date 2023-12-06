@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.R
 import com.app.ebfitapp.model.CalendarDateModel
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,6 +21,8 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
 
     private var list = ArrayList<CalendarDateModel>()
     var adapterPosition = -1
+    var isFirstTime = true
+    var currentYear : String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
 
     interface onItemClickListener{
@@ -54,18 +57,28 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
             val text = itemList.calendarYear.toString()
             val date = itemList.calendarDate
             val day = itemList.calendarDay
+            isFirstTime = false
             mListener?.onItemClick(text,day)
         }
-        if (position == adapterPosition){
+
+
+        if(isFirstTime && currentYear == itemList.calendarYear)
+        {
             holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
             holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-            holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_fill)
-        }else {
-            holder.calendarDay.setTextColor(parsedColor)
-            holder.calendarDate.setTextColor(parsedColor)
-            holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_outline)
-        }
+            holder.linear.background = holder.itemView.context.getDrawable(R.drawable.current_day)
 
+        }else{
+            if (position == adapterPosition){
+                holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+                holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+                holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_fill)
+            }else {
+                holder.calendarDay.setTextColor(parsedColor)
+                holder.calendarDate.setTextColor(parsedColor)
+                holder.linear.background = holder.itemView.context.getDrawable(R.drawable.rectangle_outline)
+            }
+        }
     }
     override fun getItemCount(): Int {
         return list.size
