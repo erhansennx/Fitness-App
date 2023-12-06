@@ -84,7 +84,7 @@
             />
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -96,6 +96,19 @@
             android:layout_marginTop="5dp"
             tools:listitem="@layout/item_calendar_to_do"
             />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/isEmptyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="Todo List is empty for current day "
+            android:textColor="@color/silver"
+            android:textSize="24sp" />
+
+
+    </FrameLayout>
 
 </LinearLayout>

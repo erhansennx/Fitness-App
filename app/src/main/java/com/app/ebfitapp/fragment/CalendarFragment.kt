@@ -17,6 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -51,6 +52,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     var isSelected : Boolean = false
     val generatedStrings = mutableSetOf<String>()
     var todoArray = arrayListOf<ToDoModel>()
+    private lateinit var isEmptyText: TextView
 
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
@@ -61,6 +63,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
     private val calendarList2 = ArrayList<CalendarDateModel>()
     private lateinit var fragmentCalenderBinding : FragmentCalendarBinding
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,9 +71,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
-
-
-
+        isEmptyText = fragmentCalenderBinding.isEmptyText
         return fragmentCalenderBinding.root
     }
 
@@ -87,6 +88,8 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpAdapter()
             setUpClickListener()
             setUpCalendar()
+
+            isEmptyText.visibility = View.GONE
 
 
             toDoAdapter = CalendarToDoAdapter(todoArray,calendarViewModel)
@@ -111,24 +114,33 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
         selectedDate = text
         customProgress.show()
 
-
         calendarViewModel.getToDoItems { toDoList ->
-            if (isSelected && selectedDate != null) {
-                val filteredToDoList = toDoList.filter { it.selectedDate == selectedDate }
+            val filteredToDoList = if (isSelected && selectedDate != null) {
+                toDoList.filter { it.selectedDate == selectedDate }
+            } else {
+                emptyList()
+            }
+
+            if (filteredToDoList.isNotEmpty()) {
+                isEmptyText.visibility = View.GONE
 
                 val sortedToDoList = filteredToDoList.sortedBy { it.createdAt }
-
                 val arrayListToDoList = ArrayList(sortedToDoList)
-                toDoAdapter.todoArray = arrayListToDoList
+
+                toDoAdapter.todoArray.clear()  // Temizleme işlemi
+                toDoAdapter.todoArray.addAll(arrayListToDoList)  // Yeni verileri ekleme
                 toDoAdapter.notifyDataSetChanged()
+            } else {
+                toDoAdapter.todoArray.clear()
+                isEmptyText.visibility = View.VISIBLE
             }
+
             customProgress.dismiss()
         }
-
-        Toast.makeText(requireContext(), "onItemClick tıklandı: $selectedDate:, $selectedDay:", Toast.LENGTH_SHORT).show()
     }
 
-    private fun setUpClickListener(){
+
+        private fun setUpClickListener(){
         ivCalendarNext.setOnClickListener()
         {
             cal.add(Calendar.MONTH,1)
