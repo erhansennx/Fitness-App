@@ -33,7 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
+class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var tvDateMonth: TextView
@@ -86,7 +86,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             setUpCalendar()
 
             isEmptyText.visibility = View.GONE
-
+            observeIndexExists()
 
             toDoAdapter = CalendarToDoAdapter(todoArray,calendarViewModel)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
@@ -236,7 +236,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             }
         }
     }
-    fun generateRandomString(randomLength: Boolean = false): String {
+    private fun generateRandomString(randomLength: Boolean = false): String {
         val length = if (randomLength) Random.nextInt(1, 11) else 8
         var randomString: String
         do {
@@ -248,5 +248,12 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
 
         generatedStrings.add(randomString)
         return randomString
+    }
+
+    private fun observeIndexExists() {
+        calendarViewModel.indexExists.observe(viewLifecycleOwner, androidx.lifecycle.Observer { indexExists ->
+            if (!indexExists) isEmptyText.visibility = View.VISIBLE
+            else isEmptyText.visibility = View.GONE
+        })
     }
 }

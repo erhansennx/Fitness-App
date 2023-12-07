@@ -3,11 +3,14 @@ package com.app.ebfitapp.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.service.FirebaseAuthService
 import com.app.ebfitapp.service.FirebaseFirestoreService
 
 class CalendarViewModel(private val application: Application) : AndroidViewModel(application) {
+
+    val indexExists = MutableLiveData<Boolean>()
 
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
     private val firebaseAuthService = FirebaseAuthService(application.applicationContext)

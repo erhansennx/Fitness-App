@@ -55,11 +55,13 @@ class CalendarToDoAdapter(
     {
         todoArray.removeAt(i)
         notifyDataSetChanged()
+        if (todoArray.isEmpty()) {  calendarViewModel.indexExists.value = false }
     }
     fun RestoreData(model: ToDoModel,position: Int)
     {
         todoArray.add(position,model)
         notifyItemInserted(position)
+        if (todoArray.isNotEmpty()) {  calendarViewModel.indexExists.value = true }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoHolder {
