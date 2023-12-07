@@ -4,20 +4,17 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import kotlin.random.Random
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -32,7 +29,6 @@ import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.service.FirebaseAuthService
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.viewmodel.CalendarViewModel
-import com.app.ebfitapp.viewmodel.WorkoutViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -127,8 +123,8 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
                 val sortedToDoList = filteredToDoList.sortedBy { it.createdAt }
                 val arrayListToDoList = ArrayList(sortedToDoList)
 
-                toDoAdapter.todoArray.clear()  // Temizleme işlemi
-                toDoAdapter.todoArray.addAll(arrayListToDoList)  // Yeni verileri ekleme
+                toDoAdapter.todoArray.clear()
+                toDoAdapter.todoArray.addAll(arrayListToDoList)
                 toDoAdapter.notifyDataSetChanged()
             } else {
                 toDoAdapter.todoArray.clear()
@@ -230,6 +226,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener{
             val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId,currentTimeStamp)
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
+                    isEmptyText.visibility = View.GONE
                     toDoAdapter.todoArray.add(newTodoItem)
                     toDoAdapter.notifyDataSetChanged()
                     rootView.removeView(overlay)

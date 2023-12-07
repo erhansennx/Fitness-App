@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
 import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.viewmodel.CalendarViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.UUID
 
 class CalendarToDoAdapter(
@@ -33,13 +34,19 @@ class CalendarToDoAdapter(
             val swipeFlags = ItemTouchHelper.LEFT
             return makeMovementFlags(0,swipeFlags)
         }
-
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val position = viewHolder.adapterPosition
-            val todoModel = todoArray[position]
-            val id = todoModel.todoId
-            calendarViewModel.deleteToDoItem(id)
-            deleteToDoItem(position)
+                val position = viewHolder.adapterPosition
+                val todoModel = todoArray[position]
+                val id = todoModel.todoId
+                calendarViewModel.deleteToDoItem(id)
+                deleteToDoItem(position)
+                val snackBar = Snackbar.make(viewHolder.itemView, "Item deleted", Snackbar.LENGTH_SHORT)
+                snackBar.setAction("Undo") {
+                    RestoreData(todoModel,position)
+                    calendarViewModel.addToDoItem(todoModel){
+                    }
+                }
+                snackBar.show()
         }
 
     }
@@ -48,6 +55,11 @@ class CalendarToDoAdapter(
     {
         todoArray.removeAt(i)
         notifyDataSetChanged()
+    }
+    fun RestoreData(model: ToDoModel,position: Int)
+    {
+        todoArray.add(position,model)
+        notifyItemInserted(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoHolder {
