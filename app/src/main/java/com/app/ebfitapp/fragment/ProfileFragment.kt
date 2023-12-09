@@ -1,5 +1,6 @@
 package com.app.ebfitapp.fragment
 
+import android.app.Notification.Action
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -17,6 +18,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentProfileBinding
 import com.app.ebfitapp.service.FirebaseAuthService
@@ -24,6 +26,7 @@ import com.app.ebfitapp.utils.AppPreferences
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.view.AuthenticationActivity
+import com.app.ebfitapp.view.MainActivity
 import com.app.ebfitapp.viewmodel.MainViewModel
 import kotlin.math.abs
 class ProfileFragment : Fragment() {
@@ -86,6 +89,9 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
+
+                val action = ProfileFragmentDirections.actionProfileFragmentToCalculatorFragment()
+                Navigation.findNavController(requireView()).navigate(action)
                 Toast.makeText(requireContext(),"calculator tıklandı",Toast.LENGTH_SHORT).show()
             }
 

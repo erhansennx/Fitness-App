@@ -19,7 +19,11 @@
         android:id="@+id/profileFragment"
         android:name="com.app.ebfitapp.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/workoutFragment"
         android:name="com.app.ebfitapp.fragment.WorkoutFragment"
@@ -89,5 +93,10 @@
             android:name="exercise"
             app:argType="com.app.ebfitapp.model.BodyPartExercisesItem"/>
     </fragment>
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.app.ebfitapp.fragment.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" />
 
 </navigation>
