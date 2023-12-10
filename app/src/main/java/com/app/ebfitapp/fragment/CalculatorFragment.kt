@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentCalculatorBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CalculatorFragment : Fragment() {
     private lateinit var fragmentCalculatorBinding : FragmentCalculatorBinding
@@ -13,9 +16,38 @@ class CalculatorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         fragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
         return fragmentCalculatorBinding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        with(fragmentCalculatorBinding)
+        {
+
+            bodyFatPercentageImage.setOnClickListener{
+                val bodyFatAction = CalculatorFragmentDirections.actionCalculatorFragmentToBodyFatPercentageFragment()
+                Navigation.findNavController(requireView()).navigate(bodyFatAction)
+
+            }
+            calorieImage.setOnClickListener{
+                val calorieAction = CalculatorFragmentDirections.actionCalculatorFragmentToCalorieFragment()
+                Navigation.findNavController(requireView()).navigate(calorieAction)
+            }
+            idealWeightImage.setOnClickListener{
+                val idealWeightAction = CalculatorFragmentDirections.actionCalculatorFragmentToIdealWeightFragment()
+                Navigation.findNavController(requireView()).navigate(idealWeightAction)
+            }
+            bmiImage.setOnClickListener{
+                val bmiAction = CalculatorFragmentDirections.actionCalculatorFragmentToBmiFragment()
+                Navigation.findNavController(requireView()).navigate(bmiAction)
+
+            }
+            oneRmImage.setOnClickListener{
+                val oneRmAction = CalculatorFragmentDirections.actionCalculatorFragmentToBmiFragment()
+                Navigation.findNavController(requireView()).navigate(oneRmAction)
+            }
+        }
+    }
 }

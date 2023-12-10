@@ -29,6 +29,7 @@ import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.service.FirebaseAuthService
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.viewmodel.CalendarViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

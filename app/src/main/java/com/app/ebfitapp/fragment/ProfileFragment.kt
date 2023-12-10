@@ -28,6 +28,7 @@ import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.view.AuthenticationActivity
 import com.app.ebfitapp.view.MainActivity
 import com.app.ebfitapp.viewmodel.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.math.abs
 class ProfileFragment : Fragment() {
 
@@ -38,8 +39,8 @@ class ProfileFragment : Fragment() {
     private lateinit var customProgress: CustomProgress
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
         fragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
-
         appPreferences = AppPreferences(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
 

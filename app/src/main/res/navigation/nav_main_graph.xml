@@ -97,6 +97,47 @@
         android:id="@+id/calculatorFragment"
         android:name="com.app.ebfitapp.fragment.CalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" />
+        tools:layout="@layout/fragment_calculator" >
+        <action
+            android:id="@+id/action_calculatorFragment_to_idealWeightFragment"
+            app:destination="@id/idealWeightFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_oneRmFragment"
+            app:destination="@id/oneRmFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_bodyFatPercentageFragment"
+            app:destination="@id/bodyFatPercentageFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_calorieFragment"
+            app:destination="@id/calorieFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_bmiFragment"
+            app:destination="@id/bmiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bodyFatPercentageFragment"
+        android:name="com.app.ebfitapp.fragment.BodyFatPercentageFragment"
+        android:label="fragment_body_fat_percentage"
+        tools:layout="@layout/fragment_body_fat_percentage" />
+    <fragment
+        android:id="@+id/bmiFragment"
+        android:name="com.app.ebfitapp.fragment.BmiFragment"
+        android:label="fragment_bmi"
+        tools:layout="@layout/fragment_bmi" />
+    <fragment
+        android:id="@+id/calorieFragment"
+        android:name="com.app.ebfitapp.fragment.CalorieFragment"
+        android:label="fragment_calorie"
+        tools:layout="@layout/fragment_calorie" />
+    <fragment
+        android:id="@+id/idealWeightFragment"
+        android:name="com.app.ebfitapp.fragment.IdealWeightFragment"
+        android:label="fragment_ideal_weight"
+        tools:layout="@layout/fragment_ideal_weight" />
+    <fragment
+        android:id="@+id/oneRmFragment"
+        android:name="com.app.ebfitapp.fragment.OneRmFragment"
+        android:label="fragment_one_rm"
+        tools:layout="@layout/fragment_one_rm" />
 
 </navigation>
