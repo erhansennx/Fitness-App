@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,209 +11,238 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:contextClickable="false"
-            android:gravity="center"
-            android:paddingBottom="25dp"
             android:text="Calculators"
+            android:textSize="24dp"
             android:textColor="@color/white"
-            android:textSize="24dp"></EditText>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/calculators_background"
-        android:orientation="vertical"
-        android:padding="45dp">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#1D1E20">
-
-            <ImageView
-                android:id="@+id/bodyPerImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/yagorani" />
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Body Fat Percentage"
-            android:textColor="@color/white"
-            android:textSize="18dp"></TextView>
+            android:paddingBottom="24dp"
+            ></EditText>
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/calculators_background"
-            android:orientation="vertical"
-            android:padding="20dp">
+            >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:backgroundTint="#1D1E20">
-
-                <ImageView
-                    android:id="@+id/calorieImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/half_apple" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
+            <ImageButton
+                android:id="@+id/bodyFatPercentageImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Calorie"
-                android:textColor="@color/white"
-                android:textSize="18dp"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/calculators_background"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:paddingBottom="15dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:backgroundTint="#1D1E20">
-
-                <ImageView
-                    android:id="@+id/idealWeightImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/idealkilo" />
-
-            </androidx.cardview.widget.CardView>
+                android:src="@drawable/yagorani"
+                android:backgroundTint="#1D1E20"
+                android:padding="50dp"
+                >
+            </ImageButton>
 
             <TextView
+                android:id="@+id/bodyFatPercentageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bodyFatPercentageImage"
                 android:gravity="center"
-                android:text="Ideal weight"
+                android:text="Body Fat Percentage"
                 android:textColor="@color/white"
-                android:layout_marginTop="10dp"
-                android:textSize="18dp"></TextView>
-        </LinearLayout>
+                android:textSize="18dp"
+                android:paddingBottom="15dp"></TextView>
 
+        </RelativeLayout>
     </LinearLayout>
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="1">
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="10dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginStart="20dp"
+               android:background="@drawable/calculators_background">
+
+               <ImageButton
+                   android:id="@+id/calorieImage"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/half_apple"
+                   android:backgroundTint="#1D1E20"
+                   android:padding="50dp"
+                   >
+               </ImageButton>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Calorie"
+                   android:textColor="@color/white"
+                   android:textSize="18dp"
+                   android:layout_alignBottom="@+id/calorieImage"
+                   android:gravity="center"
+                   android:paddingBottom="10dp"
+                   ></TextView>
+
+
+           </RelativeLayout>
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="1">
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="20dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginStart="10dp"
+               android:background="@drawable/calculators_background">
+
+               <ImageButton
+                   android:id="@+id/idealWeightImage"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/idealkilo"
+                   android:backgroundTint="#1D1E20"
+                   android:padding="50dp"
+                   >
+               </ImageButton>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Ideal Weight"
+                   android:textColor="@color/white"
+                   android:textSize="18dp"
+                   android:layout_alignBottom="@+id/idealWeightImage"
+                   android:gravity="center"
+                   android:paddingBottom="10dp"
+                   ></TextView>
+
+
+           </RelativeLayout>
+       </LinearLayout>
+
+
+
+   </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
         android:orientation="horizontal"
         >
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/calculators_background"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_weight="1">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:backgroundTint="#1D1E20">
 
-                <ImageView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/calculators_background">
+
+                <ImageButton
                     android:id="@+id/bmiImage"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/bmi" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bmi"
+                    android:backgroundTint="#1D1E20"
+                    android:padding="50dp"
+                    >
+                </ImageButton>
 
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BMI"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:layout_alignBottom="@+id/bmiImage"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    ></TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="BMI"
-                android:textColor="@color/white"
-                android:textSize="18dp"></TextView>
+
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/calculators_background"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_weight="1">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:backgroundTint="#1D1E20">
 
-                <ImageView
-                    android:id="@+id/oneRmImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/onerm" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="1RM"
-                android:textColor="@color/white"
-                android:textSize="18dp"></TextView>
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/calculators_background">
+
+                <ImageButton
+                    android:id="@+id/oneRmImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/onerm"
+                    android:backgroundTint="#1D1E20"
+                    android:padding="50dp"
+                    >
+                </ImageButton>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1RM"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:layout_alignBottom="@+id/oneRmImage"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    ></TextView>
+
+
+            </RelativeLayout>
         </LinearLayout>
 
+
+
     </LinearLayout>
+
+
+
+
 
 
 </LinearLayout>
