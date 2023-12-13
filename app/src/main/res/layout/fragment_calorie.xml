@@ -87,7 +87,7 @@
             android:id="@+id/falseFatPercentageText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid body fat : must be 2 and 60"
+            android:text="Invalid body fat : must be between 2 and 60"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"
             ></TextView>
@@ -117,7 +117,7 @@
             android:id="@+id/falsebodyWeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid body weight : must be 30 and 250kgs"
+            android:text="Invalid body weight : must be between 30 and 250kgs"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"
             ></TextView>

@@ -13,22 +13,16 @@ import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentCalorieBinding
-import com.google.android.material.textfield.TextInputEditText
 
 
 class CalorieFragment : Fragment() {
@@ -178,7 +172,6 @@ class CalorieFragment : Fragment() {
                     yourCalorieText.visibility = View.VISIBLE
                 }
             }
-
             goBackImage.setOnClickListener {
                 val goBackAction = CalorieFragmentDirections.actionCalorieFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
@@ -189,8 +182,6 @@ class CalorieFragment : Fragment() {
             }
         }
     }
-
-
     private fun ActivityLevelSettings() {
         val acitivityLevelItems = listOf(
             getString(R.string.sedantary),
@@ -203,26 +194,20 @@ class CalorieFragment : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_calorie_items, acitivityLevelItems)
         calorieBinding.activityLevelTextView.setAdapter(actiivityLevelAdapter)
     }
-
     private fun calculateDailyCalories(bmr: Double, activityFactor: Double): Double {
         return bmr * activityFactor
     }
-
     private fun calculateBMR(leanBodyMass: Double): Double {
         return 370 + (21.6 * leanBodyMass)
     }
-
     private fun calculateLeanBodyMass(bodyWeight: Double, fatPercentage: Double): Double {
         val fatFraction = fatPercentage / 100.0
         return bodyWeight * (1 - fatFraction)
     }
-
     private fun hideKeyboard(view: View) {
         val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-
     private fun showCalorieInfo()
     {
         val dialog = Dialog(requireActivity())
@@ -245,6 +230,5 @@ class CalorieFragment : Fragment() {
         dialogCancelBtn.setOnClickListener {
             dialog.dismiss()
         }
-
     }
 }

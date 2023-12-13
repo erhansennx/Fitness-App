@@ -11,4 +11,6 @@
     <color name="transparent">#59000000</color>
     <color name="transparent_1">#72000000</color>
     <color name="transparent_2">#9A000000</color>
+    <color name ="pink">#FB2B72</color>
+    <color name="blue">#008EFF</color>
 </resources>
