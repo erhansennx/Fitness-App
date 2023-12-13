@@ -10,7 +10,7 @@ interface MusclesAPI {
 
 
     @Headers(
-        "X-RapidAPI-Key: b44c125e18msh4a2c8197e633d75p1d3c57jsnd70bb430c218",
+        "X-RapidAPI-Key: c7de494d29msh11c396e17354e22p1d1ee5jsn71bfc00fa0e2",
         "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
     )
     @GET("exercises/bodyPart/{bodyPart}")
