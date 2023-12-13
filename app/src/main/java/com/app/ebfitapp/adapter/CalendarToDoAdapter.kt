@@ -26,6 +26,7 @@ class CalendarToDoAdapter(
         ): Boolean {
             return false
         }
+
         @SuppressLint("SuspiciousIndentation")
         override fun getMovementFlags(
             recyclerView: RecyclerView,

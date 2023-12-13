@@ -118,26 +118,46 @@
         android:id="@+id/bodyFatPercentageFragment"
         android:name="com.app.ebfitapp.fragment.BodyFatPercentageFragment"
         android:label="fragment_body_fat_percentage"
-        tools:layout="@layout/fragment_body_fat_percentage" />
+        tools:layout="@layout/fragment_body_fat_percentage" >
+        <action
+            android:id="@+id/action_bodyFatPercentageFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bmiFragment"
         android:name="com.app.ebfitapp.fragment.BmiFragment"
         android:label="fragment_bmi"
-        tools:layout="@layout/fragment_bmi" />
+        tools:layout="@layout/fragment_bmi" >
+        <action
+            android:id="@+id/action_bmiFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calorieFragment"
         android:name="com.app.ebfitapp.fragment.CalorieFragment"
         android:label="fragment_calorie"
-        tools:layout="@layout/fragment_calorie" />
+        tools:layout="@layout/fragment_calorie" >
+        <action
+            android:id="@+id/action_calorieFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/idealWeightFragment"
         android:name="com.app.ebfitapp.fragment.IdealWeightFragment"
         android:label="fragment_ideal_weight"
-        tools:layout="@layout/fragment_ideal_weight" />
+        tools:layout="@layout/fragment_ideal_weight" >
+        <action
+            android:id="@+id/action_idealWeightFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/oneRmFragment"
         android:name="com.app.ebfitapp.fragment.OneRmFragment"
         android:label="fragment_one_rm"
-        tools:layout="@layout/fragment_one_rm" />
+        tools:layout="@layout/fragment_one_rm" >
+        <action
+            android:id="@+id/action_oneRmFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
 
 </navigation>

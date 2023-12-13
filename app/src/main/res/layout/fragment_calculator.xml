@@ -11,16 +11,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calculators"
             android:textSize="24dp"
             android:textColor="@color/white"
             android:gravity="center"
-            android:paddingBottom="24dp"
-            ></EditText>
+            android:paddingBottom="13dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            ></TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line"
+            android:backgroundTint="@color/light_gray"
+            ></View>
     </LinearLayout>
 
 

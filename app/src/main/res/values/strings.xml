@@ -71,6 +71,14 @@
     <string name="reps">Reps</string>
     <string name="time">Time</string>
     <string name="start">Start</string>
+
+    <!-- Calorie Layout -->
+    <string name="sedantary">Sedentary [little or no exercise]</string>
+    <string name="light">Light [exercise 1-3 times/week</string>
+    <string name="moderat">Moderat [exercise 4-5 times/week]</string>
+    <string name="veryActive">Very Active [intense exercise 6-7 times/week</string>
+    <string name="extraActive">Extra Active [very intense exercise daily]</string>
+
     <string name="save">Save</string>
     <string name="personalize_your_training">Personalize Your Training</string>
     <string name="execution_define">Define the perfect exercise routine by adjusting weights and reps to match your fitness goals. Personalize every aspect of your training for optimal results and satisfaction.</string>

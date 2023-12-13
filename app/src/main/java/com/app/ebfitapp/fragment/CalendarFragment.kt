@@ -44,9 +44,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     private val calendarViewModel: CalendarViewModel by viewModels()
     private lateinit var firebaseAuthService: FirebaseAuthService
     private lateinit var customProgress: CustomProgress
-    var selectedDate : String? = null
-    var selectedDay : String? = null
-    var isSelected : Boolean = false
+    var selectedDate: String? = null
+    var selectedDay: String? = null
+    var isSelected: Boolean = false
     val generatedStrings = mutableSetOf<String>()
     var todoArray = arrayListOf<ToDoModel>()
     private lateinit var isEmptyText: TextView
@@ -58,7 +58,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     private val dates = ArrayList<Date>()
     private lateinit var adapter: CalendarAdapter
     private val calendarList2 = ArrayList<CalendarDateModel>()
-    private lateinit var fragmentCalenderBinding : FragmentCalendarBinding
+    private lateinit var fragmentCalenderBinding: FragmentCalendarBinding
 
 
     override fun onCreateView(
@@ -71,7 +71,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         isEmptyText = fragmentCalenderBinding.isEmptyText
         return fragmentCalenderBinding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,7 +88,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             isEmptyText.visibility = View.GONE
             observeIndexExists()
 
-            toDoAdapter = CalendarToDoAdapter(todoArray,calendarViewModel)
+            toDoAdapter = CalendarToDoAdapter(todoArray, calendarViewModel)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
             todoRecyclerView.adapter = toDoAdapter
 
@@ -98,13 +97,18 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
             toDoAdapter.notifyDataSetChanged()
 
-            todoText.setOnClickListener(){
-                if(isSelected == true)
-                   showToDoDialog()
-                else Toast.makeText(this@CalendarFragment.context,"You should select a day first",Toast.LENGTH_SHORT).show()
+            todoText.setOnClickListener() {
+                if (isSelected == true)
+                    showToDoDialog()
+                else Toast.makeText(
+                    this@CalendarFragment.context,
+                    "You should select a day first",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
+
     override fun onItemClick(text: String, day: String) {
         isSelected = true
         selectedDay = day
@@ -137,24 +141,24 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     }
 
 
-        private fun setUpClickListener(){
+    private fun setUpClickListener() {
         ivCalendarNext.setOnClickListener()
         {
-            cal.add(Calendar.MONTH,1)
-                setUpCalendar()
+            cal.add(Calendar.MONTH, 1)
+            setUpCalendar()
         }
         ivCalendarPrevious.setOnClickListener()
         {
             cal.add(Calendar.MONTH, -1)
-            if(cal == currentDate)
+            if (cal == currentDate)
                 setUpCalendar()
             else
                 setUpCalendar()
         }
     }
-    private fun setUpAdapter()
-    {
-        val snapHelper : SnapHelper = LinearSnapHelper()
+
+    private fun setUpAdapter() {
+        val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         adapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
@@ -165,6 +169,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         }
         recyclerView.adapter = adapter
     }
+
     private fun setUpCalendar() {
         val calendarList = ArrayList<CalendarDateModel>()
         tvDateMonth.text = sdf.format(cal.time)
@@ -198,7 +203,10 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         val dialog = Dialog(requireActivity())
         dialog.setContentView(R.layout.todo_dialog_box)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         dialog.setCancelable(false)
 
         val dialogDate = dialog.findViewById<TextView>(R.id.dialogDate)
@@ -224,7 +232,8 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             val dialogEditText = dialogEditText.text.toString()
             val uniqueId = generateRandomString(randomLength = true)
             val currentTimeStamp = System.currentTimeMillis()
-            val newTodoItem = ToDoModel(selectedDay, selectedDate, dialogEditText,uniqueId,currentTimeStamp)
+            val newTodoItem =
+                ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp)
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
                     isEmptyText.visibility = View.GONE
@@ -237,6 +246,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             }
         }
     }
+
     private fun generateRandomString(randomLength: Boolean = false): String {
         val length = if (randomLength) Random.nextInt(1, 11) else 8
         var randomString: String
@@ -252,9 +262,11 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     }
 
     private fun observeIndexExists() {
-        calendarViewModel.indexExists.observe(viewLifecycleOwner, androidx.lifecycle.Observer { indexExists ->
-            if (!indexExists) isEmptyText.visibility = View.VISIBLE
-            else isEmptyText.visibility = View.GONE
-        })
+        calendarViewModel.indexExists.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { indexExists ->
+                if (!indexExists) isEmptyText.visibility = View.VISIBLE
+                else isEmptyText.visibility = View.GONE
+            })
     }
 }

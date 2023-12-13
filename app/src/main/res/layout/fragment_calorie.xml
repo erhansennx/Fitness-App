@@ -1,16 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.CalorieFragment"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    android:orientation="vertical">
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/goBackImage"
+                android:layout_marginStart="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/calculators_left"
+                android:background="@color/gray"
+                android:layout_marginVertical="5dp"
+                ></ImageButton>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:text="Calorie Calculator"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:backgroundTint="@color/light_gray"
+                ></TextView>
+            <ImageButton
+                android:id="@+id/infoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/gray"
+                android:src="@drawable/icon_info"
+                android:layout_marginEnd="15dp"
+                ></ImageButton>
+        </RelativeLayout>
+        <View
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line"
+            android:backgroundTint="@color/light_gray"
+            ></View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/fatPercentageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/silver"
+            android:paddingBottom="28dp"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:hint="Fat Percentage"
+            android:ems="10"
+            />
+        <TextView
+            android:id="@+id/falseFatPercentageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid body fat : must be 2 and 60"
+            android:textColor="@color/red"
+            android:layout_marginStart="3dp"
+            ></TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/bodyWeightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Body Weight"
+            android:textColorHint="@color/silver"
+            android:paddingBottom="28dp"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            ></EditText>
+
+        <TextView
+            android:id="@+id/falsebodyWeightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid body weight : must be 30 and 250kgs"
+            android:textColor="@color/red"
+            android:layout_marginStart="3dp"
+            ></TextView>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="dropdown_menu"
+            android:textColorHint="@color/silver"
+            app:boxStrokeColor="@color/gray"
+            >
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/activityLevelTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="Choose your activity level"
+                android:inputType="textPersonName"
+                android:paddingBottom="28dp"
+                android:popupBackground="#2D2F33"
+                android:textColor="@color/white"
+                android:clickable="true"
+
+                ></com.google.android.material.textfield.MaterialAutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <Button
+            android:id="@+id/calculateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:textColor="@color/gray"
+            android:textSize="20dp"
+            ></Button>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/yourBmrText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your BMR is "
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            ></TextView>
+        <TextView
+            android:id="@+id/bmrCalculateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 1818kcal "
+            android:textSize="15dp"
+            android:textColor="@color/red"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/yourCalorieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your calorie need is "
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            ></TextView>
+        <TextView
+
+            android:id="@+id/calorieCalculateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 1818kcal "
+            android:textSize="15dp"
+            android:textColor="@color/red"
+            ></TextView>
+    </LinearLayout>
+
 
 </LinearLayout>
