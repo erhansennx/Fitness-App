@@ -76,6 +76,7 @@
                 android:textSize="24sp" />
 
             <ImageView
+                android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end"
@@ -111,6 +112,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/selectedWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
@@ -147,6 +149,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/selectedSets"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
@@ -185,6 +188,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/selectedReps"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"

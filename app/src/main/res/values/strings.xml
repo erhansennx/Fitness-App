@@ -71,4 +71,7 @@
     <string name="reps">Reps</string>
     <string name="time">Time</string>
     <string name="start">Start</string>
+    <string name="save">Save</string>
+    <string name="personalize_your_training">Personalize Your Training</string>
+    <string name="execution_define">Define the perfect exercise routine by adjusting weights and reps to match your fitness goals. Personalize every aspect of your training for optimal results and satisfaction.</string>
 </resources>
