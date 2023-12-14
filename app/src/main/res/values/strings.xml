@@ -82,4 +82,6 @@
     <string name="save">Save</string>
     <string name="personalize_your_training">Personalize Your Training</string>
     <string name="execution_define">Define the perfect exercise routine by adjusting weights and reps to match your fitness goals. Personalize every aspect of your training for optimal results and satisfaction.</string>
+    <string name="choose_your_activity_level">Choose your activity level</string>
+    <string name="invalid_body_weight_must_be_between_30_and_250kgs">Invalid body weight : must be between 30 and 250kgs</string>
 </resources>
