@@ -35,7 +35,8 @@
                 android:paddingBottom="15dp"
                 android:text="Body Fat Calculator"
                 android:textColor="@color/white"
-                android:textSize="24dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textSize="25dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
@@ -72,14 +73,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose your gender"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/silver"
-            android:textSize="18dp"></TextView>
+            android:textSize="22dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"
-            android:textSize="18dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="#008EFF"
             android:layout_marginStart="15dp"
             ></TextView>
@@ -92,7 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
-            android:textSize="18dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:layout_marginStart="10dp"
             android:textColor="#FB2B72"
             ></TextView>
@@ -114,8 +118,9 @@
             android:hint="Enter your age"
             android:textColorHint="@color/silver"
             android:paddingBottom="28dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="23dp"
             ></EditText>
 
         <TextView
@@ -124,6 +129,8 @@
             android:layout_height="wrap_content"
             android:text="Invalid age : must be a number"
             android:textColor="@color/red"
+            android:textSize="18dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:layout_marginStart="3dp"
             ></TextView>
 
@@ -152,8 +159,9 @@
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/silver"
                 android:paddingBottom="28dp"
-                android:textSize="18dp"
+                android:textSize="22dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/revolutiongothic_light"
                 android:hint="Your height in cm"
                 android:ems="10"
                 />
@@ -163,6 +171,8 @@
                 android:layout_height="wrap_content"
                 android:text="Invalid height : must be number"
                 android:textColor="@color/red"
+                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:layout_marginStart="3dp"
                 ></TextView>
 
@@ -185,7 +195,8 @@
                 android:textColorHint="@color/silver"
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
-                android:textSize="18dp"
+                android:fontFamily="@font/revolutiongothic_light"
+                android:textSize="22dp"
                 ></EditText>
 
             <TextView
@@ -194,6 +205,8 @@
                 android:layout_height="wrap_content"
                 android:text="Invalid body weight : must be 30 and 250kgs"
                 android:textColor="@color/red"
+                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:layout_marginStart="3dp"
                 ></TextView>
 
@@ -225,8 +238,9 @@
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/silver"
                 android:paddingBottom="28dp"
-                android:textSize="18dp"
+                android:textSize="22dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/revolutiongothic_light"
                 android:hint="Your neck in cm"
                 android:ems="10"
                 />
@@ -237,6 +251,8 @@
                 android:text="Invalid height : must be between 35 and 45cm"
                 android:textColor="@color/red"
                 android:layout_marginStart="3dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 ></TextView>
 
         </LinearLayout>
@@ -258,7 +274,8 @@
                 android:textColorHint="@color/silver"
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
-                android:textSize="18dp"
+                android:fontFamily="@font/revolutiongothic_light"
+                android:textSize="22dp"
                 ></EditText>
 
             <TextView
@@ -268,6 +285,8 @@
                 android:text="Invalid waist : must be between 60 and 80cm"
                 android:textColor="@color/red"
                 android:layout_marginStart="3dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 ></TextView>
 
         </LinearLayout>
@@ -290,6 +309,7 @@
             android:text="Calculate"
             android:textColor="@color/gray"
             android:textSize="20dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             ></Button>
     </LinearLayout>
 
@@ -305,7 +325,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You have a "
-            android:textSize="15dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
             ></TextView>
 
@@ -318,7 +339,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" HEALTHY "
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:textColor="@color/green"
                 ></TextView>
             <TextView
@@ -326,7 +348,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" LOW "
-                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textSize="22dp"
                 android:textColor="@color/red"
                 ></TextView>
             <TextView
@@ -334,7 +357,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" HİGH "
-                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textSize="22dp"
                 android:textColor="@color/red"
                 ></TextView>
         </RelativeLayout>
@@ -342,7 +366,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" fat percentage."
-            android:textSize="15dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textSize="18dp"
             android:textColor="@color/white"
             ></TextView>
     </LinearLayout>

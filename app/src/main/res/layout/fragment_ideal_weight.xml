@@ -35,8 +35,9 @@
                 android:gravity="center"
                 android:paddingBottom="15dp"
                 android:text="Ideal Weight Calculator"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:textColor="@color/white"
-                android:textSize="24dp"
+                android:textSize="25dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
@@ -74,14 +75,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose your gender"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/silver"
-            android:textSize="18dp"></TextView>
+            android:textSize="22dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"
-            android:textSize="18dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="#008EFF"
             android:layout_marginStart="15dp"
             ></TextView>
@@ -94,7 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
-            android:textSize="18dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:layout_marginStart="10dp"
             android:textColor="#FB2B72"
             ></TextView>
@@ -116,7 +120,8 @@
             android:layout_height="wrap_content"
             android:textColorHint="@color/silver"
             android:paddingBottom="28dp"
-            android:textSize="18dp"
+            android:textSize="23dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
             android:hint="Enter your height in cm"
             android:ems="10"
@@ -126,8 +131,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Invalid height : must be number"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"
+            android:textSize="16dp"
             ></TextView>
 
     </LinearLayout>
@@ -147,8 +154,9 @@
             android:hint="Enter your weight in kg"
             android:textColorHint="@color/silver"
             android:paddingBottom="28dp"
+            android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="23dp"
             ></EditText>
 
         <TextView
@@ -157,7 +165,9 @@
             android:layout_height="wrap_content"
             android:text="Invalid body weight : must be 30 and 250kgs"
             android:textColor="@color/red"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:layout_marginStart="3dp"
+            android:textSize="16dp"
             ></TextView>
 
     </LinearLayout>
@@ -167,7 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         >
 
         <Button
@@ -176,6 +186,7 @@
             android:layout_height="wrap_content"
             android:text="Calculate"
             android:textColor="@color/gray"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="20dp"
             ></Button>
     </LinearLayout>
@@ -200,7 +211,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="You are"
-                android:textSize="15dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/revolutiongothic_light"
                 android:textColor="@color/white"
                 ></TextView>
             <TextView
@@ -208,14 +220,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" BELOW"
-                android:textSize="16dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textSize="22dp"
                 android:textColor="@color/red"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" your ideal weight"
-                android:textSize="15dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/revolutiongothic_light"
                 android:textColor="@color/white"
                 ></TextView>
         </LinearLayout>
@@ -229,14 +243,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="You are at your ideal weight"
-                    android:textSize="15dp"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/revolutiongothic_light"
                     android:textColor="@color/white"
                     ></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" CONGRATS"
-                    android:textSize="16dp"
+                    android:fontFamily="@font/revolutiongothic_extra_bold"
+                    android:textSize="22dp"
                     android:textColor="@color/red"
                     ></TextView>
 
@@ -250,14 +266,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="You are"
-                    android:textSize="15dp"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/revolutiongothic_light"
                     android:textColor="@color/white"
                     ></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" OBESE"
-                    android:textSize="15dp"
+                    android:fontFamily="@font/revolutiongothic_extra_bold"
+                    android:textSize="22dp"
                     android:textColor="@color/red"
                     ></TextView>
 
