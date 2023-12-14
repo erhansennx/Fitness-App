@@ -5,12 +5,345 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.BodyFatPercentageFragment"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    android:orientation="vertical">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/goBackImage"
+                android:layout_marginStart="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/calculators_left"
+                android:background="@color/gray"
+                android:layout_marginVertical="5dp"
+                ></ImageButton>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:text="Body Fat Calculator"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:backgroundTint="@color/light_gray"
+                ></TextView>
+            <ImageButton
+                android:id="@+id/infoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/gray"
+                android:src="@drawable/icon_info"
+                android:layout_marginEnd="15dp"
+                ></ImageButton>
+        </RelativeLayout>
+        <View
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line"
+            android:backgroundTint="@color/light_gray"
+            ></View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="25dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your gender"
+            android:textColor="@color/silver"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textSize="18dp"
+            android:textColor="#008EFF"
+            android:layout_marginStart="15dp"
+            ></TextView>
+        <Switch
+            android:id="@+id/genderSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"></Switch>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textSize="18dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#FB2B72"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/personAgeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your age"
+            android:textColorHint="@color/silver"
+            android:paddingBottom="28dp"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            ></EditText>
+
+        <TextView
+            android:id="@+id/falseAgeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid age : must be a number"
+            android:textColor="@color/red"
+            android:layout_marginStart="3dp"
+            ></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+            <EditText
+                android:id="@+id/personHeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/silver"
+                android:paddingBottom="28dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:hint="Your height in cm"
+                android:ems="10"
+                />
+            <TextView
+                android:id="@+id/falseHeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invalid height : must be number"
+                android:textColor="@color/red"
+                android:layout_marginStart="3dp"
+                ></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <EditText
+                android:id="@+id/personWeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Your weight in kgs"
+                android:textColorHint="@color/silver"
+                android:paddingBottom="28dp"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                ></EditText>
+
+            <TextView
+                android:id="@+id/falseWeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invalid body weight : must be 30 and 250kgs"
+                android:textColor="@color/red"
+                android:layout_marginStart="3dp"
+                ></TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+            <EditText
+                android:id="@+id/personNeckSizeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/silver"
+                android:paddingBottom="28dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:hint="Your neck in cm"
+                android:ems="10"
+                />
+            <TextView
+                android:id="@+id/falseNeckSizeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invalid height : must be between 35 and 45cm"
+                android:textColor="@color/red"
+                android:layout_marginStart="3dp"
+                ></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <EditText
+                android:id="@+id/personWaistText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Your waist in cm"
+                android:textColorHint="@color/silver"
+                android:paddingBottom="28dp"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                ></EditText>
+
+            <TextView
+                android:id="@+id/falseWaistText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invalid waist : must be between 60 and 80cm"
+                android:textColor="@color/red"
+                android:layout_marginStart="3dp"
+                ></TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="30dp"
+        >
+
+        <Button
+            android:id="@+id/calculateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:textColor="@color/gray"
+            android:textSize="20dp"
+            ></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fatPercentageTextLayuot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have a "
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            ></TextView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/healthyPercentageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" HEALTHY "
+                android:textSize="15dp"
+                android:textColor="@color/green"
+                ></TextView>
+            <TextView
+                android:id="@+id/LowPercentageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" LOW "
+                android:textSize="16dp"
+                android:textColor="@color/red"
+                ></TextView>
+            <TextView
+                android:id="@+id/HighPercentageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" HİGH "
+                android:textSize="16dp"
+                android:textColor="@color/red"
+                ></TextView>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" fat percentage."
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
 </LinearLayout>

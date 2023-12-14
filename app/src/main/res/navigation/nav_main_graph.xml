@@ -111,8 +111,8 @@
             android:id="@+id/action_calculatorFragment_to_calorieFragment"
             app:destination="@id/calorieFragment" />
         <action
-            android:id="@+id/action_calculatorFragment_to_bmiFragment"
-            app:destination="@id/bmiFragment" />
+            android:id="@+id/action_calculatorFragment_to_paceFragment"
+            app:destination="@id/paceFragment" />
     </fragment>
     <fragment
         android:id="@+id/bodyFatPercentageFragment"
@@ -121,15 +121,6 @@
         tools:layout="@layout/fragment_body_fat_percentage" >
         <action
             android:id="@+id/action_bodyFatPercentageFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/bmiFragment"
-        android:name="com.app.ebfitapp.fragment.BmiFragment"
-        android:label="fragment_bmi"
-        tools:layout="@layout/fragment_bmi" >
-        <action
-            android:id="@+id/action_bmiFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
@@ -157,6 +148,15 @@
         tools:layout="@layout/fragment_one_rm" >
         <action
             android:id="@+id/action_oneRmFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paceFragment"
+        android:name="com.app.ebfitapp.fragment.PaceFragment"
+        android:label="fragment_pace"
+        tools:layout="@layout/fragment_pace" >
+        <action
+            android:id="@+id/action_paceFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
     </fragment>
 

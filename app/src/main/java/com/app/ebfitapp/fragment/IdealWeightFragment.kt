@@ -90,7 +90,6 @@ class IdealWeightFragment : Fragment() {
                         println(personHeight)
 
                         if (gender == null) {
-                            // Kullanıcıdan cinsiyet seçimi yapması isteniyor
                             throw IllegalStateException("Please select your gender.")
                         }
 

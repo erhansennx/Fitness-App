@@ -40,12 +40,12 @@ class CalculatorFragment : Fragment() {
                 Navigation.findNavController(requireView()).navigate(idealWeightAction)
             }
             bmiImage.setOnClickListener{
-                val bmiAction = CalculatorFragmentDirections.actionCalculatorFragmentToBmiFragment()
-                Navigation.findNavController(requireView()).navigate(bmiAction)
+                val paceAction = CalculatorFragmentDirections.actionCalculatorFragmentToPaceFragment()
+                Navigation.findNavController(requireView()).navigate(paceAction)
 
             }
             oneRmImage.setOnClickListener{
-                val oneRmAction = CalculatorFragmentDirections.actionCalculatorFragmentToBmiFragment()
+                val oneRmAction = CalculatorFragmentDirections.actionCalculatorFragmentToOneRmFragment()
                 Navigation.findNavController(requireView()).navigate(oneRmAction)
             }
         }

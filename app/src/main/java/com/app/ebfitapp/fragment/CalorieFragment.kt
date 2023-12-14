@@ -61,7 +61,6 @@ class CalorieFragment : Fragment() {
                         hideKeyboard(view)
                     }
                 }
-
             fatPercentageEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,

@@ -187,7 +187,7 @@
                     android:id="@+id/bmiImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bmi"
+                    android:src="@drawable/person_running_solid"
                     android:backgroundTint="#1D1E20"
                     android:padding="50dp"
                     >
@@ -196,7 +196,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="BMI"
+                    android:text="Pace"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:layout_alignBottom="@+id/bmiImage"
