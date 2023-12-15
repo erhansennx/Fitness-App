@@ -90,6 +90,7 @@
             android:layout_marginStart="3dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="16dp"
+            android:visibility="invisible"
             android:text="Invalid body fat : must be between 2 and 60"
             android:textColor="@color/red"/>
 
@@ -121,6 +122,7 @@
             android:layout_marginStart="3dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="16dp"
+            android:visibility="invisible"
             android:text="@string/invalid_body_weight_must_be_between_30_and_250kgs"
             android:textColor="@color/red" />
 
@@ -193,6 +195,7 @@
             android:text="Your BMR is "
             android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
+            android:visibility="invisible"
             android:textSize="18dp"/>
 
         <TextView
@@ -200,6 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 1818kcal "
+            android:visibility="invisible"
             android:textColor="@color/red"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="21dp"/>
@@ -218,6 +222,7 @@
             android:layout_height="wrap_content"
             android:text="Your calorie need is "
             android:textColor="@color/white"
+            android:visibility="invisible"
             android:fontFamily="@font/revolutiongothic_light"
             android:textSize="18dp"/>
 
@@ -227,6 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 1818kcal "
+            android:visibility="invisible"
             android:textColor="@color/red"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="21dp"/>

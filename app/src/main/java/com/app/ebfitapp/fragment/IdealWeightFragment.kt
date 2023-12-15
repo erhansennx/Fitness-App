@@ -25,10 +25,6 @@ class IdealWeightFragment : Fragment() {
     ): View? {
 
         idealWeightBinding = FragmentIdealWeightBinding.inflate(layoutInflater)
-
-        idealWeightBinding.mixImage.visibility = View.VISIBLE
-        idealWeightBinding.femaleImage.visibility = View.GONE
-        idealWeightBinding.maleImage.visibility = View.GONE
         return idealWeightBinding.root
     }
 
@@ -36,7 +32,6 @@ class IdealWeightFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(idealWeightBinding)
         {
-            inVisibleAllText()
             goBackImage.setOnClickListener {
                 val goBackAction = IdealWeightFragmentDirections.actionIdealWeightFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
@@ -54,17 +49,6 @@ class IdealWeightFragment : Fragment() {
                     this@IdealWeightFragment.gender = true
                     genderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.blue)
                     maleImageVisible()
-                }
-            }
-            personHeightText.setOnClickListener {
-               if(personHeightText.text.isNotEmpty())
-               {
-                   personHeight = personHeightText.text.toString().toDouble()
-               }
-            }
-            personWeightText.setOnClickListener {
-                if(personWeightText.text.isNotEmpty()){
-                    personWeight = personWeightText.text.toString().toDouble()
                 }
             }
             calculateButton.setOnClickListener {
@@ -87,31 +71,23 @@ class IdealWeightFragment : Fragment() {
                             bmi < 18.5 -> {
                                 //Below
                                 aboveBelowText.text = " BELOW"
-                                aboveBelowLayout.visibility = View.VISIBLE
-                                obeseTextLayout.visibility = View.INVISIBLE
-                                idealWeightTextLayuot.visibility = View.INVISIBLE
+                                showHighLowText()
                             }
 
                             bmi in 18.5 .. 24.9 -> {
                                 //Ideal weight
-                                aboveBelowLayout.visibility = View.INVISIBLE
-                                idealWeightTextLayuot.visibility = View.VISIBLE
-                                obeseTextLayout.visibility = View.INVISIBLE
+                                showIdealText()
                             }
 
                             bmi in 25.0 .. 29.9 -> {
                                 //Above
                                 aboveBelowText.text = " ABOVE"
-                                aboveBelowLayout.visibility = View.VISIBLE
-                                obeseTextLayout.visibility = View.INVISIBLE
-                                idealWeightTextLayuot.visibility = View.INVISIBLE
+                                showHighLowText()
                             }
 
                             else -> {
-                                //Obese orospu cocuhgu
-                                obeseTextLayout.visibility = View.VISIBLE
-                                aboveBelowLayout.visibility = View.INVISIBLE
-                                idealWeightTextLayuot.visibility = View.INVISIBLE
+                                //Obese
+                                showObeseText()
                             }
                         }
                     } catch (e: NumberFormatException) {
@@ -159,12 +135,25 @@ class IdealWeightFragment : Fragment() {
         idealWeightBinding.mixImage.visibility = View.GONE
         idealWeightBinding.maleImage.visibility = View.VISIBLE
     }
+    private fun showIdealText()
+    {
+        idealWeightBinding.aboveBelowLayout.visibility = View.INVISIBLE
+        idealWeightBinding.idealWeightTextLayuot.visibility = View.VISIBLE
+        idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
 
-    private fun inVisibleAllText(){
+    }
+    private fun showHighLowText()
+    {
+        idealWeightBinding.aboveBelowLayout.visibility = View.VISIBLE
+        idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
+        idealWeightBinding.idealWeightTextLayuot.visibility = View.INVISIBLE
+    }
+    private fun showObeseText()
+    {
+        idealWeightBinding.obeseTextLayout.visibility = View.VISIBLE
         idealWeightBinding.aboveBelowLayout.visibility = View.INVISIBLE
         idealWeightBinding.idealWeightTextLayuot.visibility = View.INVISIBLE
-        idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
-        idealWeightBinding.falseHeightText.visibility = View.INVISIBLE
-        idealWeightBinding.falseWeightText.visibility = View.INVISIBLE
+
     }
+
 }

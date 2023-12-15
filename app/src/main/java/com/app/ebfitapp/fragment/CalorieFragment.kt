@@ -45,7 +45,6 @@ class CalorieFragment : Fragment() {
         val underlineColor = ContextCompat.getColor(requireContext(), R.color.red)
         val initialColor = ContextCompat.getColor(requireContext(), R.color.light_gray)
         val activityFactors = doubleArrayOf(1.2, 1.375, 1.55, 1.725, 1.9)
-        hideAllText()
         with(calorieBinding) {
             fatPercentageEditText.onFocusChangeListener =
                 View.OnFocusChangeListener { view, hasFocus ->
@@ -224,15 +223,5 @@ class CalorieFragment : Fragment() {
         calorieBinding.calorieCalculateText.visibility = View.VISIBLE
         calorieBinding.yourBmrText.visibility = View.VISIBLE
         calorieBinding.yourCalorieText.visibility = View.VISIBLE
-
-    }
-    private fun hideAllText()
-    {
-        calorieBinding.falseFatPercentageText.visibility = View.GONE
-        calorieBinding.falsebodyWeightText.visibility = View.GONE
-        calorieBinding.bmrCalculateText.visibility = View.GONE
-        calorieBinding.calorieCalculateText.visibility = View.GONE
-        calorieBinding.yourCalorieText.visibility = View.GONE
-        calorieBinding.yourBmrText.visibility = View.GONE
     }
 }

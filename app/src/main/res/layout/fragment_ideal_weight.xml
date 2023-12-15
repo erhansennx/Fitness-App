@@ -134,6 +134,7 @@
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"
+            android:visibility="invisible"
             android:textSize="16dp"
             ></TextView>
 
@@ -167,6 +168,7 @@
             android:textColor="@color/red"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:layout_marginStart="3dp"
+            android:visibility="invisible"
             android:textSize="16dp"
             ></TextView>
 
@@ -206,6 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="invisible"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -238,7 +241,8 @@
                 android:id="@+id/idealWeightTextLayuot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,7 +265,8 @@
                 android:id="@+id/obeseTextLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -307,12 +312,14 @@
             <ImageView
                 android:id="@+id/maleImage"
                 android:layout_width="match_parent"
+                android:visibility="invisible"
                 android:layout_height="match_parent"
                 android:src="@drawable/male_solid"
                 ></ImageView>
 
             <ImageView
                 android:id="@+id/femaleImage"
+                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/female_solid"

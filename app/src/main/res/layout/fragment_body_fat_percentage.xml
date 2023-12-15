@@ -121,6 +121,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
             android:textSize="23dp"
+            android:ems="5"
             ></EditText>
 
         <TextView
@@ -163,7 +164,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:hint="Your height in cm"
-                android:ems="10"
+                android:ems="5"
                 />
             <TextView
                 android:id="@+id/falseHeightText"
@@ -197,6 +198,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:textSize="22dp"
+                android:ems="5"
                 ></EditText>
 
             <TextView
@@ -242,7 +244,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:hint="Your neck in cm"
-                android:ems="10"
+                android:ems="5"
                 />
             <TextView
                 android:id="@+id/falseNeckSizeText"
@@ -267,7 +269,7 @@
             >
 
             <EditText
-                android:id="@+id/personWaistText"
+                android:id="@+id/personWaistSizeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Your waist in cm"
@@ -276,10 +278,12 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:textSize="22dp"
+                android:inputType="number"
+                android:ems="5"
                 ></EditText>
 
             <TextView
-                android:id="@+id/falseWaistText"
+                android:id="@+id/falseWaistSizeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Invalid waist : must be between 60 and 80cm"
@@ -314,10 +318,37 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/resultLinearLayuot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your body fat percentage is :"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            ></TextView>
+        <TextView
+            android:id="@+id/resultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" %18"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/fatPercentageTextLayuot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="20dp"
         android:orientation="horizontal"
         >
@@ -344,7 +375,7 @@
                 android:textColor="@color/green"
                 ></TextView>
             <TextView
-                android:id="@+id/LowPercentageText"
+                android:id="@+id/lowPercentageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" LOW "
@@ -353,7 +384,7 @@
                 android:textColor="@color/red"
                 ></TextView>
             <TextView
-                android:id="@+id/HighPercentageText"
+                android:id="@+id/highPercentageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" HİGH "
