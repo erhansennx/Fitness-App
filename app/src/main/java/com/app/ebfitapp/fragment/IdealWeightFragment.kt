@@ -36,49 +36,36 @@ class IdealWeightFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(idealWeightBinding)
         {
-            aboveBelowLayout.visibility = View.INVISIBLE
-            idealWeightTextLayuot.visibility = View.INVISIBLE
-            obeseTextLayout.visibility = View.INVISIBLE
-            falseHeightText.visibility = View.INVISIBLE
-            falseWeightText.visibility = View.INVISIBLE
-
+            inVisibleAllText()
             goBackImage.setOnClickListener {
                 val goBackAction = IdealWeightFragmentDirections.actionIdealWeightFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
             }
-
             genderSwitch.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
-                    gender = false
+                    //For woman
+                    this@IdealWeightFragment.gender = false
                     genderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.pink)
-                    femaleImage.visibility = View.VISIBLE
-                    mixImage.visibility = View.GONE
-                    maleImage.visibility = View.GONE
+                    femaleImageVisible()
                 }
                 else
                 {
-                    gender = true
+                    //For man
+                    this@IdealWeightFragment.gender = true
                     genderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.blue)
-                    femaleImage.visibility = View.GONE
-                    mixImage.visibility = View.GONE
-                    maleImage.visibility = View.VISIBLE
+                    maleImageVisible()
                 }
             }
-
             personHeightText.setOnClickListener {
                if(personHeightText.text.isNotEmpty())
                {
                    personHeight = personHeightText.text.toString().toDouble()
-
                }
-
             }
             personWeightText.setOnClickListener {
                 if(personWeightText.text.isNotEmpty()){
                     personWeight = personWeightText.text.toString().toDouble()
-
                 }
-
             }
             calculateButton.setOnClickListener {
                 if (personWeightText.text.isNotEmpty() && personHeightText.text.isNotEmpty()) {
@@ -92,7 +79,6 @@ class IdealWeightFragment : Fragment() {
                         if (gender == null) {
                             throw IllegalStateException("Please select your gender.")
                         }
-
                         calculateIdealWeight(personHeight!!, gender!!)
 
                         val bmi = calculateBMI(personWeight!!, personHeight!!)
@@ -159,5 +145,26 @@ class IdealWeightFragment : Fragment() {
 
     private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun femaleImageVisible()
+    {
+        idealWeightBinding.femaleImage.visibility = View.VISIBLE
+        idealWeightBinding.mixImage.visibility = View.GONE
+        idealWeightBinding.maleImage.visibility = View.GONE
+    }
+    private fun maleImageVisible()
+    {
+        idealWeightBinding.femaleImage.visibility = View.GONE
+        idealWeightBinding.mixImage.visibility = View.GONE
+        idealWeightBinding.maleImage.visibility = View.VISIBLE
+    }
+
+    private fun inVisibleAllText(){
+        idealWeightBinding.aboveBelowLayout.visibility = View.INVISIBLE
+        idealWeightBinding.idealWeightTextLayuot.visibility = View.INVISIBLE
+        idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
+        idealWeightBinding.falseHeightText.visibility = View.INVISIBLE
+        idealWeightBinding.falseWeightText.visibility = View.INVISIBLE
     }
 }

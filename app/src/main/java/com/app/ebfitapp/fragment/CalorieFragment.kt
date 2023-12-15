@@ -39,22 +39,14 @@ class CalorieFragment : Fragment() {
         ActivityLevelSettings()
         return calorieBinding.root
     }
-
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val underlineColor = ContextCompat.getColor(requireContext(), R.color.red)
         val initialColor = ContextCompat.getColor(requireContext(), R.color.light_gray)
         val activityFactors = doubleArrayOf(1.2, 1.375, 1.55, 1.725, 1.9)
-
+        hideAllText()
         with(calorieBinding) {
-            falseFatPercentageText.visibility = View.GONE
-            falsebodyWeightText.visibility = View.GONE
-            bmrCalculateText.visibility = View.GONE
-            calorieCalculateText.visibility = View.GONE
-            yourCalorieText.visibility = View.GONE
-            yourBmrText.visibility = View.GONE
-
             fatPercentageEditText.onFocusChangeListener =
                 View.OnFocusChangeListener { view, hasFocus ->
                     if (!hasFocus) {
@@ -165,10 +157,7 @@ class CalorieFragment : Fragment() {
                     val dailyCalories = calculateDailyCalories(bmr, selectedActivityFactor!!)
                     bmrCalculateText.text = "${bmr.toInt()}kcal"
                     calorieCalculateText.text = "${dailyCalories.toInt()}kcal"
-                    bmrCalculateText.visibility = View.VISIBLE
-                    calorieCalculateText.visibility = View.VISIBLE
-                    yourBmrText.visibility = View.VISIBLE
-                    yourCalorieText.visibility = View.VISIBLE
+                    resultTextsShow()
                 }
             }
             goBackImage.setOnClickListener {
@@ -224,10 +213,26 @@ class CalorieFragment : Fragment() {
         spannableString.setSpan(redColorSpan, 93, 115, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationId.text = spannableString
         dialog.show()
-
         val dialogCancelBtn = dialog.findViewById<Button>(R.id.gotItCalorieButton)
         dialogCancelBtn.setOnClickListener {
             dialog.dismiss()
         }
+    }
+    private fun resultTextsShow()
+    {
+        calorieBinding.bmrCalculateText.visibility = View.VISIBLE
+        calorieBinding.calorieCalculateText.visibility = View.VISIBLE
+        calorieBinding.yourBmrText.visibility = View.VISIBLE
+        calorieBinding.yourCalorieText.visibility = View.VISIBLE
+
+    }
+    private fun hideAllText()
+    {
+        calorieBinding.falseFatPercentageText.visibility = View.GONE
+        calorieBinding.falsebodyWeightText.visibility = View.GONE
+        calorieBinding.bmrCalculateText.visibility = View.GONE
+        calorieBinding.calorieCalculateText.visibility = View.GONE
+        calorieBinding.yourCalorieText.visibility = View.GONE
+        calorieBinding.yourBmrText.visibility = View.GONE
     }
 }

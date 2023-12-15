@@ -49,7 +49,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     var isSelected: Boolean = false
     val generatedStrings = mutableSetOf<String>()
     var todoArray = arrayListOf<ToDoModel>()
-    private lateinit var isEmptyText: TextView
 
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
@@ -68,7 +67,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
-        isEmptyText = fragmentCalenderBinding.isEmptyText
         return fragmentCalenderBinding.root
     }
 
@@ -84,7 +82,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             setUpAdapter()
             setUpClickListener()
             setUpCalendar()
-
             isEmptyText.visibility = View.GONE
             observeIndexExists()
 
@@ -123,7 +120,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             }
 
             if (filteredToDoList.isNotEmpty()) {
-                isEmptyText.visibility = View.GONE
+                fragmentCalenderBinding.isEmptyText.visibility = View.GONE
 
                 val sortedToDoList = filteredToDoList.sortedBy { it.createdAt }
                 val arrayListToDoList = ArrayList(sortedToDoList)
@@ -133,7 +130,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 toDoAdapter.notifyDataSetChanged()
             } else {
                 toDoAdapter.todoArray.clear()
-                isEmptyText.visibility = View.VISIBLE
+                fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
             }
 
             customProgress.dismiss()
@@ -236,7 +233,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp)
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
-                    isEmptyText.visibility = View.GONE
+                    fragmentCalenderBinding.isEmptyText.visibility = View.GONE
                     toDoAdapter.todoArray.add(newTodoItem)
                     toDoAdapter.notifyDataSetChanged()
                     rootView.removeView(overlay)
@@ -265,8 +262,8 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         calendarViewModel.indexExists.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { indexExists ->
-                if (!indexExists) isEmptyText.visibility = View.VISIBLE
-                else isEmptyText.visibility = View.GONE
+                if (!indexExists) fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
+                else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
             })
     }
 }
