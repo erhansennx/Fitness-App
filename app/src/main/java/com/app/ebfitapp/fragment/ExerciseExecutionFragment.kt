@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
 import com.app.ebfitapp.R
@@ -55,6 +57,13 @@ class ExerciseExecutionFragment : Fragment() {
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.setCanceledOnTouchOutside(false)
 
+        var selectedType: String? = null
+
+        val weightTypes = listOf("kg","lbs")
+        val typeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, weightTypes)
+        val typeDropDown = view.findViewById<AutoCompleteTextView>(R.id.typeDropDown)
+        typeDropDown.setAdapter(typeAdapter)
+
         val weightEditText = view.findViewById<TextInputEditText>(R.id.weightText)
         val setsEditText = view.findViewById<TextInputEditText>(R.id.setsText)
         val repsEditText = view.findViewById<TextInputEditText>(R.id.repsText)
@@ -65,15 +74,19 @@ class ExerciseExecutionFragment : Fragment() {
             val enteredSets = setsEditText.text.toString()
             val enteredReps = repsEditText.text.toString()
 
-            if (enteredWeight.isEmpty() || enteredSets.isEmpty() || enteredReps.isEmpty()) {
+            if (enteredWeight.isEmpty() || enteredSets.isEmpty() || enteredReps.isEmpty() || selectedType.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_SHORT).show()
             } else {
-                selectedWeight.text = enteredWeight
+                selectedWeight.text = "$enteredWeight $selectedType"
                 selectedSets.text = enteredSets
                 selectedReps.text = enteredReps
                 bottomSheetDialog.dismiss()
             }
 
+        }
+
+        typeDropDown.setOnItemClickListener { adapterView, view, i, l ->
+            selectedType = adapterView.getItemAtPosition(i).toString()
         }
 
         bottomSheetDialog.show()

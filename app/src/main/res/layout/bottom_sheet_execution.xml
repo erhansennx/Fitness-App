@@ -1,62 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="30dp"
-    android:paddingHorizontal="20dp"
-    android:orientation="vertical"
     android:background="@drawable/round_top_16"
     android:backgroundTint="@color/gray"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="30dp">
 
     <View
         android:layout_width="50dp"
         android:layout_height="2dp"
+        android:layout_gravity="center"
         android:background="@drawable/round_6dp_background"
-        android:backgroundTint="@color/light_gray"
-        android:layout_gravity="center"/>
+        android:backgroundTint="@color/light_gray" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/revolutiongothic_extra_bold"
         android:text="@string/personalize_your_training"
         android:textColor="@color/white"
-        android:layout_marginTop="25dp"
-        android:textSize="28sp"/>
+        android:textSize="28sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/robotoregular"
         android:text="@string/execution_define"
         android:textColor="@color/silver"
-        android:textSize="16sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"/>
+        android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/revolutiongothic_extra_bold"
-        android:text="@string/weight"
-        android:textColor="@color/white"
-        android:textSize="21sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/weightText"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/revolutiongothic_regular"
-            android:inputType="numberDecimal"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="2"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:text="@string/weight"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weightText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:text="@string/type"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/typeDropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:focusable="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,7 +119,7 @@
         android:textSize="21sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
@@ -92,7 +143,7 @@
         android:textSize="21sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
