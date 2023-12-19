@@ -12,7 +12,8 @@ import android.widget.Toast
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseExecutionBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
-import com.app.ebfitapp.utils.downloadGifFromURL
+import com.app.ebfitapp.model.ExecutionModel
+import com.app.ebfitapp.utils.downloadImageFromURL
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 
@@ -28,7 +29,7 @@ class ExerciseExecutionFragment : Fragment() {
 
             exerciseItem = it!!.getSerializable("exercise") as BodyPartExercisesItem
 
-            binding.exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+            binding.exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
             binding.exerciseName.text = exerciseItem.name
 
         }
@@ -42,7 +43,6 @@ class ExerciseExecutionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.settings.setOnClickListener {
             showBottomSheet()
@@ -80,6 +80,7 @@ class ExerciseExecutionFragment : Fragment() {
                 selectedWeight.text = "$enteredWeight $selectedType"
                 selectedSets.text = enteredSets
                 selectedReps.text = enteredReps
+                val executionModel = ExecutionModel(enteredWeight.toDouble(), selectedType!!, enteredSets.toInt(), enteredReps.toInt())
                 bottomSheetDialog.dismiss()
             }
 
