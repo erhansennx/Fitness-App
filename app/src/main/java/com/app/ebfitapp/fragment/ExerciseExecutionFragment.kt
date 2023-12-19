@@ -13,17 +13,22 @@ import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseExecutionBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
 import com.app.ebfitapp.model.ExecutionModel
+import com.app.ebfitapp.utils.CountDownDialog
+import com.app.ebfitapp.utils.downloadGifFromURL
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 
 class ExerciseExecutionFragment : Fragment() {
 
+    private lateinit var countDownDialog: CountDownDialog
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var binding: FragmentExerciseExecutionBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentExerciseExecutionBinding.inflate(layoutInflater)
+
+        countDownDialog = CountDownDialog(requireContext())
 
         arguments.let {
 
@@ -43,6 +48,12 @@ class ExerciseExecutionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.startButton.setOnClickListener {
+            countDownDialog.showCountDownDialog(5000) {
+                if (it) binding.exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+            }
+        }
 
         binding.settings.setOnClickListener {
             showBottomSheet()
