@@ -1,6 +1,8 @@
 package com.app.ebfitapp.fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseExecutionBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
@@ -20,6 +23,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 
 class ExerciseExecutionFragment : Fragment() {
+
+    private var isRunning = false
+    private var elapsedTime: Long = 0
 
     private lateinit var countDownDialog: CountDownDialog
     private lateinit var exerciseItem: BodyPartExercisesItem
@@ -49,16 +55,53 @@ class ExerciseExecutionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener {
-            countDownDialog.showCountDownDialog(5000) {
-                if (it) binding.exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+        with(binding) {
+
+            startButton.setOnClickListener {
+                countDownDialog.showCountDownDialog(1000) { // change 5000
+                    if (it) {
+                        exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+                        startButton.visibility = View.GONE
+                        startedLayout.visibility = View.VISIBLE
+                        startChronometer()
+                    }
+                }
+            }
+
+            nextSetButton.setOnClickListener {
+                exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+                countDownDialog.showCountDownDialog(2000) {// 15k
+                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+                    pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+                    chronometer.base = SystemClock.elapsedRealtime()
+                    chronometer.stop()
+                    elapsedTime = 0
+                    isRunning = false
+                }
+            }
+
+            pauseAndPlay.setOnClickListener {
+                if (isRunning) {
+                    elapsedTime = SystemClock.elapsedRealtime() - binding.chronometer.base
+                    binding.chronometer.stop()
+                    isRunning = false
+                    exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+                    pauseAndPlay.setImageResource(R.drawable.baseline_pause_24)
+                } else {
+                    binding.chronometer.base = SystemClock.elapsedRealtime() - elapsedTime
+                    binding.chronometer.start()
+                    isRunning = true
+                    exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+                    pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+                }
+            }
+
+            settings.setOnClickListener {
+                showBottomSheet()
             }
         }
-
-        binding.settings.setOnClickListener {
-            showBottomSheet()
-        }
-
     }
 
 
@@ -89,8 +132,8 @@ class ExerciseExecutionFragment : Fragment() {
                 Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_SHORT).show()
             } else {
                 selectedWeight.text = "$enteredWeight $selectedType"
-                selectedSets.text = enteredSets
-                selectedReps.text = enteredReps
+                selectedSets.text = "$enteredSets SET"
+                selectedReps.text = "$enteredReps REP"
                 val executionModel = ExecutionModel(enteredWeight.toDouble(), selectedType!!, enteredSets.toInt(), enteredReps.toInt())
                 bottomSheetDialog.dismiss()
             }
@@ -102,6 +145,17 @@ class ExerciseExecutionFragment : Fragment() {
         }
 
         bottomSheetDialog.show()
+    }
+
+    private fun startChronometer() = with(binding) {
+        if (!isRunning) {
+            chronometer.base = SystemClock.elapsedRealtime()
+            chronometer.start()
+            isRunning = true
+        } else {
+            chronometer.stop()
+            isRunning = false
+        }
     }
 
 

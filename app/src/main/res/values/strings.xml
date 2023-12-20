@@ -85,4 +85,7 @@
     <string name="choose_your_activity_level">Choose your activity level</string>
     <string name="invalid_body_weight_must_be_between_30_and_250kgs">Invalid body weight : must be between 30 and 250kgs</string>
     <string name="type">Type</string>
+    <string name="elapsed_time">Elapsed Time</string>
+    <string name="mm_ss">MM:SS</string>
+    <string name="break_and_next_set">Break and Next Set</string>
 </resources>

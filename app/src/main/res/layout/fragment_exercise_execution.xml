@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:layout_marginEnd="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="32dp"
@@ -45,22 +47,22 @@
 
     </FrameLayout>
 
-
     <LinearLayout
+        android:id="@+id/startLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="35dp"
-        android:gravity="center"
-        android:background="@drawable/round_top_16"
+        android:background="@drawable/round_full"
         android:backgroundTint="@color/gray"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingBottom="35dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <TextView
@@ -87,169 +89,131 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/selectedWeight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/light_gray"
-                android:orientation="vertical"
-                android:paddingVertical="10dp">
+                android:backgroundTint="@color/red"
+                android:fontFamily="@font/robotomedium"
+                android:gravity="center"
+                android:hint="@string/target"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="3dp"
+                android:text="50 KG"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="@string/weight"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/selectedWeight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/round_6dp_background"
-                    android:backgroundTint="@color/gray"
-                    android:fontFamily="@font/robotobold"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp"
-                    android:text="3"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/selectedSets"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/light_gray"
-                android:orientation="vertical"
-                android:paddingVertical="10dp">
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/robotomedium"
+                android:gravity="center"
+                android:hint="@string/target"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="3dp"
+                android:text="3 SET"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="@string/sets"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/selectedSets"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/round_6dp_background"
-                    android:backgroundTint="@color/gray"
-                    android:fontFamily="@font/robotobold"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp"
-                    android:text="3"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/selectedReps"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="6dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/light_gray"
-                android:orientation="vertical"
-                android:paddingVertical="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="@string/reps"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/selectedReps"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/round_6dp_background"
-                    android:backgroundTint="@color/gray"
-                    android:fontFamily="@font/robotobold"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp"
-                    android:text="3"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
+                android:backgroundTint="@color/silver"
+                android:fontFamily="@font/robotomedium"
+                android:gravity="center"
+                android:hint="@string/target"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="3dp"
+                android:text="3 REP"
+                android:textColor="@color/black"
+                android:textColorHint="@color/white"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/robotobold"
+            android:gravity="center"
+            android:text="00:00:00"
+            android:textColor="@color/white"
+            android:textSize="52sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="4XSET"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/round_6dp_background"
-            android:backgroundTint="@color/light_gray"
-            android:orientation="vertical"
-            android:paddingVertical="10dp">
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/robotobold"
-                android:text="@string/time"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
+            <Button
+                android:id="@+id/startButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="35dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/gray"
-                android:fontFamily="@font/robotobold"
+                android:text="@string/start"
+                android:fontFamily="@font/robotobold"/>
+
+            <LinearLayout
+                android:id="@+id/startedLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="00:21"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:visibility="gone"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/pauseAndPlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/round_6dp_background"
+                    android:backgroundTint="@color/red"
+                    android:padding="7dp"
+                    android:src="@drawable/baseline_play_arrow_24" />
 
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:text="@string/start" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/nextSetButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/white"
+                    android:text="@string/break_and_next_set"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 
