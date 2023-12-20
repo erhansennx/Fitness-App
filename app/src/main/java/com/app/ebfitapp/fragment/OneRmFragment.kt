@@ -53,6 +53,7 @@ class OneRmFragment : Fragment() {
                         val weight = weightText.text.toString().toDouble()
                         val reps = repsText.text.toString().toInt()
 
+                    //Rep tekrar sayısı kontrol edilecek
 
                         repAdapter = RepAdapter(repList, weight,reps)
                         repResultRecycler.layoutManager = LinearLayoutManager(this@OneRmFragment.requireContext())

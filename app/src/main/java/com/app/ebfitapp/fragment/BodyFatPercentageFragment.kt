@@ -37,7 +37,6 @@ class BodyFatPercentageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(bodyFatPercentageBinding)
         {
-            inVisibleAllText()
             goBackImage.setOnClickListener {
                 val goBackAction = BodyFatPercentageFragmentDirections.actionBodyFatPercentageFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
@@ -115,20 +114,7 @@ class BodyFatPercentageFragment : Fragment() {
 
     }
 
-    private fun inVisibleAllText()
-    {
-        bodyFatPercentageBinding.falseAgeText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.falseHeightText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.falseWeightText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.falseNeckSizeText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.falseWaistSizeText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.resultLinearLayuot.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.resultText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.fatPercentageTextLayuot.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.healthyPercentageText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.lowPercentageText.visibility = View.INVISIBLE
-        bodyFatPercentageBinding.highPercentageText.visibility = View.INVISIBLE
-    }
+
 
     private fun handleBodyFatResult(bodyFatPercentage: Double, gender: Boolean) {
         when (bodyFatPercentage) {
