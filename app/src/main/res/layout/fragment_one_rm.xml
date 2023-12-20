@@ -5,11 +5,153 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.OneRmFragment"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    android:orientation="vertical">
 
-    <TextView
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/goBackImage"
+                android:layout_marginStart="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/calculators_left"
+                android:background="@color/gray"
+                android:layout_marginVertical="5dp"
+                ></ImageButton>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:text="1 RM Calculator"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:backgroundTint="@color/light_gray"
+                ></TextView>
+            <ImageButton
+                android:id="@+id/infoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/gray"
+                android:src="@drawable/icon_info"
+                android:layout_marginEnd="15dp"
+                ></ImageButton>
+        </RelativeLayout>
+        <View
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line"
+            android:backgroundTint="@color/light_gray"
+            ></View>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/weightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/silver"
+            android:paddingBottom="28dp"
+            android:textSize="23dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textColor="@color/white"
+            android:hint="Enter your weight in kgs"
+            android:ems="10"
+            />
+        <TextView
+            android:id="@+id/falseWeightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid weight : must be 0 and 500"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textColor="@color/red"
+            android:layout_marginStart="3dp"
+            android:visibility="invisible"
+            android:textSize="16dp"
+            android:inputType="number"
+            ></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/repsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/silver"
+            android:paddingBottom="28dp"
+            android:textSize="23dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textColor="@color/white"
+            android:hint="Enter your number of reps"
+            android:ems="10"
+            />
+        <TextView
+            android:id="@+id/falseRepText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid reps : must be greater than 0 "
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textColor="@color/red"
+            android:layout_marginStart="3dp"
+            android:visibility="invisible"
+            android:textSize="16dp"
+            android:inputType="number"
+            ></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repResultRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
