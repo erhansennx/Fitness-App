@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.OneRmFragment"
     android:background="@color/gray"
     android:orientation="vertical">
@@ -125,7 +125,7 @@
             android:id="@+id/falseRepText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid reps : must be greater than 0 "
+            android:text="Invalid reps : must be between 0 and 10"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"
@@ -139,16 +139,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
-
+       >
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="40dp"
             android:id="@+id/repResultRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible"/>
+            tools:listitem="@layout/item_rep"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
     </LinearLayout>
 
