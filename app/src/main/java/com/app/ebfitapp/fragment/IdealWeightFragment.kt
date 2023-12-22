@@ -51,6 +51,8 @@ class IdealWeightFragment : Fragment() {
                     maleImageVisible()
                 }
             }
+
+
             calculateButton.setOnClickListener {
                 if (personWeightText.text.isNotEmpty() && personHeightText.text.isNotEmpty()) {
                     try {

@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
@@ -31,6 +32,7 @@ class CalorieFragment : Fragment() {
     private var activityLevels: String? = null
     private var selectedActivityFactor: Double? = null
     private lateinit var calorieBinding: FragmentCalorieBinding
+    private val activityFactors = doubleArrayOf(1.2, 1.375, 1.55, 1.725, 1.9)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,105 +46,25 @@ class CalorieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val underlineColor = ContextCompat.getColor(requireContext(), R.color.red)
         val initialColor = ContextCompat.getColor(requireContext(), R.color.light_gray)
-        val activityFactors = doubleArrayOf(1.2, 1.375, 1.55, 1.725, 1.9)
+
         with(calorieBinding) {
-            fatPercentageEditText.onFocusChangeListener =
-                View.OnFocusChangeListener { view, hasFocus ->
-                    if (!hasFocus) {
-                        hideKeyboard(view)
-                    }
-                }
-            fatPercentageEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                }
-
-                override fun afterTextChanged(editable: Editable?) {
-                    val inputText = editable.toString()
-
-                    if (inputText.isNullOrEmpty()) {
-                        falseFatPercentageText.visibility = View.INVISIBLE
-                        fatPercentageEditText.backgroundTintList =
-                            ColorStateList.valueOf(initialColor)
-                        return
-                    } else {
-                        try {
-                            val formattedInput = inputText.replace(',', '.')
-                            val enteredValueFatPercentage = formattedInput.toDouble()
-                            if (enteredValueFatPercentage in 2.0..60.0) {
-                                fatPercentage = enteredValueFatPercentage
-                                falseFatPercentageText.visibility = View.INVISIBLE
-                                fatPercentageEditText.backgroundTintList =
-                                    ColorStateList.valueOf(initialColor)
-                            } else {
-                                falseFatPercentageText.visibility = View.VISIBLE
-                                fatPercentageEditText.backgroundTintList =
-                                    ColorStateList.valueOf(underlineColor)
-                            }
-                        } catch (e: NumberFormatException) {
-                            falseFatPercentageText.visibility = View.VISIBLE
-                            fatPercentageEditText.backgroundTintList =
-                                ColorStateList.valueOf(underlineColor)
-                        }
-                    }
-                }
-            })
-
-            bodyWeightEditText.onFocusChangeListener =
-                View.OnFocusChangeListener { view, hasFocus ->
-                    if (!hasFocus) {
-                        hideKeyboard(view)
-                    }
-                }
-            bodyWeightEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(editable: Editable?) {
-                    val inputText = editable.toString()
-
-                    if (inputText.isNullOrEmpty()) {
-                        falsebodyWeightText.visibility = View.INVISIBLE
-                        bodyWeightEditText.backgroundTintList = ColorStateList.valueOf(initialColor)
-                        return
-                    }
-                    try {
-                        val formattedInput = inputText.replace(',', '.')
-                        val enteredValuebodyWeight = formattedInput.toDouble()
-                        if (enteredValuebodyWeight in 30.0..250.0) {
-                            bodyWeight = enteredValuebodyWeight
-                            falsebodyWeightText.visibility = View.INVISIBLE
-                            bodyWeightEditText.backgroundTintList =
-                                ColorStateList.valueOf(initialColor)
-                        } else {
-                            falsebodyWeightText.visibility = View.VISIBLE
-                            bodyWeightEditText.backgroundTintList =
-                                ColorStateList.valueOf(underlineColor)
-                        }
-                    } catch (e: NumberFormatException) {
-                        falsebodyWeightText.visibility = View.VISIBLE
-                        bodyWeightEditText.backgroundTintList =
-                            ColorStateList.valueOf(underlineColor)
-                    }
-                }
-            })
-
+            setupEditTextValidation(
+                fatPercentageEditText,
+                falseFatPercentageText,
+                2.0,
+                60.0,
+                initialColor,
+                underlineColor
+            )
+            setupEditTextValidation(
+                bodyWeightEditText,
+                falsebodyWeightText,
+                30.0,
+                250.0,
+                initialColor,
+                underlineColor
+            )
             activityLevelTextView.setOnItemClickListener { adapterView, view, i, l ->
                 activityLevels = adapterView.getItemAtPosition(i).toString()
 
@@ -191,10 +113,6 @@ class CalorieFragment : Fragment() {
         val fatFraction = fatPercentage / 100.0
         return bodyWeight * (1 - fatFraction)
     }
-    private fun hideKeyboard(view: View) {
-        val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
-        imm?.hideSoftInputFromWindow(view.windowToken, 0)
-    }
     private fun showCalorieInfo()
     {
         val dialog = Dialog(requireActivity())
@@ -223,5 +141,52 @@ class CalorieFragment : Fragment() {
         calorieBinding.calorieCalculateText.visibility = View.VISIBLE
         calorieBinding.yourBmrText.visibility = View.VISIBLE
         calorieBinding.yourCalorieText.visibility = View.VISIBLE
+    }
+
+    private fun setupEditTextValidation(
+        editText: EditText,
+        falseTextView: TextView,
+        minValue: Double,
+        maxValue: Double,
+        initialColor: Int,
+        underlineColor: Int
+    ) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(editable: Editable?) {
+                val inputText = editable.toString()
+
+                if (inputText.isNullOrEmpty()) {
+                    falseTextView.visibility = View.INVISIBLE
+                    editText.backgroundTintList = ColorStateList.valueOf(initialColor)
+                    return
+                }
+
+                try {
+                    val formattedInput = inputText.replace(',', '.')
+                    val enteredValue = formattedInput.toDouble()
+
+                    if (enteredValue in minValue..maxValue) {
+                        if (editText == calorieBinding.fatPercentageEditText) {
+                            fatPercentage = enteredValue
+                        } else if (editText == calorieBinding.bodyWeightEditText) {
+                            bodyWeight = enteredValue
+                        }
+
+                        falseTextView.visibility = View.INVISIBLE
+                        editText.backgroundTintList = ColorStateList.valueOf(initialColor)
+                    } else {
+                        falseTextView.visibility = View.VISIBLE
+                        editText.backgroundTintList = ColorStateList.valueOf(underlineColor)
+                    }
+                } catch (e: NumberFormatException) {
+                    falseTextView.visibility = View.VISIBLE
+                    editText.backgroundTintList = ColorStateList.valueOf(underlineColor)
+                }
+            }
+        })
     }
 }

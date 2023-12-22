@@ -21,6 +21,7 @@ class PaceFragment : Fragment() {
         return paceBinding.root
     }
 
+    //Pace yazılacak calorie, idealweight,bodyfatpercentage  code revise
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

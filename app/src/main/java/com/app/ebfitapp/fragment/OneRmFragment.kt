@@ -63,6 +63,8 @@ class OneRmFragment : Fragment() {
 
             val textWatcher = object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    weightText.backgroundTintList = ColorStateList.valueOf(initialColor)
+                    repsText.backgroundTintList = ColorStateList.valueOf(initialColor)
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -76,10 +78,8 @@ class OneRmFragment : Fragment() {
                             reps = repsText.text.toString().toInt()
                             if (weight!! < 500) {
                                 falseWeightText.visibility = View.INVISIBLE
-                                weightText.backgroundTintList = ColorStateList.valueOf(initialColor)
                                 if (reps!! in 1..10) {
                                     falseRepText.visibility = View.INVISIBLE
-                                    repsText.backgroundTintList = ColorStateList.valueOf(initialColor)
                                     showRecycler()
                                 } else {
                                     falseRepText.visibility = View.VISIBLE
