@@ -130,7 +130,7 @@
             android:id="@+id/falseHeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid height : must be between 150 and 200"
+            android:text="Invalid height : must be between 150 and 200cm"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textColor="@color/red"
             android:layout_marginStart="3dp"

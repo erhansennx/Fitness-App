@@ -1,15 +1,21 @@
 package com.app.ebfitapp.fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -43,6 +49,9 @@ class IdealWeightFragment : Fragment() {
             goBackImage.setOnClickListener {
                 val goBackAction = IdealWeightFragmentDirections.actionIdealWeightFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
+            }
+            infoImage.setOnClickListener {
+                showIdealWeightInfo()
             }
             genderSwitch.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
@@ -210,6 +219,29 @@ class IdealWeightFragment : Fragment() {
                 // Obese
                 showObeseText()
             }
+        }
+    }
+
+    private fun showIdealWeightInfo()
+    {
+        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.ideal_weight_info)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+
+        val redColorSpan = ForegroundColorSpan(Color.RED)
+        val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
+        val spannableString = SpannableString("Your ideal weight can be determined by considering your body weight and fat percentage. The Hamwi Formula is employed in this calculation. ")
+        spannableString.setSpan(redColorSpan, 88, 105, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        explanationId.text = spannableString
+        dialog.show()
+        val dialogCancelBtn = dialog.findViewById<Button>(R.id.gotItCalorieButton)
+        dialogCancelBtn.setOnClickListener {
+            dialog.dismiss()
         }
     }
 }
