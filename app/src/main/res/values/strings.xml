@@ -88,4 +88,6 @@
     <string name="elapsed_time">Elapsed Time</string>
     <string name="mm_ss">MM:SS</string>
     <string name="break_and_next_set">Break and Next Set</string>
+
+    <string name="finish_workout">Finish Workout</string>
 </resources>
