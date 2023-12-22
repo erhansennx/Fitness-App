@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentCalorieBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class CalorieFragment : Fragment() {
@@ -37,6 +38,7 @@ class CalorieFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         calorieBinding = FragmentCalorieBinding.inflate(layoutInflater)
         ActivityLevelSettings()
         return calorieBinding.root

@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentIdealWeightBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class IdealWeightFragment : Fragment() {
@@ -35,7 +36,7 @@ class IdealWeightFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         idealWeightBinding = FragmentIdealWeightBinding.inflate(layoutInflater)
         return idealWeightBinding.root
     }

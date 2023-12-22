@@ -1,18 +1,28 @@
 package com.app.ebfitapp.fragment
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentBodyFatPercentageBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.DecimalFormat
+import kotlin.math.pow
 
 class BodyFatPercentageFragment : Fragment() {
     private var personHeight : Double? = null
@@ -29,6 +39,7 @@ class BodyFatPercentageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         bodyFatPercentageBinding = FragmentBodyFatPercentageBinding.inflate(layoutInflater)
         return bodyFatPercentageBinding.root
     }
@@ -43,7 +54,7 @@ class BodyFatPercentageFragment : Fragment() {
             }
 
             infoImage.setOnClickListener {
-                Toast.makeText(requireContext(),"Info image clicked",Toast.LENGTH_SHORT).show()
+                showFatPercentageInfo()
             }
 
             genderSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -68,7 +79,6 @@ class BodyFatPercentageFragment : Fragment() {
 
                 if (gender == null || personHeight == null || personWeight == null || personNeckSize == null || personWaistSize == null) {
                     Toast.makeText(requireContext(), "Please fill in all the values", Toast.LENGTH_SHORT).show()
-                    println("${gender} || ${personWeight} || ${personHeight} || ${personNeckSize} || ${personWaistSize}  ")
                     return@setOnClickListener
                 }
                 else
@@ -76,11 +86,11 @@ class BodyFatPercentageFragment : Fragment() {
                     val decimalFormat = DecimalFormat("#.##")
                     if(gender!!)
                     {
-                        returnForMale = calculateBodyFatPercentageMale(personWeight!!,personHeight!!,personWaistSize!!)
+                        returnForMale = calculateBodyFatPercentage(personWeight!!,personHeight!!,personWaistSize!!)
                         resultText.text = " ${decimalFormat.format(returnForMale)}%"
                     }
                     else{
-                        returnForFemale = calculateBodyFatPercentageFemale(personWeight!!,personHeight!!,personWaistSize!!)
+                        returnForFemale = calculateBodyFatPercentage(personWeight!!,personHeight!!,personWaistSize!!)
                         resultText.text = " ${decimalFormat.format(returnForFemale)}%"
                     }
                     showResultText()
@@ -93,12 +103,11 @@ class BodyFatPercentageFragment : Fragment() {
             }
         }
 
-    private fun calculateBodyFatPercentageMale(weight: Double, height: Double, waist: Double): Double {
-        return 0.29288 * weight - 0.0005 * Math.pow(weight, 2.0) + 0.00000419 * Math.pow(weight, 3.0)- 0.0000722 * waist + 0.000073 * height - 10.4
-    }
+    private fun calculateBodyFatPercentage(weight: Double, height: Double, waist: Double): Double {
 
-    private fun calculateBodyFatPercentageFemale(weight: Double, height: Double, waist: Double): Double {
-        return 0.29669 * weight - 0.00043 * Math.pow(weight, 2.0) + 0.00000353 * Math.pow(weight, 3.0)- 0.0000779 * waist + 0.0000779 * height - 9.7
+        return if(gender!!)
+            0.29288 * weight - 0.0005 * weight.pow(2.0) + 0.00000419 * weight.pow(3.0) - 0.0000722 * waist + 0.000073 * height - 10.4
+        else 0.29669 * weight - 0.00043 * weight.pow(2.0) + 0.00000353 * weight.pow(3.0) - 0.0000779 * waist + 0.0000779 * height - 9.7
     }
 
     private fun showPercentageTextVisibility(lowVisibility: Int, highVisibility: Int, healthyVisibility: Int) {
@@ -113,14 +122,33 @@ class BodyFatPercentageFragment : Fragment() {
         bodyFatPercentageBinding.fatPercentageTextLayuot.visibility = View.VISIBLE
 
     }
-
-
-
     private fun handleBodyFatResult(bodyFatPercentage: Double, gender: Boolean) {
         when (bodyFatPercentage) {
             in 0.0..10.0 -> showPercentageTextVisibility(View.VISIBLE, View.INVISIBLE, View.INVISIBLE)
             in 11.0..(if (gender) 25.0 else 30.0) -> showPercentageTextVisibility(View.INVISIBLE, View.INVISIBLE, View.VISIBLE)
             else -> showPercentageTextVisibility(View.INVISIBLE, View.VISIBLE, View.INVISIBLE)
+        }
+    }
+    private fun showFatPercentageInfo()
+    {
+        val dialog = Dialog(requireActivity())
+        dialog.setContentView(R.layout.fat_percentage_info)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+
+        val redColorSpan = ForegroundColorSpan(Color.RED)
+        val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
+        val spannableString = SpannableString("Your body fat percentage can be estimated using measurements such as waist circumference, body weight, and height. The US Navy Body Fat Formula is employed for this calculation ")
+        spannableString.setSpan(redColorSpan, 115, 143, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        explanationId.text = spannableString
+        dialog.show()
+        val dialogCancelBtn = dialog.findViewById<Button>(R.id.gotItCalorieButton)
+        dialogCancelBtn.setOnClickListener {
+            dialog.dismiss()
         }
     }
 }
