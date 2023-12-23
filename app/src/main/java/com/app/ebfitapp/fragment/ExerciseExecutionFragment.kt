@@ -71,21 +71,24 @@ class ExerciseExecutionFragment : Fragment() {
             }
 
             nextSetButton.setOnClickListener {
-                exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
-                chronometer.stop()
-                countDownDialog.showCountDownDialog(15000) {
-                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-                    pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
-                    chronometer.base = SystemClock.elapsedRealtime()
-                    elapsedTime = 0
-                    isRunning = false
-                    if (elapsedSet > 1) {
-                        elapsedSet--
-                        elapsedSetText.text = "$elapsedSet x Elapsed Set"
-                    } else {
-                        Toast.makeText(requireContext(), "Finish!", Toast.LENGTH_SHORT).show()
+                if (elapsedSet != 1) {
+                    exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+                    chronometer.stop()
+                    countDownDialog.showCountDownDialog(15000) {
+                        pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+                        pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+                        chronometer.base = SystemClock.elapsedRealtime()
+                        elapsedTime = 0
+                        isRunning = false
+                        if (elapsedSet > 1) {
+                            elapsedSet--
+                            elapsedSetText.text = "$elapsedSet x Elapsed Set"
+                        }
                     }
+                } else {
+                    Toast.makeText(requireContext(), "Finish!", Toast.LENGTH_SHORT).show()
                 }
+
             }
 
             pauseAndPlay.setOnClickListener {
