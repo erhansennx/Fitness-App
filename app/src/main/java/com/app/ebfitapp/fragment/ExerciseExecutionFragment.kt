@@ -39,104 +39,156 @@ class ExerciseExecutionFragment : Fragment() {
     private var enteredWeight = "0"
     private var enteredType = ""
 
+    private lateinit var binding: FragmentExerciseExecutionBinding
     private lateinit var customProgress: CustomProgress
     private lateinit var countDownDialog: CountDownDialog
     private lateinit var exerciseItem: BodyPartExercisesItem
     private val executionViewModel: ExecutionViewModel by viewModels()
-    private lateinit var binding: FragmentExerciseExecutionBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentExerciseExecutionBinding.inflate(inflater)
-
         customProgress = CustomProgress(requireContext())
         countDownDialog = CountDownDialog(requireContext())
 
-        arguments.let {
-            exerciseItem = it!!.getSerializable("exercise") as BodyPartExercisesItem
+        arguments?.let {
+            exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
 
-            binding.exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
-            binding.exerciseName.text = exerciseItem.name
+            with(binding) {
+                exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+                exerciseName.text = exerciseItem.name
+            }
         }
 
+        setClickListeners()
         showBottomSheet()
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    private fun setClickListeners() {
         with(binding) {
-
             startButton.setOnClickListener {
-                if (enteredSets.toInt() != 0 && enteredReps.toInt() != 0) {
-                    countDownDialog.showCountDownDialog(5000) {
-                        if (it) {
-                            exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
-                            startButton.visibility = View.GONE
-                            startedLayout.visibility = View.VISIBLE
-                            startChronometer()
-                        }
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Please enter the number and sets of repetitions.", Toast.LENGTH_SHORT).show()
-                }
+                handleStartButtonClick()
             }
 
             nextSetButton.setOnClickListener {
-                if (elapsedSet != 1) {
-                    exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
-                    chronometer.stop()
-                    countDownDialog.showCountDownDialog(1000) {
-                        pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-                        pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
-                        chronometer.base = SystemClock.elapsedRealtime()
-                        elapsedTime = 0
-                        isRunning = false
-                        if (elapsedSet > 1) {
-                            elapsedSet--
-                            elapsedSetText.text = "$elapsedSet x Elapsed Set"
-                        }
-                    }
-                } else {
-                    val currentYear : String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
-                    val exerciseData = ExecutionModel(exerciseItem.name, enteredWeight.toDouble(), enteredType, enteredSets.toInt(), enteredReps.toInt(), currentYear)
-                    customProgress.show()
-                    executionViewModel.saveWorkout(exerciseData) { result, message ->
-                        customProgress.dismiss()
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        if (result) {
-                            val action = ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
-                            findNavController().navigate(action)
-                        }
-                    }
-                }
-
+                handleNextSetButtonClick()
             }
 
             pauseAndPlay.setOnClickListener {
-                val chronometer = binding.chronometer
-                if (isRunning) {
-                    elapsedTime = SystemClock.elapsedRealtime() - chronometer.base
-                    chronometer.stop()
-                    isRunning = false
-                    exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
-                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-                    pauseAndPlay.setImageResource(R.drawable.baseline_pause_24)
-                } else {
-                    chronometer.base = SystemClock.elapsedRealtime() - elapsedTime
-                    chronometer.start()
-                    isRunning = true
-                    exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
-                    pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-                    pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
-                    if (elapsedSet == 1) nextSetButton.text = getString(R.string.finish_workout)
-                }
+                handlePausePlayClick()
             }
 
             settings.setOnClickListener {
                 showBottomSheet()
             }
+        }
+    }
+
+    private fun handleStartButtonClick() {
+        if (enteredSets.toInt() != 0 && enteredReps.toInt() != 0) {
+            countDownDialog.showCountDownDialog(5000) { started ->
+                if (started) {
+                    handleExerciseStart()
+                }
+            }
+        } else {
+            Toast.makeText(requireContext(), "Please enter the number and sets of repetitions.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleExerciseStart() {
+        with(binding) {
+            exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+            startButton.visibility = View.GONE
+            startedLayout.visibility = View.VISIBLE
+            startChronometer()
+        }
+    }
+
+    private fun handleNextSetButtonClick() {
+        if (elapsedSet != 1) {
+            handleNextSet()
+        } else {
+            saveExerciseData()
+        }
+    }
+
+    private fun handleNextSet() {
+        with(binding) {
+            exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+            chronometer.stop()
+            countDownDialog.showCountDownDialog(1000) {
+                resetChronometer()
+                updateNextSetUI()
+            }
+        }
+    }
+
+    private fun resetChronometer() {
+        with(binding) {
+            pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+            pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+            chronometer.base = SystemClock.elapsedRealtime()
+            elapsedTime = 0
+            isRunning = false
+            if (elapsedSet > 1) {
+                elapsedSet--
+                elapsedSetText.text = "$elapsedSet x Elapsed Set"
+            }
+        }
+    }
+
+    private fun updateNextSetUI() {
+        with(binding) {
+            if (elapsedSet == 1) nextSetButton.text = getString(R.string.finish_workout)
+        }
+    }
+
+    private fun saveExerciseData() {
+        val currentYear: String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+        val exerciseData = ExecutionModel(exerciseItem.name, enteredWeight.toDouble(), enteredType, enteredSets.toInt(), enteredReps.toInt(), currentYear)
+        customProgress.show()
+        executionViewModel.saveWorkout(exerciseData) { result, message ->
+            customProgress.dismiss()
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            if (result) {
+                val action = ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    private fun handlePausePlayClick() {
+        if (isRunning) {
+            pauseChronometer()
+        } else {
+            playChronometer()
+        }
+    }
+
+    private fun pauseChronometer() {
+        with(binding) {
+            val chronometer = this.chronometer
+            elapsedTime = SystemClock.elapsedRealtime() - chronometer.base
+            chronometer.stop()
+            isRunning = false
+            exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
+            pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+            pauseAndPlay.setImageResource(R.drawable.baseline_pause_24)
+        }
+    }
+
+    private fun playChronometer() {
+        with(binding) {
+            val chronometer = this.chronometer
+            chronometer.base = SystemClock.elapsedRealtime() - elapsedTime
+            chronometer.start()
+            isRunning = true
+            exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
+            pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
+            pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+            if (elapsedSet == 1) nextSetButton.text = getString(R.string.finish_workout)
         }
     }
 
@@ -194,4 +246,5 @@ class ExerciseExecutionFragment : Fragment() {
             isRunning = false
         }
     }
+
 }
