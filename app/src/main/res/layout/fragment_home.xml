@@ -127,12 +127,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/streakCounter"
+                    android:id="@+id/streakCounterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
                     android:hint="@string/count"
                     android:gravity="center"
+                    android:text="@string/zero"
                     android:textColorHint="@color/silver"
                     android:textColor="@color/white"
                     android:textSize="16sp"

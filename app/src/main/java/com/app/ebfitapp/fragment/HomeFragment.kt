@@ -14,12 +14,15 @@ import com.app.ebfitapp.R
 import com.app.ebfitapp.adapter.ArticleAdapter
 import com.app.ebfitapp.databinding.FragmentHomeBinding
 import com.app.ebfitapp.utils.CustomProgress
+import com.app.ebfitapp.utils.StreakManager
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.viewmodel.MainViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 
 class HomeFragment : Fragment() {
+
+    private var currentStreak: Int = 0
 
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var mainViewModel: MainViewModel
@@ -42,6 +45,8 @@ class HomeFragment : Fragment() {
 
         chips()
 
+        getStreak()
+
         return fragmentHomeBinding.root
     }
 
@@ -50,6 +55,15 @@ class HomeFragment : Fragment() {
 
         fragmentHomeBinding.articleRecycler.adapter = articleAdapter
 
+    }
+
+    private fun getStreak() = with(fragmentHomeBinding) {
+        StreakManager.getCurrentStreak(requireContext()) { streakCounter ->
+            if (streakCounter != null) {
+                currentStreak = streakCounter
+                streakCounterText.text = currentStreak.toString()
+            }
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
