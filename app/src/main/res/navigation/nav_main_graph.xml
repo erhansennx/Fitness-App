@@ -92,6 +92,9 @@
         <argument
             android:name="exercise"
             app:argType="com.app.ebfitapp.model.BodyPartExercisesItem"/>
+        <action
+            android:id="@+id/action_exerciseExecutionFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"

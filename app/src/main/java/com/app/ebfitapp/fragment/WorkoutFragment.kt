@@ -17,6 +17,7 @@ import com.app.ebfitapp.model.BestTrainersModel
 import com.app.ebfitapp.model.MuscleGroupModel
 import com.app.ebfitapp.model.PopularWorkoutsModel
 import com.app.ebfitapp.viewmodel.WorkoutViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WorkoutFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class WorkoutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentWorkoutBinding = FragmentWorkoutBinding.inflate(layoutInflater)
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
 
         muscleGroups = ArrayList()
         bestTrainers = ArrayList()

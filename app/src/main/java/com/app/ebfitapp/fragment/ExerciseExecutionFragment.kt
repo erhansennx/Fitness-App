@@ -1,5 +1,6 @@
 package com.app.ebfitapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.fragment.app.Fragment
@@ -10,14 +11,22 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.app.ebfitapp.R
 import com.app.ebfitapp.databinding.FragmentExerciseExecutionBinding
 import com.app.ebfitapp.model.BodyPartExercisesItem
+import com.app.ebfitapp.model.ExecutionModel
 import com.app.ebfitapp.utils.CountDownDialog
+import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.downloadGifFromURL
 import com.app.ebfitapp.utils.downloadImageFromURL
+import com.app.ebfitapp.viewmodel.ExecutionViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class ExerciseExecutionFragment : Fragment() {
 
@@ -28,14 +37,18 @@ class ExerciseExecutionFragment : Fragment() {
     private var enteredSets = "0"
     private var enteredReps = "0"
     private var enteredWeight = "0"
+    private var enteredType = ""
 
+    private lateinit var customProgress: CustomProgress
     private lateinit var countDownDialog: CountDownDialog
     private lateinit var exerciseItem: BodyPartExercisesItem
+    private val executionViewModel: ExecutionViewModel by viewModels()
     private lateinit var binding: FragmentExerciseExecutionBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentExerciseExecutionBinding.inflate(inflater)
 
+        customProgress = CustomProgress(requireContext())
         countDownDialog = CountDownDialog(requireContext())
 
         arguments.let {
@@ -74,7 +87,7 @@ class ExerciseExecutionFragment : Fragment() {
                 if (elapsedSet != 1) {
                     exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
                     chronometer.stop()
-                    countDownDialog.showCountDownDialog(15000) {
+                    countDownDialog.showCountDownDialog(1000) {
                         pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
                         pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
                         chronometer.base = SystemClock.elapsedRealtime()
@@ -86,7 +99,17 @@ class ExerciseExecutionFragment : Fragment() {
                         }
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Finish!", Toast.LENGTH_SHORT).show()
+                    val currentYear : String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                    val exerciseData = ExecutionModel(exerciseItem.name, enteredWeight.toDouble(), enteredType, enteredSets.toInt(), enteredReps.toInt(), currentYear)
+                    customProgress.show()
+                    executionViewModel.saveWorkout(exerciseData) { result, message ->
+                        customProgress.dismiss()
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        if (result) {
+                            val action = ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
+                            findNavController().navigate(action)
+                        }
+                    }
                 }
 
             }
@@ -154,6 +177,7 @@ class ExerciseExecutionFragment : Fragment() {
 
         typeDropDown.setOnItemClickListener { adapterView, view, i, l ->
             selectedType = adapterView.getItemAtPosition(i).toString()
+            enteredType = selectedType.toString()
         }
 
         bottomSheetDialog.show()
