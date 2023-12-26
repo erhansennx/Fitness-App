@@ -2,14 +2,12 @@ package com.app.ebfitapp.utils
 
 import android.content.Context
 import android.widget.Toast
-import com.app.ebfitapp.R
-import com.app.ebfitapp.service.FirebaseAuthService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.coroutines.CoroutineContext
+import kotlin.math.abs
 
 object StreakManager {
 
@@ -26,6 +24,13 @@ object StreakManager {
                 val counter = documentSnapshot.data!!["count"].toString().toInt()
                 streakModel = StreakModel(counter, date, email!!)
                 streakCounter = counter
+
+                if (calculateDateDifferent(date, getTodayDate()) > 1) {
+                    streakModel!!.count = -1
+                    streakCounter = 0
+                    updateStreak()
+                }
+
                 callback(streakCounter)
             } else {
                 streaksRef.set(hashMapOf<String, Any>("count" to 0, "date" to "", "email" to email!!)).addOnCompleteListener { setTask ->
@@ -80,6 +85,16 @@ object StreakManager {
         )
     }
 
-    data class StreakModel(val count: Int, val date: String, val email: String)
+    private fun calculateDateDifferent(streakDate: String, currentDate: String): Long {
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+
+        val streak = dateFormat.parse(streakDate)!!
+        val current = dateFormat.parse(currentDate)!!
+        val diffInMilliseconds = abs(current.time - streak.time)
+
+        return diffInMilliseconds / (24 * 60 * 60 * 1000)
+    }
+
+    data class StreakModel(var count: Int, val date: String, val email: String)
 
 }
