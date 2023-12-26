@@ -91,4 +91,6 @@
 
     <string name="finish_workout">Finish Workout</string>
     <string name="zero">0</string>
+    <string name="search">Search</string>
+    <string name="todo_list_is_empty_for_current_day">Todo List is empty for current day</string>
 </resources>

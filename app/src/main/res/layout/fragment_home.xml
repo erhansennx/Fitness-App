@@ -38,8 +38,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:gravity="center|start"
                 android:orientation="vertical">
 
@@ -69,11 +69,11 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/baseline_notifications_none_24"
-                android:padding="10dp"
                 android:layout_gravity="center"
                 android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/light_gray"/>
+                android:backgroundTint="@color/light_gray"
+                android:padding="10dp"
+                android:src="@drawable/baseline_notifications_none_24" />
 
         </LinearLayout>
 
@@ -131,11 +131,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
-                    android:hint="@string/count"
                     android:gravity="center"
+                    android:hint="@string/count"
                     android:text="@string/zero"
-                    android:textColorHint="@color/silver"
                     android:textColor="@color/white"
+                    android:textColorHint="@color/silver"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/circularSeekBar"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -171,40 +171,49 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/round_6dp_background"
             android:backgroundTint="@color/light_gray"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/white"
-            app:queryHint="Search"
-            app:iconTint="@android:color/white"
-            app:defaultQueryHint="Search"/>
+            android:drawableStart="@drawable/baseline_search_24"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/silver"
+            android:hint="@string/search"
+            android:textColorHint="@color/silver"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingVertical="8dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:textColor="@color/white" />
+
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:scrollbars="none">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:singleSelection="true"
-                app:chipSpacing="8dp">
+                app:chipSpacing="8dp"
+                app:singleSelection="true">
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/all"
                     android:checkable="true"
                     android:checked="true"
-                    app:chipBackgroundColor="@color/chip_background"
+                    android:text="@string/all"
                     android:textColor="@color/white"
-                    app:chipStrokeColor="@color/light_gray"/>
+                    app:chipBackgroundColor="@color/chip_background"
+                    app:chipStrokeColor="@color/light_gray" />
             </com.google.android.material.chip.ChipGroup>
 
         </HorizontalScrollView>
@@ -214,14 +223,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            tools:listitem="@layout/items_article"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/items_article" />
 
     </LinearLayout>
-
-
-
-
 
 
 </LinearLayout>
