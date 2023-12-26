@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.app.ebfitapp.model.StreakModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -89,11 +90,16 @@ object StreakManager {
     private fun calculateDateDifferent(streakDate: String, currentDate: String): Long {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
-        val streak = dateFormat.parse(streakDate)!!
-        val current = dateFormat.parse(currentDate)!!
-        val diffInMilliseconds = abs(current.time - streak.time)
+        return try {
+            val streak = dateFormat.parse(streakDate)!!
+            val current = dateFormat.parse(currentDate)!!
+            val diffInMilliseconds = abs(current.time - streak.time)
 
-        return diffInMilliseconds / (24 * 60 * 60 * 1000)
+            diffInMilliseconds / (24 * 60 * 60 * 1000)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            -1
+        }
     }
 
 }

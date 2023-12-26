@@ -201,7 +201,7 @@
                     android:background="@drawable/round_6dp_background"
                     android:backgroundTint="@color/red"
                     android:padding="7dp"
-                    android:src="@drawable/baseline_play_arrow_24" />
+                    android:src="@drawable/baseline_pause_24" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/nextSetButton"

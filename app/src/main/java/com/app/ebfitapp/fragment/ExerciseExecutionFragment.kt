@@ -175,7 +175,7 @@ class ExerciseExecutionFragment : Fragment() {
             isRunning = false
             exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
             pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-            pauseAndPlay.setImageResource(R.drawable.baseline_pause_24)
+            pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
         }
     }
 
@@ -187,7 +187,7 @@ class ExerciseExecutionFragment : Fragment() {
             isRunning = true
             exerciseGifView.downloadGifFromURL(exerciseItem.gifUrl)
             pauseAndPlay.setBackgroundResource(R.drawable.round_6dp_background)
-            pauseAndPlay.setImageResource(R.drawable.baseline_play_arrow_24)
+            pauseAndPlay.setImageResource(R.drawable.baseline_pause_24)
             if (elapsedSet == 1) nextSetButton.text = getString(R.string.finish_workout)
         }
     }
