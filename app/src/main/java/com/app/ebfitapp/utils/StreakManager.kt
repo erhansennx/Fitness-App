@@ -2,6 +2,7 @@ package com.app.ebfitapp.utils
 
 import android.content.Context
 import android.widget.Toast
+import com.app.ebfitapp.model.StreakModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -12,7 +13,7 @@ import kotlin.math.abs
 object StreakManager {
 
     private var streakCounter = 0
-    private var streakModel: StreakModel ?= null
+    private var streakModel: StreakModel?= null
     private val email = FirebaseAuth.getInstance().currentUser!!.email
     private const val STREAKS_COLLECTION = "streaks"
     private val streaksRef = FirebaseFirestore.getInstance().collection(STREAKS_COLLECTION).document(email!!)
@@ -94,7 +95,5 @@ object StreakManager {
 
         return diffInMilliseconds / (24 * 60 * 60 * 1000)
     }
-
-    data class StreakModel(var count: Int, val date: String, val email: String)
 
 }
