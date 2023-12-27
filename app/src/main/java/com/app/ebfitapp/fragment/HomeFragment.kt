@@ -118,6 +118,9 @@ class HomeFragment : Fragment() {
                 articleAdapter.setData(filteredArticles)
 
                 chipAll.isChecked = true
+
+                emptyText.visibility = if (filteredArticles.isEmpty()) View.VISIBLE
+                else View.GONE
             }
 
             override fun afterTextChanged(p0: Editable?) { }

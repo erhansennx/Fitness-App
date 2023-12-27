@@ -55,7 +55,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                             snapshot.data!!["title"].toString(),
                             snapshot.data!!["category"].toString(),
                             snapshot.data!!["description"].toString(),
-                            snapshot.data!!["imageURL"].toString(),
+                            snapshot.data!!["readingTime"].toString(),
+                            snapshot.data!!["imageURL"].toString()
                         )
                         articleList.add(articleData)
                     }

@@ -9,6 +9,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/articleLayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginVertical="10dp"

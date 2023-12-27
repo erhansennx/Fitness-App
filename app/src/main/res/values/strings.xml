@@ -93,4 +93,7 @@
     <string name="zero">0</string>
     <string name="search">Search</string>
     <string name="todo_list_is_empty_for_current_day">Todo List is empty for current day</string>
+    <string name="category">Category</string>
+    <string name="reading_time">Reading Time</string>
+    <string name="no_results_found_according_to_your_search">No results found according to your search</string>
 </resources>
