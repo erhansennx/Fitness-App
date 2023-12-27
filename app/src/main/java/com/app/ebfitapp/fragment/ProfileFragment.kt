@@ -67,6 +67,8 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
+                val editProfileAction = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
+                Navigation.findNavController(requireView()).navigate(editProfileAction)
                 Toast.makeText(requireContext(),"Edit profile tıklandı",Toast.LENGTH_SHORT).show()
             }
 
