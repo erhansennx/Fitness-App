@@ -48,7 +48,6 @@ class HomeFragment : Fragment() {
         observeArticle()
 
         disableSeekBar()
-        chips()
         getStreak()
 
         return fragmentHomeBinding.root
@@ -75,10 +74,8 @@ class HomeFragment : Fragment() {
         fragmentHomeBinding.circularSeekBar.setOnTouchListener { view, motionEvent -> true }
     }
 
-    private fun chips() {
-        val chipTextArray = arrayOf("Yoga", "Cardio", "Strectch", "Food", "Calori")
-
-        for (chipText in chipTextArray) {
+    private fun chips(categories: ArrayList<String>) {
+        for (chipText in categories) {
             val chip = Chip(requireContext())
             chip.text = chipText
             chip.isCheckable = true
@@ -114,6 +111,8 @@ class HomeFragment : Fragment() {
                 article.clear()
                 article.addAll(resultArticle)
                 articleAdapter.notifyDataSetChanged()
+                val categories = resultArticle.map { it.category }.distinct()
+                chips(categories as ArrayList)
             }
         })
     }
