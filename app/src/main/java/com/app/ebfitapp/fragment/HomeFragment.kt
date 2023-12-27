@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
         fragmentHomeBinding.circularSeekBar.setOnTouchListener { view, motionEvent -> true }
     }
 
-    private fun chips(categories: ArrayList<String>) {
+    private fun chips(categories: ArrayList<String>) = with(fragmentHomeBinding) {
         for (chipText in categories) {
             val chip = Chip(requireContext())
             chip.text = chipText
@@ -82,24 +82,34 @@ class HomeFragment : Fragment() {
             chip.chipBackgroundColor = ContextCompat.getColorStateList(requireContext(), R.color.chip_background)
             chip.setChipStrokeColorResource(R.color.light_gray)
             chip.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
-            fragmentHomeBinding.chipGroup.addView(chip)
+            chipGroup.addView(chip)
         }
-        
-        fragmentHomeBinding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            val selectedChipId = group.findViewById<Chip>(group.checkedChipId)
-            if (selectedChipId != null) Toast.makeText(requireContext(), "${selectedChipId.text}", Toast.LENGTH_LONG).show()
-            else fragmentHomeBinding.chipAll.isChecked = true
+
+        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            val selectedChip = group.findViewById<Chip>(group.checkedChipId)
+
+            if (selectedChip != null) {
+                if (selectedChip.id == R.id.chipAll) {
+                    articleAdapter.setData(article)
+                } else {
+                    val category = selectedChip.text.toString()
+                    val filteredArticles = article.filter { it.category == category }
+                    articleAdapter.setData(filteredArticles)
+                }
+            } else {
+                chipAll.isChecked = true
+            }
+
         }
-        
     }
 
-    private fun observeProfileDetail() {
+    private fun observeProfileDetail() = with(fragmentHomeBinding) {
         mainViewModel.profileDetails.observe(requireActivity(), Observer { userProfileDetails ->
             customProgress.dismiss()
             if (userProfileDetails != null) {
-                fragmentHomeBinding.homeRootLinear.visibility = View.VISIBLE
-                fragmentHomeBinding.profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
-                fragmentHomeBinding.nicknameText.text = "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
+                homeRootLinear.visibility = View.VISIBLE
+                profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
+                nicknameText.text = "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
             }
         })
     }
