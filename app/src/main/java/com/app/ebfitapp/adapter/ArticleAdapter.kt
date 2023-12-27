@@ -13,16 +13,14 @@ class ArticleAdapter(private var articles: ArrayList<ArticleModel>) : RecyclerVi
     class ItemHolder(val binding: ItemsArticleBinding) : ViewHolder(binding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        val itemBinding = ItemsArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemsArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int {
-        return 10
-    }
 //Hocam şu resim ekleme makarası çalışmıyo galiba neresi
     // bakarim oraya okidoki sen bu surekli respond veriyor ona bi bak istersen hocam makarayı sıfırlarız düzelir okays a
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
+
     override fun getItemCount() = articles.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.binding) {
