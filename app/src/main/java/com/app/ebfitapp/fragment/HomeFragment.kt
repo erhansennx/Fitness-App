@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.ebfitapp.R
 import com.app.ebfitapp.adapter.ArticleAdapter
 import com.app.ebfitapp.databinding.FragmentHomeBinding
+import com.app.ebfitapp.model.ArticleModel
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.StreakManager
 import com.app.ebfitapp.utils.downloadImageFromURL
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
 
     private var currentStreak: Int = 0
 
+    private lateinit var article: ArrayList<ArticleModel>
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var mainViewModel: MainViewModel
     private lateinit var customProgress: CustomProgress
@@ -35,16 +37,18 @@ class HomeFragment : Fragment() {
         customProgress = CustomProgress(requireActivity())
         customProgress.show()
 
-        articleAdapter = ArticleAdapter()
+        article = ArrayList()
+        articleAdapter = ArticleAdapter(article)
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.getProfileDetail()
+        mainViewModel.getArticles()
+
         observeProfileDetail()
+        observeArticle()
 
         disableSeekBar()
-
         chips()
-
         getStreak()
 
         return fragmentHomeBinding.root
@@ -99,6 +103,17 @@ class HomeFragment : Fragment() {
                 fragmentHomeBinding.homeRootLinear.visibility = View.VISIBLE
                 fragmentHomeBinding.profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
                 fragmentHomeBinding.nicknameText.text = "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
+            }
+        })
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun observeArticle() {
+        mainViewModel.articleLiveData.observe(requireActivity(), Observer { resultArticle ->
+            if (resultArticle != null) {
+                article.clear()
+                article.addAll(resultArticle)
+                articleAdapter.notifyDataSetChanged()
             }
         })
     }

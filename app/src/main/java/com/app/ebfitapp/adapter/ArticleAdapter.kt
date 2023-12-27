@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.app.ebfitapp.databinding.ItemsArticleBinding
+import com.app.ebfitapp.model.ArticleModel
 
-class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ItemHolder>() {
+class ArticleAdapter(private val articles: ArrayList<ArticleModel>) : RecyclerView.Adapter<ArticleAdapter.ItemHolder>() {
 
     class ItemHolder(val binding: ItemsArticleBinding) : ViewHolder(binding.root) {}
 
@@ -15,12 +16,10 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ItemHolder>() {
         return ItemHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int {
-        return 10
-    }
+    override fun getItemCount() = articles.size
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.binding) {
+        article = articles[position]
     }
 
 }
