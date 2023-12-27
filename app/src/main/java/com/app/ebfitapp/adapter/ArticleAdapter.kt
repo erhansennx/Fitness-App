@@ -17,6 +17,12 @@ class ArticleAdapter(private var articles: ArrayList<ArticleModel>) : RecyclerVi
         return ItemHolder(itemBinding)
     }
 
+    override fun getItemCount(): Int {
+        return 10
+    }
+//Hocam şu resim ekleme makarası çalışmıyo galiba neresi
+    // bakarim oraya okidoki sen bu surekli respond veriyor ona bi bak istersen hocam makarayı sıfırlarız düzelir okays a
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
     override fun getItemCount() = articles.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.binding) {

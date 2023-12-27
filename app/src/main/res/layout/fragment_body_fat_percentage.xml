@@ -68,7 +68,7 @@
         android:orientation="horizontal"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="45dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,45 +105,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="vertical"
-        >
-
-        <EditText
-            android:id="@+id/personAgeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your age"
-            android:textColorHint="@color/silver"
-            android:paddingBottom="28dp"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="@color/white"
-            android:textSize="23dp"
-            android:ems="5"
-
-            ></EditText>
-
-        <TextView
-            android:id="@+id/falseAgeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Invalid age : must be a number"
-            android:textColor="@color/red"
-            android:textSize="18dp"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:layout_marginStart="3dp"
-            android:visibility="invisible"
-            ></TextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         >
 
 
@@ -192,23 +155,24 @@
             >
 
             <EditText
-                android:id="@+id/personWeightText"
+                android:id="@+id/personHipText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Your weight in kgs"
+                android:hint="Your hip size in cm"
                 android:textColorHint="@color/silver"
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:textSize="22dp"
                 android:ems="5"
+                android:visibility="gone"
                 ></EditText>
 
             <TextView
-                android:id="@+id/falseWeightText"
+                android:id="@+id/falseHipText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Invalid body weight : must be 30 and 250kgs"
+                android:text="Invalid hip size : must be 60 and 120cm"
                 android:textColor="@color/red"
                 android:textSize="16dp"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
@@ -309,7 +273,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         >
 
         <Button
@@ -342,7 +306,6 @@
             ></TextView>
         <TextView
             android:id="@+id/resultText"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" %18"
@@ -379,7 +342,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" HEALTHY "
-                android:visibility="invisible"
                 android:textSize="20dp"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:textColor="@color/green"
@@ -389,7 +351,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" LOW "
-                android:visibility="invisible"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:textSize="22dp"
                 android:textColor="@color/red"
@@ -399,7 +360,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" HİGH "
-                android:visibility="invisible"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:textSize="22dp"
                 android:textColor="@color/red"
