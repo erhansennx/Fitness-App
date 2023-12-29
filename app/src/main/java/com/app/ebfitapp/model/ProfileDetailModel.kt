@@ -1,13 +1,13 @@
 package com.app.ebfitapp.model
 
 data class ProfileDetailModel(
-    val username: String?,
-    val email: String?,
-    val gender: String?,
-    val profileImageURL: String?,
-    val age: String?,
-    val height: Int?,
-    val weight: Double?,
-    val targetWeight: Double?,
-    val goal: String?
+    var username: String?,
+    var email: String?,
+    var gender: String?,
+    var profileImageURL: String?,
+    var age: String?,
+    var height: Int?,
+    var weight: Double?,
+    var targetWeight: Double?,
+    var goal: String?
 )

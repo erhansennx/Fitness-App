@@ -44,6 +44,15 @@
                 android:textColor="@color/white"
                 android:textSize="25dp"/>
 
+            <TextView
+                android:id="@+id/infoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="sa"
+                android:textColor="@color/white"
+                ></TextView>
+
         </RelativeLayout>
 
         <View
@@ -58,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
@@ -81,15 +90,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="70dp">
 
         <Button
-            android:id="@+id/calculateButton"
+            android:id="@+id/doneButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Done"
             android:textColor="@color/gray"
+            android:clickable="false"
             android:backgroundTint="#61E93B46"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="30dp"/>
@@ -99,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
@@ -108,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="test"
+            android:ems="20"
             android:fontFamily="@font/revolutiongothic_light"
             android:textColor="@color/white"
             android:textColorHint="@color/silver"
@@ -123,6 +134,103 @@
             android:textSize="16dp"
             android:visibility="invisible"
             android:text="Invalid name : must be between 2 and 20 characters"
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/ageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="21"
+            android:ems="20"
+            android:inputType="number"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="23dp" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:id="@+id/falseAgeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textSize="16dp"
+            android:visibility="invisible"
+            android:text="Invalid name : must be between 0 and 100"
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/weightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="78"
+            android:ems="20"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="23dp" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:id="@+id/falseWeightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textSize="16dp"
+            android:visibility="invisible"
+            android:text="Invalid name : must be between 30 and 250 "
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/targetWeightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="110"
+            android:ems="20"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="23dp" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:id="@+id/falseTargetWeightText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:textSize="16dp"
+            android:visibility="invisible"
+            android:text="Invalid name : must be between 30 and 250"
             android:textColor="@color/red" />
 
     </LinearLayout>
