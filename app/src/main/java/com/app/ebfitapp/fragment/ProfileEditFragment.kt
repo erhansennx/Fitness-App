@@ -262,6 +262,7 @@ class ProfileEditFragment() : Fragment() {
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 newImageURI = it.data?.data
+                mainViewModel.profileDetails.value?.profileImageURL = newImageURI.toString()
                 setButtonBackground(true)
             }
         }
