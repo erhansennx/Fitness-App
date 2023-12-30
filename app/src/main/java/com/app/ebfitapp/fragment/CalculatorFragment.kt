@@ -39,10 +39,9 @@ class CalculatorFragment : Fragment() {
                 val idealWeightAction = CalculatorFragmentDirections.actionCalculatorFragmentToIdealWeightFragment()
                 Navigation.findNavController(requireView()).navigate(idealWeightAction)
             }
-            bmiImage.setOnClickListener{
-                val paceAction = CalculatorFragmentDirections.actionCalculatorFragmentToPaceFragment()
-                Navigation.findNavController(requireView()).navigate(paceAction)
-
+            jumpingRopeImage.setOnClickListener{
+                val ropeCalorieAction = CalculatorFragmentDirections.actionCalculatorFragmentToRopeCalorieBurnedFragment()
+                Navigation.findNavController(requireView()).navigate(ropeCalorieAction)
             }
             oneRmImage.setOnClickListener{
                 val oneRmAction = CalculatorFragmentDirections.actionCalculatorFragmentToOneRmFragment()

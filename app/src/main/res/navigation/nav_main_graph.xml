@@ -123,8 +123,8 @@
             android:id="@+id/action_calculatorFragment_to_calorieFragment"
             app:destination="@id/calorieFragment" />
         <action
-            android:id="@+id/action_calculatorFragment_to_paceFragment"
-            app:destination="@id/paceFragment" />
+            android:id="@+id/action_calculatorFragment_to_ropeCalorieBurnedFragment"
+            app:destination="@id/ropeCalorieBurnedFragment" />
     </fragment>
     <fragment
         android:id="@+id/bodyFatPercentageFragment"
@@ -163,15 +163,6 @@
             app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/paceFragment"
-        android:name="com.app.ebfitapp.fragment.PaceFragment"
-        android:label="fragment_pace"
-        tools:layout="@layout/fragment_pace" >
-        <action
-            android:id="@+id/action_paceFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/profileEditFragment"
         android:name="com.app.ebfitapp.fragment.ProfileEditFragment"
         android:label="fragment_profile_edit"
@@ -188,6 +179,15 @@
         <argument
             android:name="article"
             app:argType="com.app.ebfitapp.model.ArticleModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/ropeCalorieBurnedFragment"
+        android:name="com.app.ebfitapp.fragment.RopeCalorieBurnedFragment"
+        android:label="fragment_rope_calorie_burned"
+        tools:layout="@layout/fragment_rope_calorie_burned" >
+        <action
+            android:id="@+id/action_ropeCalorieBurnedFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
     </fragment>
 
 </navigation>
