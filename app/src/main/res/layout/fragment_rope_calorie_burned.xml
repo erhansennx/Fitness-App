@@ -73,13 +73,14 @@
 
 
         <EditText
-            android:id="@+id/fatPercentageEditText"
+            android:id="@+id/weightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Weight in kg"
             android:fontFamily="@font/revolutiongothic_light"
             android:paddingBottom="28dp"
+            android:inputType="number"
             android:textColor="@color/white"
             android:textColorHint="@color/silver"
             android:textSize="23dp" />
@@ -92,7 +93,7 @@
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:textSize="16dp"
             android:visibility="invisible"
-            android:text="Invalid weight : must be between 2 and 60"
+            android:text="Invalid weight : must be lower than and 500"
             android:textColor="@color/red"/>
 
     </LinearLayout>
@@ -121,18 +122,9 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
+                android:inputType="number"
                 android:textSize="23dp" />
 
-            <TextView
-                android:id="@+id/falseHoursText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textSize="16dp"
-                android:visibility="invisible"
-                android:text="Invalid weight : must be between 2 and 60"
-                android:textColor="@color/red"/>
         </LinearLayout>
 
         <LinearLayout
@@ -153,24 +145,16 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
+                android:inputType="number"
                 android:textSize="23dp" />
 
-            <TextView
-                android:id="@+id/falseMinutesText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textSize="16dp"
-                android:visibility="invisible"
-                android:text="Invalid weight : must be between 2 and 60"
-                android:textColor="@color/red"/>
         </LinearLayout>
 
     </LinearLayout>
 
 
    <TableLayout
+       android:layout_marginTop="25dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_marginStart="20dp"
@@ -236,7 +220,7 @@
                android:layout_column="3"
                android:layout_gravity="center|end"
                android:padding="10dp"
-               android:text="128345"
+               android:text="NaN"
                android:layout_marginStart="15dp"
                android:textColor="@color/red"
                android:textSize="18dp" ></TextView>
@@ -267,7 +251,7 @@
                android:layout_column="3"
                android:layout_gravity="center|end"
                android:padding="10dp"
-               android:text="128345"
+               android:text="NaN"
                android:layout_marginStart="15dp"
                android:textColor="@color/red"
                android:textSize="18dp" ></TextView>
@@ -299,7 +283,7 @@
                android:layout_column="3"
                android:layout_gravity="center|end"
                android:padding="10dp"
-               android:text="128345"
+               android:text="NaN"
                android:layout_marginStart="15dp"
                android:textColor="@color/red"
                android:textSize="18dp"  ></TextView>
@@ -333,7 +317,7 @@
                android:layout_column="3"
                android:layout_gravity="center|end"
                android:padding="10dp"
-               android:text="128345"
+               android:text="NaN"
                android:layout_marginStart="15dp"
                android:textColor="@color/red"
                android:textSize="18dp"  ></TextView>
