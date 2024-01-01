@@ -1,93 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/dialog_todo_box_background">
+    android:background="@drawable/dialog_todo_box_background"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To-Do Box"
-        android:textSize="24dp"
         android:layout_marginTop="3dp"
         android:gravity="center"
+        android:text="To-Do Box"
         android:textColor="@color/white"
-        ></TextView>
+        android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/dialogEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="40dp"
-        android:textColor="@color/white"
         android:hint="I'll make 20 push up"
-        android:textColorHint="@color/silver"
-        ></EditText>
+        android:textColor="@color/white"
+        android:textColorHint="@color/silver"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/dialogDate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="24.04.2023"
             android:layout_weight="1"
-
-            android:textColor="@color/white"
-            android:textSize="18dp"
+            android:text="24.04.2023"
             android:textAlignment="center"
-            ></TextView>
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
         <TextView
             android:id="@+id/dialogDay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Friday"
             android:layout_weight="1"
-            android:textSize="18dp"
-            android:textColor="@color/white"
+            android:text="Friday"
             android:textAlignment="center"
-            ></TextView>
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/dialogCancelBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:textSize="18dp"
-            android:textColor="#FF0010"
-            android:backgroundTint="@color/black"
-            android:layout_weight="1"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            ></Button>
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="Cancel"
+            android:textColor="#FF0010"
+            android:textSize="18sp"/>
+
         <Button
             android:id="@+id/dialogSaveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF0010"
             android:text="Save"
             android:textColor="@color/light_gray"
-            android:textSize="18dp"
-            android:backgroundTint="#FF0010"
-            android:layout_weight="1"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            ></Button>
+            android:textSize="18dp"/>
     </LinearLayout>
 
 

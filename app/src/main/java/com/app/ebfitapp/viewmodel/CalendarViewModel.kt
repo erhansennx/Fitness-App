@@ -14,8 +14,9 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
 
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
     private val firebaseAuthService = FirebaseAuthService(application.applicationContext)
-    val currentEmail = firebaseAuthService.getCurrentUserEmail()
-    val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
+    private val currentEmail = firebaseAuthService.getCurrentUserEmail()
+    private val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
+
     fun addToDoItem(todoArray : ToDoModel, callback: (Boolean) -> Unit) {
 
         val currentTimeStamp = System.currentTimeMillis()

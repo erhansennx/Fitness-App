@@ -236,7 +236,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         dialogSaveBtn.setOnClickListener {
             Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
             val dialogEditText = dialogEditText.text.toString()
-            val uniqueId = generateRandomString(randomLength = true)
+            val uniqueId = UUID.randomUUID().toString().substring(0, 12)
             val currentTimeStamp = System.currentTimeMillis()
             val newTodoItem =
                 ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp)
@@ -251,20 +251,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 }
             }
         }
-    }
-
-    private fun generateRandomString(randomLength: Boolean = false): String {
-        val length = if (randomLength) Random.nextInt(1, 11) else 8
-        var randomString: String
-        do {
-            val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-            randomString = (1..length)
-                .map { charPool[Random.nextInt(0, charPool.size)] }
-                .joinToString("")
-        } while (generatedStrings.contains(randomString))
-
-        generatedStrings.add(randomString)
-        return randomString
     }
 
     private fun observeIndexExists() {

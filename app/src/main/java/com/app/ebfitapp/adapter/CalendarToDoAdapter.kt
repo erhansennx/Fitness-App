@@ -9,7 +9,6 @@ import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
 import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.viewmodel.CalendarViewModel
 import com.google.android.material.snackbar.Snackbar
-import java.util.UUID
 
 class CalendarToDoAdapter(
     var todoArray : ArrayList<ToDoModel>,
@@ -43,7 +42,7 @@ class CalendarToDoAdapter(
                 deleteToDoItem(position)
                 val snackBar = Snackbar.make(viewHolder.itemView, "Item deleted", Snackbar.LENGTH_SHORT)
                 snackBar.setAction("Undo") {
-                    RestoreData(todoModel,position)
+                    restoreData(todoModel,position)
                     calendarViewModel.addToDoItem(todoModel){
                     }
                 }
@@ -58,7 +57,7 @@ class CalendarToDoAdapter(
         notifyDataSetChanged()
         if (todoArray.isEmpty()) {  calendarViewModel.indexExists.value = false }
     }
-    fun RestoreData(model: ToDoModel,position: Int)
+    fun restoreData(model: ToDoModel, position: Int)
     {
         todoArray.add(position,model)
         notifyItemInserted(position)
