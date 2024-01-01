@@ -27,7 +27,7 @@ object StreakManager {
                 streakModel = StreakModel(counter, date, email!!)
                 streakCounter = counter
 
-                if (calculateDateDifferent(date, getTodayDate()) > 1) {
+                if (calculateDateDifferent(date, getTodayDate()) > 0) {
                     streakModel!!.count = -1
                     streakCounter = 0
                     updateStreak()
@@ -69,15 +69,11 @@ object StreakManager {
         if (streakModel!!.date != today) {
             val increaseStreak = streakModel!!.count + 1
             val streakMap = hashMapOf<String, Any>("count" to increaseStreak, "date" to today)
-            streaksRef.update(streakMap).addOnCompleteListener {  task ->
-                if (task.isSuccessful) {
-                    // Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show()
-                } else {
-                    // Toast.makeText(context, "Try Again!", Toast.LENGTH_SHORT).show()
-                }
-            }.addOnFailureListener {
-                // Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
-            }
+            streaksRef.update(streakMap)
+            streakModel!!.date = today
+        } else {
+            val streakMap = hashMapOf<String, Any>("count" to 1, "date" to today)
+            streaksRef.update(streakMap)
         }
     }
 
