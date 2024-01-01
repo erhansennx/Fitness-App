@@ -1,13 +1,21 @@
 package com.app.ebfitapp.fragment
 
+import android.app.Dialog
 import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
@@ -46,7 +54,7 @@ class RopeCalorieBurnedFragment : Fragment() {
                 Navigation.findNavController(requireView()).navigate(goBackAction)
             }
             infoImage.setOnClickListener {
-
+                showRopeCalorieBurnedInfo()
             }
 
 
@@ -123,6 +131,31 @@ class RopeCalorieBurnedFragment : Fragment() {
     }
     private fun timeCalculasion() : Int {return hours!! * 60 + minutes!!}
 
+
+    private fun showRopeCalorieBurnedInfo() {
+        val dialog = Dialog(requireActivity())
+        //Aslında herbiri için bir layuot oluşturmak gereksiz zaten koddan atıyorum niye böyle yaptım ki alköolü bırak
+        dialog.setContentView(R.layout.rope_calorie_burned_info)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+
+        val redColorSpan = ForegroundColorSpan(Color.RED)
+        val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
+        val spannableString =
+            SpannableString("Your calories burned are calculated based on the weight, hours, and minutes you enter.. The ACSM(American College of Sports Medicine) Formula is employed for this calculation")
+        spannableString.setSpan(redColorSpan, 88, 141, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        explanationId.text = spannableString
+        dialog.show()
+        val dialogCancelBtn = dialog.findViewById<Button>(R.id.gotItCalorieButton)
+        dialogCancelBtn.setOnClickListener {
+            dialog.dismiss()
+
+        }
+    }
 
 
 }
