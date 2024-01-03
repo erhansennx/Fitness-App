@@ -70,7 +70,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
-        calendarSearch()
         return fragmentCalenderBinding.root
     }
 
@@ -83,11 +82,13 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             this@CalendarFragment.recyclerView = recyclerView
             this@CalendarFragment.ivCalendarNext = ivCalendarNext
             this@CalendarFragment.ivCalendarPrevious = ivCalendarPrevious
+            emptyText.visibility = View.GONE
             setUpAdapter()
             setUpClickListener()
             setUpCalendar()
             isEmptyText.visibility = View.GONE
             observeIndexExists()
+            calendarSearch()
 
             toDoAdapter = CalendarToDoAdapter(todoArray, calendarViewModel)
             todoRecyclerView.layoutManager = LinearLayoutManager(this@CalendarFragment.context)
@@ -119,12 +120,15 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         calendarViewModel.getToDoItems { toDoList ->
             val filteredToDoList = if (isSelected && selectedDate != null) {
                 toDoList.filter { it.selectedDate == selectedDate }
+
             } else {
                 emptyList()
             }
 
             if (filteredToDoList.isNotEmpty()) {
+                //There is something on the screen
                 fragmentCalenderBinding.isEmptyText.visibility = View.GONE
+                fragmentCalenderBinding.emptyText.visibility = View.GONE
 
                 val sortedToDoList = filteredToDoList.sortedBy { it.createdAt }
                 val arrayListToDoList = ArrayList(sortedToDoList)
@@ -133,19 +137,18 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 toDoAdapter.todoArray.addAll(arrayListToDoList)
                 toDoAdapter.notifyDataSetChanged()
             } else {
+                //There is not item current day is null can be shown
+                //if user uses search bar currenday has to be remove and if items show up
+                //emptyText should be viewGone otherwise show empty text
                 toDoAdapter.todoArray.clear()
                 fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
+                fragmentCalenderBinding.emptyText.visibility = View.GONE
             }
 
             customProgress.dismiss()
         }
 
-        val blinkAnimForToDoText = AlphaAnimation(1f,0f)
-        blinkAnimForToDoText.duration = 500
-        blinkAnimForToDoText.repeatMode = Animation.REVERSE
-        blinkAnimForToDoText.repeatCount = Animation.INFINITE
-
-        fragmentCalenderBinding.todoText.startAnimation(blinkAnimForToDoText)
+        todoTextAnimation()
     }
 
 
@@ -266,11 +269,41 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             override fun afterTextChanged(p0: Editable?) {
                 val searchText = p0.toString().trim()
 
-                val filteredToDoText = todoArray.filter { it.todoText!!.contains(searchText,ignoreCase = true)}
-                toDoAdapter.setData(filteredToDoText)
+                if(searchText.isNotEmpty()){
+                    calendarViewModel.getToDoItems { toDoList ->
+                        val filteredToDoText = if (isSelected)
+                            toDoList.filter { it.todoText!!.contains(searchText, ignoreCase = true) }
+                        else emptyList()
+                        toDoAdapter.setData(filteredToDoText)
 
-                emptyText.visibility = if (filteredToDoText.isEmpty()) android.view.View.VISIBLE
-                else android.view.View.GONE
+                        if (filteredToDoText.isNotEmpty()) {
+                            // Boş değilse
+                            emptyText.visibility = View.GONE
+                            isEmptyText.visibility = View.GONE
+
+                            val sortedToDoList = filteredToDoText.sortedBy { it.todoText }
+                            val arrayListToDoList = ArrayList(sortedToDoList)
+
+                            toDoAdapter.todoArray.clear()
+                            toDoAdapter.todoArray.addAll(arrayListToDoList)
+                            toDoAdapter.notifyDataSetChanged()
+                        } else {
+                            toDoAdapter.todoArray.clear()
+                            toDoAdapter.notifyDataSetChanged()
+                            emptyText.visibility = View.VISIBLE
+                            isEmptyText.visibility = View.GONE
+                        }
+
+                        customProgress.dismiss()
+                    }
+                }else{
+                    toDoAdapter.todoArray.clear()
+                    toDoAdapter.notifyDataSetChanged()
+                    emptyText.visibility = View.VISIBLE
+                    isEmptyText.visibility = View.GONE
+                }
+
+                toDoAdapter.notifyDataSetChanged()
             }
 
         })
@@ -281,8 +314,20 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         calendarViewModel.indexExists.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { indexExists ->
-                if (!indexExists) fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
+                if (!indexExists){
+                    fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
+                }
                 else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
             })
+    }
+
+    private fun todoTextAnimation()
+    {
+        val blinkAnimForToDoText = AlphaAnimation(1f,0f)
+        blinkAnimForToDoText.duration = 500
+        blinkAnimForToDoText.repeatMode = Animation.REVERSE
+        blinkAnimForToDoText.repeatCount = Animation.INFINITE
+
+        fragmentCalenderBinding.todoText.startAnimation(blinkAnimForToDoText)
     }
 }
