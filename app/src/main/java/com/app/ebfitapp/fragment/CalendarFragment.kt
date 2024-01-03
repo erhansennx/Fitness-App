@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import kotlin.random.Random
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -49,7 +51,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     var selectedDate: String? = null
     var selectedDay: String? = null
     var isSelected: Boolean = false
-    val generatedStrings = mutableSetOf<String>()
     var todoArray = arrayListOf<ToDoModel>()
 
 
@@ -69,6 +70,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
+        calendarSearch()
         return fragmentCalenderBinding.root
     }
 
@@ -252,6 +254,28 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             }
         }
     }
+
+
+    private fun calendarSearch() = with(fragmentCalenderBinding) {
+        calendarSearchView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                val searchText = p0.toString().trim()
+
+                val filteredToDoText = todoArray.filter { it.todoText!!.contains(searchText,ignoreCase = true)}
+                toDoAdapter.setData(filteredToDoText)
+
+                emptyText.visibility = if (filteredToDoText.isEmpty()) android.view.View.VISIBLE
+                else android.view.View.GONE
+            }
+
+        })
+    }
+
 
     private fun observeIndexExists() {
         calendarViewModel.indexExists.observe(

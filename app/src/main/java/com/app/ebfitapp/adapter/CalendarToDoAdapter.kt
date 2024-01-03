@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.databinding.ItemCalendarToDoBinding
+import com.app.ebfitapp.model.ArticleModel
 import com.app.ebfitapp.model.ToDoModel
 import com.app.ebfitapp.viewmodel.CalendarViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -80,5 +81,12 @@ class CalendarToDoAdapter(
         itemBinding.itemDay.text = toDoModel.selectedDay
 
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(newTodoText: List<ToDoModel>) {
+        todoArray = newTodoText as ArrayList<ToDoModel>
+        notifyDataSetChanged()
+    }
+
 }
 

@@ -70,6 +70,7 @@
             android:textSize="24sp" />
 
         <EditText
+            android:id="@+id/calendarSearchView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
@@ -113,7 +114,16 @@
             android:textColor="@color/silver"
             android:textSize="24sp" />
 
-
+        <TextView
+            android:id="@+id/emptyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/no_results_found_according_to_your_search"
+            android:textColor="@color/silver"
+            android:textSize="18sp" />
     </FrameLayout>
 
 </LinearLayout>
