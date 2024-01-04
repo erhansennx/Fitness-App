@@ -50,6 +50,8 @@
             android:name=".view.MainActivity"
             android:exported="true" />
 
+        <service android:name=".service.StreakTrackingService" />
+
         <service
             android:name=".service.FCMService"
             android:exported="false">
