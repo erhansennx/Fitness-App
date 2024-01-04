@@ -96,4 +96,7 @@
     <string name="category">Category</string>
     <string name="reading_time">Reading Time</string>
     <string name="no_results_found_according_to_your_search">No results found according to your search</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>
