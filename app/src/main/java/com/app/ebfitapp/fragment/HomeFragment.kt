@@ -69,6 +69,7 @@ class HomeFragment : Fragment() {
         StreakManager.getCurrentStreak(requireContext()) { streakCounter ->
             if (streakCounter != null) {
                 currentStreak = streakCounter
+                circularSeekBar.progress = currentStreak.toFloat()
                 streakCounterText.text = currentStreak.toString()
             }
         }
