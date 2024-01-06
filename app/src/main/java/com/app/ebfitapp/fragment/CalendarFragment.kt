@@ -171,7 +171,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     private fun setUpAdapter() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
-        adapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
+        adapter = CalendarAdapter(fragmentCalenderBinding.recyclerView) { calendarDateModel: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
@@ -197,6 +197,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         calendarList2.addAll(calendarList)
         adapter.setOnItemClickListener(this@CalendarFragment)
         adapter.setData(calendarList)
+        adapter.scrollToPosition()
     }
 
 

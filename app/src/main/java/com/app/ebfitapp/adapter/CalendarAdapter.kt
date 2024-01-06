@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.ebfitapp.R
 import com.app.ebfitapp.model.CalendarDateModel
@@ -16,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
+class CalendarAdapter(private val recyclerView: RecyclerView, private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
     RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>(){
 
     private var list = ArrayList<CalendarDateModel>()
@@ -25,7 +27,7 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
     var currentYear : String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
 
-    interface onItemClickListener{
+    interface onItemClickListener {
         fun onItemClick(text: String, day: String)
     }
 
@@ -88,6 +90,12 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
         val calendarDay = itemView.findViewById<TextView>(R.id.tv_calendar_day)
         val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
         val linear = itemView.findViewById<LinearLayout>(R.id.linear_calendar)
+    }
+
+    fun scrollToPosition() {
+        val today = CalendarDateModel(Date())
+        val index = list.indexOfFirst { it.calendarDay == today.calendarDay }
+        recyclerView.scrollToPosition(index)
     }
 
     fun setData(calendarList: ArrayList<CalendarDateModel>) {
