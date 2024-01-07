@@ -6,9 +6,6 @@ import android.content.Context
 import android.widget.RemoteViews
 import com.app.ebfitapp.R
 
-/**
- * Implementation of App Widget functionality.
- */
 class StreakWidget : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
