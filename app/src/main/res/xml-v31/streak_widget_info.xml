@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/streak_widget"
     android:initialLayout="@layout/streak_widget"
-    android:previewImage="@drawable/widget_image"
+    android:previewImage="@drawable/example_appwidget_preview"
     android:previewLayout="@layout/streak_widget"
     android:maxResizeWidth="250dp"
     android:maxResizeHeight="150dp"
@@ -15,5 +14,4 @@
     android:targetCellWidth="3"
     android:targetCellHeight="2"
     android:updatePeriodMillis="86400000"
-    android:widgetCategory="home_screen"
-    tools:targetApi="s" />
+    android:widgetCategory="home_screen" />
