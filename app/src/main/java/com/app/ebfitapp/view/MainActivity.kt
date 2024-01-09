@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun isForegroundServiceRunning(): Boolean {
+    private fun isForegroundServiceRunning(): Boolean {
         val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
             if (StreakTrackingService::class.java.name == service.service.className) {

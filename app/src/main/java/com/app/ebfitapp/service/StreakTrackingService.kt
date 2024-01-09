@@ -22,9 +22,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import java.util.Date
 
 class StreakTrackingService : Service() {
-    private lateinit var firebaseFirestoreService: FirebaseFirestoreService
+
+    private val streaksString = "streaks"
     private lateinit var firebaseAuthService: FirebaseAuthService
-    private val StreaksString = "streaks"
+    private lateinit var firebaseFirestoreService: FirebaseFirestoreService
+
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -50,7 +52,7 @@ class StreakTrackingService : Service() {
                 firebaseFirestoreService = FirebaseFirestoreService(applicationContext)
 
                 val documentReference =
-                    firebaseFirestoreService.firestore.collection(StreaksString)
+                    firebaseFirestoreService.firestore.collection(streaksString)
                         .document(firebaseAuthService.getCurrentUserEmail())
 
                 documentReference.addSnapshotListener { snapshot: DocumentSnapshot?, error: FirebaseFirestoreException? ->
@@ -61,7 +63,8 @@ class StreakTrackingService : Service() {
 
                     if (snapshot != null && snapshot.exists()) {
                         val firestoreNumber = snapshot.getLong("count")?.toInt() ?: 0
-                        updateWidget(firestoreNumber)
+                        val streakDate = snapshot.getString("date")
+                        updateWidget(firestoreNumber, streakDate!!)
                     }
                 }
             } catch (e: Exception) {
@@ -72,10 +75,11 @@ class StreakTrackingService : Service() {
         return START_STICKY
     }
 
-    private fun updateWidget(firestoreNumber: Int) {
+    private fun updateWidget(firestoreNumber: Int, date: String) {
         Handler(Looper.getMainLooper()).post {
             val view = RemoteViews(packageName, R.layout.streak_widget)
-            view.setTextViewText(R.id.appwidget_text, firestoreNumber.toString())
+            view.setTextViewText(R.id.streakWidget, firestoreNumber.toString())
+            view.setTextViewText(R.id.streakDateWidget, date)
 
             val theWidget = ComponentName(this, StreakWidget::class.java)
             val manager = AppWidgetManager.getInstance(this)
