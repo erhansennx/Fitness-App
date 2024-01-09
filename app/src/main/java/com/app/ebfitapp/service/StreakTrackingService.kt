@@ -72,6 +72,8 @@ class StreakTrackingService : Service() {
             }
         }.start()
 
+        stopForeground(true)
+
         return START_STICKY
     }
 
