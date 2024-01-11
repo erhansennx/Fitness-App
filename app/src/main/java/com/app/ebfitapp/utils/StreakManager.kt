@@ -27,7 +27,7 @@ object StreakManager {
                 streakModel = StreakModel(counter, date, email!!)
                 streakCounter = counter
 
-                if (calculateDateDifferent(date, getTodayDate()) > 0) {
+                if (calculateDateDifferent(date, getTodayDate()) > 1) {
                     streakModel!!.count = -1
                     streakCounter = 0
                     updateStreak()
