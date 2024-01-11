@@ -1,6 +1,5 @@
 package com.app.ebfitapp.fragment
 
-import android.app.Notification.Action
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +24,6 @@ import com.app.ebfitapp.utils.AppPreferences
 import com.app.ebfitapp.utils.CustomProgress
 import com.app.ebfitapp.utils.downloadImageFromURL
 import com.app.ebfitapp.view.AuthenticationActivity
-import com.app.ebfitapp.view.MainActivity
 import com.app.ebfitapp.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.math.abs
@@ -69,7 +66,6 @@ class ProfileFragment : Fragment() {
                 it.background = backgroundDrawable
                 val editProfileAction = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
                 Navigation.findNavController(requireView()).navigate(editProfileAction)
-                Toast.makeText(requireContext(),"Edit profile tıklandı",Toast.LENGTH_SHORT).show()
             }
 
             notificationLayout.setOnClickListener {
@@ -81,7 +77,6 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
-                Toast.makeText(requireContext(),"notification tıklandı",Toast.LENGTH_SHORT).show()
             }
             calculatorsLayout.setOnClickListener {
                     backgroundDrawable = applyAlphaToDrawableWithDelay(
@@ -95,7 +90,6 @@ class ProfileFragment : Fragment() {
 
                 val action = ProfileFragmentDirections.actionProfileFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(action)
-                Toast.makeText(requireContext(),"calculator tıklandı",Toast.LENGTH_SHORT).show()
             }
 
             languageLayout.setOnClickListener {
@@ -107,7 +101,6 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
-                Toast.makeText(requireContext(),"language  tıklandı",Toast.LENGTH_SHORT).show()
             }
 
             logoutLayout.setOnClickListener {
@@ -146,6 +139,7 @@ class ProfileFragment : Fragment() {
         }, delayMillis)
         return backgroundDrawable
     }
+
     private fun observeProfileDetail() {
         mainViewModel.profileDetails.observe(requireActivity(), Observer { userProfileDetails ->
             customProgress.dismiss()

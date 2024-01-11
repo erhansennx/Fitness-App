@@ -1,5 +1,6 @@
 package com.app.ebfitapp.fragment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -100,7 +101,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             toDoAdapter.notifyDataSetChanged()
 
             todoText.setOnClickListener() {
-                if (isSelected == true)
+                if (isSelected)
                     showToDoDialog()
                 else Toast.makeText(
                     this@CalendarFragment.context,
@@ -240,7 +241,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             dialog.dismiss()
         }
         dialogSaveBtn.setOnClickListener {
-            Toast.makeText(requireContext(), " save button tıklandı", Toast.LENGTH_SHORT).show()
             val dialogEditText = dialogEditText.text.toString()
             val uniqueId = UUID.randomUUID().toString().substring(0, 12)
             val currentTimeStamp = System.currentTimeMillis()
@@ -264,30 +264,30 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
         calendarSearchView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun afterTextChanged(p0: Editable?) {
                 val searchText = p0.toString().trim()
 
-                if(searchText.isNotEmpty()){
+                if (searchText.isNotEmpty()) {
                     calendarViewModel.getToDoItems { toDoList ->
                         val filteredToDoText = if (isSelected)
                             toDoList.filter { it.todoText!!.contains(searchText, ignoreCase = true) }
-                        else emptyList()
-                        toDoAdapter.setData(filteredToDoText)
+                        else arrayListOf()
 
                         if (filteredToDoText.isNotEmpty()) {
-                            // Boş değilse
                             emptyText.visibility = View.GONE
                             isEmptyText.visibility = View.GONE
 
                             val sortedToDoList = filteredToDoText.sortedBy { it.todoText }
                             val arrayListToDoList = ArrayList(sortedToDoList)
 
-                            toDoAdapter.todoArray.clear()
-                            toDoAdapter.todoArray.addAll(arrayListToDoList)
-                            toDoAdapter.notifyDataSetChanged()
+                            if (toDoAdapter.todoArray != arrayListToDoList) {
+                                toDoAdapter.todoArray.clear()
+                                toDoAdapter.todoArray.addAll(arrayListToDoList)
+                                toDoAdapter.notifyDataSetChanged()
+                            }
                         } else {
                             toDoAdapter.todoArray.clear()
                             toDoAdapter.notifyDataSetChanged()
@@ -297,18 +297,19 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
                         customProgress.dismiss()
                     }
-                }else{
-                    toDoAdapter.todoArray.clear()
-                    toDoAdapter.notifyDataSetChanged()
+                } else {
+                    if (toDoAdapter.todoArray.isNotEmpty()) {
+                        toDoAdapter.todoArray.clear()
+                        toDoAdapter.notifyDataSetChanged()
+                    }
+
                     emptyText.visibility = View.VISIBLE
                     isEmptyText.visibility = View.GONE
                 }
-
-                toDoAdapter.notifyDataSetChanged()
             }
-
         })
     }
+
 
 
     private fun observeIndexExists() {
