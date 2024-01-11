@@ -16,8 +16,10 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String","RapidAPI_KEY","\"X-RapidAPI-Key: c7de494d29msh11c396e17354e22p1d1ee5jsn71bfc00fa0e2\"")
+        buildConfigField("String","RapidAPI_HOST","\"X-RapidAPI-Host: exercisedb.p.rapidapi.com\"")
+        buildConfigField("String","RapidAPI_BASE","\"https://exercisedb.p.rapidapi.com/\"")
     }
 
     buildTypes {
@@ -29,6 +31,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -39,6 +42,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 

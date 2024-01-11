@@ -1,5 +1,6 @@
 package com.app.ebfitapp.service
 
+import com.app.ebfitapp.BuildConfig
 import com.app.ebfitapp.model.BodyPartExercises
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -8,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MusclesAPIService {
 
-    private val BASE_URL = "https://exercisedb.p.rapidapi.com/"
+    private val BASE_URL = BuildConfig.RapidAPI_BASE
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
