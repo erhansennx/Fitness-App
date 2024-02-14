@@ -16,4 +16,6 @@
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/580584a8-a087-48c6-82d6-d87a7b4234dc" alt="13" width=250>
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/4cc3dbec-7318-4bd3-a077-b40c6ecc5798" alt="14" width=250>
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/a3f6a818-37dc-4723-9fca-ee2930389732" alt="15" width=250>
+<img src="https://github.com/erhansennx/Fitness-App/assets/77855407/f0f74763-26cb-4a86-b33f-896d53c0885d" alt="16" width=250>
+<img src="https://github.com/erhansennx/Fitness-App/assets/77855407/2f0bf846-411c-47a6-a40b-a543741e7b49" alt="17" width=250>
 
