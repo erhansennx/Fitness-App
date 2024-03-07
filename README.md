@@ -43,7 +43,7 @@ EBFitApp, kullanıcılara antrenmanları takip etme, hedefler belirleme ve fitne
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/e9d974f9-7746-4c5a-b5b8-8408ac8c028d" alt="21" width=250>
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/874eb832-d862-40f2-8706-2610465dfad6" alt="18" width=250>
 <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/0d8550f7-7b0b-4371-b6a7-8e4b886d66cf" alt="19" width=250>
-<img src="https://github.com/erhansennx/Fitness-App/assets/77855407/8818f277-6d2b-45e7-a2d2-a39e5f293aa0" alt="22" width=250>
+<!-- <img src="https://github.com/erhansennx/Fitness-App/assets/77855407/8818f277-6d2b-45e7-a2d2-a39e5f293aa0" alt="22" width=250> -->
 <br>
 
 ### Ek Özellikler
