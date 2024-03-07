@@ -76,12 +76,12 @@ EBFitApp'i kullanmak için şu adımları izleyin:
 - Android Geliştirme (Java)
 - Firebase Kimlik Doğrulama
 - Firebase Cloud Messaging
-- RapidAPI (egzersiz verileri çekmek için) -->
+- RapidAPI (egzersiz verileri çekmek için) 
 
 ## Proje Ekibi
 
-- [Erhan Sen](https://github.com/erhansennx)
-- [Berkan Taştekin](https://github.com/berkangit)
+- [Erhan ŞEN](https://github.com/erhansennx)
+- [Berkan TAŞTEKİN](https://github.com/berkangit) -->
 
 
 
